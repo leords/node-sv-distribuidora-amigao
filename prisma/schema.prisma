@@ -1,0 +1,62 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Profession {
+  id Int @id @default(autoincrement())
+  description String
+  users User[]
+} 
+
+model User {
+  id Int @id @default(autoincrement())
+  name String
+  email String @unique
+  accessLevel String
+  password String
+
+  profession Profession @relation(fields: [professionId], references: [id])
+  professionId Int
+
+  carts Cart[]
+
+
+  @@map("users")
+}
+
+model Cart {
+  id        Int       @id @default(autoincrement())
+  clientId  Int       // ID do cliente obtido da API
+  createdAt DateTime  @default(now())
+  total     Float
+
+  userId Int
+  user User @relation(fields: [userId], references: [id])
+  
+  cartItems CartItem[]
+
+
+  @@map("carts")
+}
+
+model CartItem {
+  id        Int     @id @default(autoincrement())
+  cartId    Int
+  cart      Cart    @relation(fields: [cartId], references: [id])
+  productId Int     // ID do produto obtido da API
+  productName String // Nome do produto, armazenado para histórico
+  price     Float   // Preço do produto no momento da adição ao carrinho
+  quantity  Int
+  total     Float   // Calculado como quantidade * preço
+
+
+  @@map("cartItems")
+}
