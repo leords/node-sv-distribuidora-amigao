@@ -1,9 +1,10 @@
+import { ERROR_MESSAGES_USER } from "../../config/httpStatusCodes.js";
 import prismaClient from "../../prisma/index.js";
 
 class CreateUserService {
     async execute(name, email, accessLevel, password, professionId) {
         try {
-            const newUser = prismaClient.user.create({
+            const newUser = await prismaClient.user.create({
                 data: {
                     name,
                     email,
@@ -15,7 +16,7 @@ class CreateUserService {
             return newUser
         } catch (error) {
             // Tratamento de erro caso algo dê errado com o Prisma
-            throw new Error('Erro ao criar o usuário no banco de dados');
+            throw new Error(ERROR_MESSAGES_USER.DATABASE_ERROR);
         }
     }
 }

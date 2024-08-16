@@ -22,7 +22,7 @@ class CreateUserController {
             );
 
             //retorno de usuário criado com sucesso!
-            return res.status(201).json({
+            return res.status(HTTP_STATUS_CODES.CREATED).json({
                 message: SUCESS_MESSAGES_USER.USER_CREATED,
                 user: result
             });

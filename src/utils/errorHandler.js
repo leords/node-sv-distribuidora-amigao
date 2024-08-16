@@ -4,6 +4,8 @@ import { HTTP_STATUS_CODES, ERROR_MESSAGES_USER } from "../config/httpStatusCode
 function handleErros(error) {
 
     // message of the errors for user model!
+
+    //create
     if (error.message === ERROR_MESSAGES_USER.INVALID_EMAIL) {
         return {
             status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_USER.INVALID_EMAIL,
@@ -18,7 +20,18 @@ function handleErros(error) {
         return {
             status: HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR , message: ERROR_MESSAGES_USER.DATABASE_ERROR,
         };
+    }
 
+    //delete
+    else if (error.message === ERROR_MESSAGES_USER.DATABASE_DELETE_ERROR) {
+        return {
+            status: HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR , message: ERROR_MESSAGES_USER.DATABASE_DELETE_ERROR
+        }
+    } 
+    else if(error.message === ERROR_MESSAGES_USER.ERROR_REQ) {
+        return {
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_USER.ERROR_REQ
+        }
     }
     
     return {
