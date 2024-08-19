@@ -1,7 +1,7 @@
 import { ERROR_MESSAGES_USER } from "../../config/httpStatusCodes.js";
 import prismaClient from "../../prisma/index.js";
 
-class deleteUserService {
+class DeleteUserService {
 
     async execute(id) {
         try {
@@ -20,4 +20,4 @@ class deleteUserService {
 
 }
 
-export { deleteUserService } 
+export { DeleteUserService } 

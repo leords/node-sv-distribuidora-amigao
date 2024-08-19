@@ -33,6 +33,13 @@ function handleErros(error) {
             status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_USER.ERROR_REQ
         }
     }
+
+    //update
+    else if (error.message === ERROR_MESSAGES_USER.DATABASE_UPDATE_ERROR) {
+        return {
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_USER.DATABASE_UPDATE_ERROR
+        }
+    }
     
     return {
         status: HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR,

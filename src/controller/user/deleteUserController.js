@@ -1,10 +1,9 @@
-import { response } from "express";
-import { deleteUserService } from "../../service/user/deleteUserService.js";
+import { DeleteUserService } from "../../service/user/deleteUserService.js";
 import { ERROR_MESSAGES_USER, HTTP_STATUS_CODES, SUCESS_MESSAGES_USER } from "../../config/httpStatusCodes.js";
 import { handleErros } from "../../utils/errorHandler.js";
 
 
-class deleteUserController {
+class DeleteUserController {
     async handle(req, res) {
         try {
             const {id} = req.body;
@@ -15,7 +14,7 @@ class deleteUserController {
                 throw new Error(ERROR_MESSAGES_USER.ERROR_REQ);
             }
 
-            const service = new deleteUserService();
+            const service = new DeleteUserService();
             const result = await service.execute(id);
 
             return res.status(HTTP_STATUS_CODES.CREATED).json({
@@ -31,4 +30,4 @@ class deleteUserController {
     }
 }
 
-export { deleteUserController }
+export { DeleteUserController }
