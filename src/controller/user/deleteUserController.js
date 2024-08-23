@@ -8,16 +8,19 @@ class DeleteUserController {
         try {
             const {id} = req.body;
             
-
-            //verificar se o id é válido!!
+            //verificar se o id não é nulo!
             if(!id) {
                 throw new Error(ERROR_MESSAGES_USER.ERROR_REQ);
+            }
+            //verificar se o id é do tipo number!
+            if(typeof id !== 'number') {
+                throw new Error(ERROR_MESSAGES_USER.INVALID_TYPE_ID);
             }
 
             const service = new DeleteUserService();
             const result = await service.execute(id);
 
-            return res.status(HTTP_STATUS_CODES.CREATED).json({
+            return res.status(HTTP_STATUS_CODES.OK).json({
                 message: SUCESS_MESSAGES_USER.USER_DELETED ,
                 user: result
             });

@@ -13,6 +13,14 @@ class UpdateUserController {
                 throw new Error(ERROR_MESSAGES_USER.ERROR_REQ);
             }
 
+            if(typeof id !== 'number') {
+                throw new Error(ERROR_MESSAGES_USER.INVALID_TYPE_ID);
+            }
+
+            if(typeof accessLevel !== 'string') {
+                throw new Error(ERROR_MESSAGES_USER.INVALID_TYPE_ACCESSLEVEL)
+            }
+
             const service = new UpdateUserService();
             const result = await service.executeUpdateAcessLevel(id, accessLevel);
 

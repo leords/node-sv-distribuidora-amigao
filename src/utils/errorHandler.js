@@ -1,28 +1,22 @@
-import { HTTP_STATUS_CODES, ERROR_MESSAGES_USER } from "../config/httpStatusCodes.js";
+import { HTTP_STATUS_CODES, ERROR_MESSAGES_USER, ERROR_MESSAGES_PROFISSION } from "../config/httpStatusCodes.js";
 
 
 function handleErros(error) {
 
     // message of the errors for user model!
-
-    //create
     if (error.message === ERROR_MESSAGES_USER.INVALID_EMAIL) {
         return {
             status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_USER.INVALID_EMAIL,
         };
-
     } else if (error.message === ERROR_MESSAGES_USER.SHORT_PASSWORD) {
         return {
             status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_USER.SHORT_PASSWORD,
         };
-
     } else if (error.message === ERROR_MESSAGES_USER.DATABASE_ERROR) {
         return {
             status: HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR , message: ERROR_MESSAGES_USER.DATABASE_ERROR,
         };
     }
-
-    //delete
     else if (error.message === ERROR_MESSAGES_USER.DATABASE_DELETE_ERROR) {
         return {
             status: HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR , message: ERROR_MESSAGES_USER.DATABASE_DELETE_ERROR
@@ -33,13 +27,83 @@ function handleErros(error) {
             status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_USER.ERROR_REQ
         }
     }
-
-    //update
     else if (error.message === ERROR_MESSAGES_USER.DATABASE_UPDATE_ERROR) {
         return {
             status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_USER.DATABASE_UPDATE_ERROR
         }
     }
+
+
+
+
+    // message of the erros for profession model!
+    else if (error.message === ERROR_MESSAGES_PROFISSION.INVALID_DESCRIPTION_ISNUMBER) {
+        return {
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_USER.INVALID_DESCRIPTION_ISNUMBER
+        }
+    }
+    else if (error.message === ERROR_MESSAGES_PROFISSION.INVALID_DESCRIPTION_CHARACTER) {
+        return {
+            status: HTTP_STATUS_CODES.BAD_REQUEST , message: ERROR_MESSAGES_PROFISSION.INVALID_DESCRIPTION_CHARACTER 
+        }
+    }
+    else if (error.message === ERROR_MESSAGES_PROFISSION.INVALID_DESCRIPTION_EMPTY) {
+        return {
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_PROFISSION.INVALID_DESCRIPTION_EMPTY 
+        }
+    }
+    else if (error.message === ERROR_MESSAGES_PROFISSION.INVALID_TYPE_ID) {
+        return {
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_PROFISSION.INVALID_TYPE_ID 
+        }
+    }
+    else if (error.message === ERROR_MESSAGES_PROFISSION.INVALID_TYPE_DESCRIPTION) {
+        return {
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_PROFISSION.INVALID_TYPE_DESCRIPTION 
+        }
+    }
+    else if (error.message === ERROR_MESSAGES_PROFISSION.INVALID_TYPE_ID) {
+        return {
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_PROFISSION.INVALID_ID_EMPTY
+        }
+    }
+    else if (error.message === ERROR_MESSAGES_PROFISSION.DESCRIPTION_NOT_FOUND) {
+        return {
+            status: HTTP_STATUS_CODES.NOT_FOUND, message: ERROR_MESSAGES_PROFISSION.DESCRIPTION_NOT_FOUND
+        }
+    }
+    else if (error.message === ERROR_MESSAGES_PROFISSION.DATABASE_DELETE_ERROR) {
+        return {
+            status: HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR, message: ERROR_MESSAGES_PROFISSION.DATABASE_DELETE_ERROR
+        }
+    }
+    else if (error.message === ERROR_MESSAGES_PROFISSION.DATABASE_CREATE_ERROR) {
+        return {
+            status: HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR, message: ERROR_MESSAGES_PROFISSION.DATABASE_CREATE_ERROR
+        }
+    }
+    else if (error.message === ERROR_MESSAGES_PROFISSION.DATABASE_DELETE_ERROR_USER_RELATIONS) {
+        return {
+            status: HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR, message: ERROR_MESSAGES_PROFISSION.DATABASE_DELETE_ERROR_USER_RELATIONS
+        }
+    }
+    else if (error.message === ERROR_MESSAGES_PROFISSION.DATABASE_ERROR) {
+        return {
+            status: HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR, message: ERROR_MESSAGES_PROFISSION.DATABASE_ERROR
+        }
+    }
+    else if (error.message === ERROR_MESSAGES_PROFISSION.DATABASE_PROFESSION_EMPTY) {
+        return {
+            status: HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR, message: ERROR_MESSAGES_PROFISSION.DATABASE_PROFESSION_EMPTY
+        }
+    }
+    else if (error.message === ERROR_MESSAGES_PROFISSION.PROFISSION_CREATED) {
+        return {
+            status: HTTP_STATUS_CODES.CREATED, message: SUCESS_MESSAGES_PROFISSION.PROFISSION_CREATED
+        }
+    }
+
+
     
     return {
         status: HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR,
