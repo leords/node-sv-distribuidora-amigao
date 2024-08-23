@@ -12,7 +12,23 @@ function handleErros(error) {
         return {
             status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_USER.SHORT_PASSWORD,
         };
-    } else if (error.message === ERROR_MESSAGES_USER.DATABASE_ERROR) {
+    } 
+    else if (error.message === ERROR_MESSAGES_USER.INVALID_PROFESSION_NOT_EXIST) {
+        return {
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_USER.INVALID_PROFESSION_NOT_EXIST
+        }
+    }
+    else if (error.message === ERROR_MESSAGES_USER.INVALID_TYPE_ID) {
+        return {
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_USER.INVALID_TYPE_ID
+        }
+    }
+    else if (error.message === ERROR_MESSAGES_USER.INVALID_TYPE_ACCESSLEVEL) {
+        return {
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_USER.INVALID_TYPE_ACCESSLEVEL
+        }
+    }
+    else if (error.message === ERROR_MESSAGES_USER.DATABASE_ERROR) {
         return {
             status: HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR , message: ERROR_MESSAGES_USER.DATABASE_ERROR,
         };

@@ -13,6 +13,7 @@ export const ERROR_MESSAGES_USER = {
     ERROR_REQ: 'ID de usuário é obrigatório',
     INVALID_TYPE_ID: 'ID deve ser um número',
     INVALID_TYPE_ACCESSLEVEL: 'Nivel de acesso deve ser do tipo texto',
+    INVALID_PROFESSION_NOT_EXIST: 'Profissão escolhida não existe',
     DATABASE_ERROR: 'Erro ao criar o usuário no banco de dados',
     DATABASE_DELETE_ERROR: 'Erro ao excluir usuário no banco de dados',
     DATABASE_UPDATE_ERROR: 'Erro ao atualizar usuário no banco de dados',

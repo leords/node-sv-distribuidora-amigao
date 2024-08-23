@@ -11,6 +11,7 @@ CREATE TABLE "users" (
     "email" TEXT NOT NULL,
     "accessLevel" TEXT NOT NULL,
     "password" TEXT NOT NULL,
+    "status" BOOLEAN NOT NULL DEFAULT true,
     "professionId" INTEGER NOT NULL,
     CONSTRAINT "users_professionId_fkey" FOREIGN KEY ("professionId") REFERENCES "Profession" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );

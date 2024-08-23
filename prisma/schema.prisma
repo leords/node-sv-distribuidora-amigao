@@ -22,6 +22,7 @@ model User {
   email String @unique
   accessLevel String
   password String
+  status       Boolean   @default(true)
 
   profession Profession @relation(fields: [professionId], references: [id])
   professionId Int

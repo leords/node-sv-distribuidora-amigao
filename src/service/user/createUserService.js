@@ -4,6 +4,18 @@ import prismaClient from "../../prisma/index.js";
 class CreateUserService {
     async execute(name, email, accessLevel, password, professionId) {
         try {
+
+            const profession = await prismaClient.profession.findUnique({
+                where: {
+                    id: professionId
+                }
+            });
+
+            if(!profession) {
+                throw new Error(ERROR_MESSAGES_USER.INVALID_PROFESSION_NOT_EXIST);
+            }
+
+
             const newUser = await prismaClient.user.create({
                 data: {
                     name,
@@ -15,8 +27,8 @@ class CreateUserService {
             });
             return newUser
         } catch (error) {
-            // Tratamento de erro caso algo dê errado com o Prisma
-            throw new Error(ERROR_MESSAGES_USER.DATABASE_ERROR);
+            console.error(error);
+            throw error // Lança o erro para ser tratado pelo depurador do controlador
         }
     }
 }
