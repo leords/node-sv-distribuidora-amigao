@@ -3,6 +3,13 @@ import { HTTP_STATUS_CODES, ERROR_MESSAGES_USER, ERROR_MESSAGES_PROFISSION } fro
 
 function handleErros(error) {
 
+
+
+    //INVALID_TYPE_STATUS: 'Status deve ser do tipo boleano, false ou true', //dar entrada no errorHandle  ??
+    //INVALID_TYPE_PROFESSION: 'Profissão deve ser no tipo texto', //dar entrada no errorHandle  ??
+
+
+
     // message of the errors for user model!
     if (error.message === ERROR_MESSAGES_USER.INVALID_EMAIL) {
         return {
@@ -46,6 +53,11 @@ function handleErros(error) {
     else if (error.message === ERROR_MESSAGES_USER.DATABASE_UPDATE_ERROR) {
         return {
             status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_USER.DATABASE_UPDATE_ERROR
+        }
+    }
+    else if (error.message === ERROR_MESSAGES_USER.INVALID_USER) {
+        return {
+            status: HTTP_STATUS_CODES.NOT_FOUND, message: ERROR_MESSAGES_USER.INVALID_USER
         }
     }
 

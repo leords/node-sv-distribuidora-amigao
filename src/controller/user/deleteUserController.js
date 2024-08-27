@@ -8,11 +8,11 @@ class DeleteUserController {
         try {
             const {id} = req.body;
             
-            //verificar se o id não é nulo!
+            //verifica se o id não é nulo!
             if(!id) {
                 throw new Error(ERROR_MESSAGES_USER.ERROR_REQ);
             }
-            //verificar se o id é do tipo number!
+            //verifica se o id é do tipo number!
             if(typeof id !== 'number') {
                 throw new Error(ERROR_MESSAGES_USER.INVALID_TYPE_ID);
             }
@@ -26,7 +26,7 @@ class DeleteUserController {
             });
 
         } catch (error) {
-            //chamar função para verificar o erro: 
+            //chamando a função que verifica e trata os erros: 
             const { status, message } = handleErros(error);
             return res.status(status).json({message});
         }

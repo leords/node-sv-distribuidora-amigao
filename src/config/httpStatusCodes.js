@@ -11,8 +11,11 @@ export const ERROR_MESSAGES_USER = {
     INVALID_EMAIL: 'Email fornecido é inválido',
     SHORT_PASSWORD: 'A senha deve conter ao menos 8 caracteres',
     ERROR_REQ: 'ID de usuário é obrigatório',
+    INVALID_USER: 'Usuário não encontrado',
     INVALID_TYPE_ID: 'ID deve ser um número',
-    INVALID_TYPE_ACCESSLEVEL: 'Nivel de acesso deve ser do tipo texto',
+    INVALID_TYPE_STATUS: 'Status deve ser do tipo boleano, false ou true', //dar entrada no errorHandle
+    INVALID_TYPE_ACCESSLEVEL: 'Nivel de acesso deve ser do tipo texto', //dar entrada no errorHandle
+    INVALID_TYPE_PROFESSION: 'Profissão deve ser no tipo texto', //dar entrada no errorHandle
     INVALID_PROFESSION_NOT_EXIST: 'Profissão escolhida não existe',
     DATABASE_ERROR: 'Erro ao criar o usuário no banco de dados',
     DATABASE_DELETE_ERROR: 'Erro ao excluir usuário no banco de dados',

@@ -5,6 +5,31 @@ import { handleErros } from "../../utils/errorHandler.js";
 
 
 class UpdateUserController {
+
+    // método para atualizar o status do usuário
+    async handleUpdateStatus(req, res) {
+        const {id} = req.body;
+        try {
+            if(!id) {
+                throw new Error(ERROR_MESSAGES_USER.ERROR_REQ);
+            }
+
+            const service = new UpdateUserService();
+            const result = await service.executeUpdateStatus(id);
+
+            return res.status(HTTP_STATUS_CODES.OK).json({
+                message: SUCESS_MESSAGES_USER.USER_UPDATED,
+                user: result
+            });
+            
+        } catch (error) {
+            const {status, user} = handleErros(error);
+            return res.status(status).json({user});
+        }
+    }
+
+
+    // método para atualizar o nivel de acesso do usuário
     async handleUpdateAcessLevel(req, res) {
         const {id, accessLevel} = req.body;
 
@@ -35,6 +60,7 @@ class UpdateUserController {
         }
     }
 
+    // método para atualizar a profissão relacionada ao usuário
     async handleUpdateProfessionId(req, res) {
         const {id, professionId} = req.body;
 

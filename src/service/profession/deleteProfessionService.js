@@ -28,7 +28,7 @@ class DeleteProfessionService {
                     id: id,
                 },
             });
-            return deleteProfession        
+            return deleteProfession;     
 
         } catch (error) {
             console.error(error);

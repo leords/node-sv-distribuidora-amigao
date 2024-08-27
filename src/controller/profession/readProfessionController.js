@@ -1,13 +1,13 @@
-import { ERROR_MESSAGES_PROFISSION, HTTP_STATUS_CODES } from "../../config/httpStatusCodes.js";
+import { ERROR_MESSAGES_PROFISSION, ERROR_MESSAGES_USER, HTTP_STATUS_CODES } from "../../config/httpStatusCodes.js";
 import { ReadProfessionService } from "../../service/profession/readProfessionService.js"
 import { handleErros } from "../../utils/errorHandler.js";
 
 
 class ReadProfessionController {
-    async handle(req, res) {
+    async handleReadAllProfession(req, res) {
         try {
             const service = new ReadProfessionService();
-            const result = await service.execute();
+            const result = await service.executeReadAllProfession();
 
             if(result.length == 0) {
                 throw new Error(ERROR_MESSAGES_PROFISSION.DATABASE_PROFESSION_EMPTY);
@@ -19,6 +19,26 @@ class ReadProfessionController {
             const {status, message} = handleErros(error);
             return res.status(status).json({message});
             
+        }
+    }
+
+    async handleRealUniqueProfession(req, res) {
+        try {
+            const { id } = req.params;
+
+            const parsedID = Number(id);
+
+            if(isNaN(parsedID)) {
+                throw new Error(ERROR_MESSAGES_USER.INVALID_TYPE_ID);
+            }
+
+            const service = new ReadProfessionService();
+            const result = await service.executeReadUniqueProfession(parsedID);
+
+            return res.status(HTTP_STATUS_CODES.OK).json({profession: result});
+        } catch (error) {
+            const { status, message } = handleErros(error);
+            return res.status(status).json({message});
         }
     }
 }

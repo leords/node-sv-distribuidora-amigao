@@ -7,7 +7,8 @@ import { ReadProfessionController } from "../controller/profession/readProfessio
 const router = Router();
 
 router.post('/create-profession', new CreateProfessionController().handle);
-router.post('/delete-profession', new DeleteProfessionController().handle);
-router.get('/read-profession', new ReadProfessionController().handle);
+router.delete('/delete-profession', new DeleteProfessionController().handle);
+router.get('/read-professions', new ReadProfessionController().handleReadAllProfession);
+router.get('/read-profession/:id', new ReadProfessionController().handleRealUniqueProfession)
 
 export { router as professionRouter }

@@ -29,6 +29,39 @@ class UpdateUserService {
         
         // {professionId} Cria um objeto literal. - Usa o nome da variável professionId como chave do objeto. - Usa o valor da variável professionId como valor correspondente dessa chave. 
     }
+
+    async executeUpdateStatus(id) {
+        try {
+            const statusUser = await prismaClient.user.findUnique({
+                where: {
+                    id: id
+                }
+            });
+
+            if(!statusUser) {
+                throw new Error(ERROR_MESSAGES_USER.INVALID_USER);
+            }
+
+            if(typeof statusUser.status === "boolean") {
+                const update = await prismaClient.user.update({
+                    where: {
+                        id: id
+                    },
+                    data: {
+                        status: !statusUser.status
+                    }
+                });
+
+                return update;
+            }
+
+            throw new Error(ERROR_MESSAGES_USER.ERROR_REQ);
+
+        } catch (error) {
+            throw error
+        }
+    }
 }
+
 
 export { UpdateUserService }
