@@ -13,9 +13,9 @@ export const ERROR_MESSAGES_USER = {
     ERROR_REQ: 'ID de usuário é obrigatório',
     INVALID_USER: 'Usuário não encontrado',
     INVALID_TYPE_ID: 'ID deve ser um número',
-    INVALID_TYPE_STATUS: 'Status deve ser do tipo boleano, false ou true', //dar entrada no errorHandle
-    INVALID_TYPE_ACCESSLEVEL: 'Nivel de acesso deve ser do tipo texto', //dar entrada no errorHandle
-    INVALID_TYPE_PROFESSION: 'Profissão deve ser no tipo texto', //dar entrada no errorHandle
+    INVALID_TYPE_STATUS: 'Status deve ser do tipo boleano, false ou true',
+    INVALID_TYPE_ACCESSLEVEL: 'Nivel de acesso deve ser do tipo texto',
+    INVALID_TYPE_PROFESSION: 'Profissão deve ser no tipo texto',
     INVALID_PROFESSION_NOT_EXIST: 'Profissão escolhida não existe',
     DATABASE_ERROR: 'Erro ao criar o usuário no banco de dados',
     DATABASE_DELETE_ERROR: 'Erro ao excluir usuário no banco de dados',
@@ -44,10 +44,31 @@ export const ERROR_MESSAGES_PROFISSION = {
     DATABASE_ERROR: 'Erro na consulta do bando de dados',
 
     DATABASE_PROFESSION_EMPTY: 'Nenhuma profissão cadastrada'
-
 }
 
 export const SUCESS_MESSAGES_PROFISSION = {
     PROFISSION_CREATED: 'Profissão criada com sucesso!',
     PROFISSION_DELETED: 'Profissão excluída com sucesso!'
+}
+
+export const ERROR_MESSAGES_PRODUCT = {
+    SYNCHRONIZE_PRODUCT_ERROR: 'Erro ao sincronizar produtos',
+    HTTP_STATUS_CODE_ERROR_FATCH: 'HTTP ERROR! status:'
+}
+
+export const SUCESS_MESSAGES_PRODUCT = {
+    SYNCHRONIZE_PRODUCT_SUCESS: 'Produtos sincronizados com sucesso',
+}
+
+export const ERROR_MESSAGES_CLIENT = {
+    SYNCHRONIZE_CLIENT_ERROR: 'Erro ao sincronizar clientes',
+    HTTP_STATUS_CODE_ERROR_FATCH: 'HTTP ERROR! status:'
+}
+
+export const SUCESS_MESSAGES_CLIENT = {
+    SYNCHRONIZE_CLIENT_SUCESS: 'Clientes sincronizados com sucesso',
+}
+
+export const HTTP_API = {
+    HTTP_STATUS_CODE_ERROR_FATCH: 'HTTP STATUS CODE ERROR'
 }

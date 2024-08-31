@@ -33,12 +33,39 @@ model User {
   @@map("users")
 }
 
+model Client {
+  id Int @id
+  name String
+  phone String
+  address String
+  city String
+  salesman String
+  serviceDay String
+  status Boolean @default(true)
+
+  carts Cart[]
+
+  @@map("clients")
+}
+
+model Product {
+  id Int @id
+  name String
+  price Decimal @default(0.0)
+  segment String
+  status Boolean @default(true)
+
+  cartItens CartItem[]
+}
+
+
 model Cart {
   id        Int       @id @default(autoincrement())
-  clientId  Int       // ID do cliente obtido da API
   createdAt DateTime  @default(now())
-  total     Float
+  total     Decimal @default(0.0)
 
+  clientId  Int       // ID do cliente obtido da API
+  client Client @relation(fields: [clientId], references: [id])
   userId Int
   user User @relation(fields: [userId], references: [id])
   
@@ -50,9 +77,12 @@ model Cart {
 
 model CartItem {
   id        Int     @id @default(autoincrement())
+
   cartId    Int
   cart      Cart    @relation(fields: [cartId], references: [id])
   productId Int     // ID do produto obtido da API
+  product Product @relation(fields: [productId], references: [id])
+
   productName String // Nome do produto, armazenado para histórico
   price     Float   // Preço do produto no momento da adição ao carrinho
   quantity  Int

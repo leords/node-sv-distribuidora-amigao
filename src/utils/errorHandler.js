@@ -1,25 +1,29 @@
-import { HTTP_STATUS_CODES, ERROR_MESSAGES_USER, ERROR_MESSAGES_PROFISSION } from "../config/httpStatusCodes.js";
+import { HTTP_STATUS_CODES, ERROR_MESSAGES_USER, ERROR_MESSAGES_PROFISSION, ERROR_MESSAGES_PRODUCT, SUCESS_MESSAGES_PRODUCT, HTTP_API, ERROR_MESSAGES_CLIENT } from "../config/httpStatusCodes.js";
 
 
 function handleErros(error) {
-
-
-
-    //INVALID_TYPE_STATUS: 'Status deve ser do tipo boleano, false ou true', //dar entrada no errorHandle  ??
-    //INVALID_TYPE_PROFESSION: 'Profissão deve ser no tipo texto', //dar entrada no errorHandle  ??
-
-
 
     // message of the errors for user model!
     if (error.message === ERROR_MESSAGES_USER.INVALID_EMAIL) {
         return {
             status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_USER.INVALID_EMAIL,
         };
-    } else if (error.message === ERROR_MESSAGES_USER.SHORT_PASSWORD) {
+    } 
+    else if (error.message === ERROR_MESSAGES_USER.SHORT_PASSWORD) {
         return {
             status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_USER.SHORT_PASSWORD,
         };
     } 
+    else if (error.message === ERROR_MESSAGES_USER.INVALID_TYPE_STATUS) {
+        return {
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_USER.INVALID_TYPE_STATUS 
+        }
+    } 
+    else if (error.message === ERROR_MESSAGES_USER.INVALID_TYPE_PROFESSION) {
+        return {
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_USER.INVALID_TYPE_PROFESSION
+        }
+    }
     else if (error.message === ERROR_MESSAGES_USER.INVALID_PROFESSION_NOT_EXIST) {
         return {
             status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_USER.INVALID_PROFESSION_NOT_EXIST
@@ -131,7 +135,36 @@ function handleErros(error) {
         }
     }
 
+    // message of the erros for product model!
+    else if (error.message === ERROR_MESSAGES_PRODUCT.SYNCHRONIZE_PRODUCT_ERROR) {
+        return {
+            status: HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR, message: ERROR_MESSAGES_PRODUCT.SYNCHRONIZE_PRODUCT_ERROR
+        }
+    }
+    else if (error.message === SUCESS_MESSAGES_PRODUCT.SYNCHRONIZE_PRODUCT_SUCESS) {
+        return {
+            status: HTTP_STATUS_CODES.OK, message: SUCESS_MESSAGES_PRODUCT.SYNCHRONIZE_PRODUCT_SUCESS
+        }
+    }
 
+    else if (error.message === HTTP_API.HTTP_STATUS_CODE_ERROR_FATCH) {
+        return {
+            status: HTTP_STATUS_CODES.NOT_FOUND, message: HTTP_API.HTTP_STATUS_CODE_ERROR_FATCH
+        }
+    }
+
+    // message of the errors for client model!
+
+    else if (error.message === ERROR_MESSAGES_CLIENT.SYNCHRONIZE_CLIENT_ERROR) {
+        return {
+            status: HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR, message: ERROR_MESSAGES_CLIENT.SYNCHRONIZE_CLIENT_ERROR
+        }
+    }
+    else if (error.message === ERROR_MESSAGES_CLIENT.HTTP_STATUS_CODE_ERROR_FATCH) {
+        return {
+            status: HTTP_STATUS_CODES.NOT_FOUND, message: HTTP_STATUS_CODE_ERROR_FATCH
+        }
+    }
     
     return {
         status: HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR,
