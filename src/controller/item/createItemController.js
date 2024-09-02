@@ -1,32 +1,37 @@
-async function addProductToCart(cartId, productId, quantity) {
+import { ERROR_MESSAGES_ITEM, HTTP_STATUS_CODES, SUCESS_MESSAGES_ITEM } from "../../config/httpStatusCodes.js";
+import { CreateItemService } from "../../service/item/createItemService.js";
+import { handleErros } from "../../utils/errorHandler.js";
+
+
+
+class CreateItemController {
+  async handle(req, res) {
     try {
-      // 1. Buscar o produto no banco de dados pelo ID
-      const product = await prisma.produto.findUnique({
-        where: { id: productId },
-      });
-  
-      if (!product) {
-        throw new Error('Produto não encontrado.');
+      const {cartId, productId, quantity} = req.body;
+
+      if(!typeof cartId === 'number') {
+        throw new Error(ERROR_MESSAGES_ITEM.INVALID_CART_ID);
       }
-  
-      // 2. Calcular o preço total com base na quantidade
-      const total = product.price * quantity;
-  
-      // 3. Criar o CartItem com os dados do produto
-      const cartItem = await prisma.cartItem.create({
-        data: {
-          cartId,
-          productId,
-          productName: product.name, // Nome do produto no momento da adição
-          price: product.price, // Preço do produto no momento da adição
-          quantity,
-          total, // Total calculado
-        },
+      if(!typeof productId === 'number') {
+        throw new Error(ERROR_MESSAGES_ITEM.INVALID_PRODUCT_ID);
+      }
+      if(!typeof quantity === 'number') {
+        throw new Error(ERROR_MESSAGES_ITEM.INVALID_TYPE_QUANTITY);
+      }
+
+      const service = new CreateItemService();
+      const result = await service.execute(cartId, productId, quantity);
+
+      return res.status(HTTP_STATUS_CODES.CREATED).json({
+        message: SUCESS_MESSAGES_ITEM.PRODUCT_REGISTERED_SUCCESSFULLY,
+        item: result
       });
-  
-      return cartItem;
+
     } catch (error) {
-      console.error('Erro ao adicionar produto ao carrinho:', error);
-      throw error;
+        const {status, message} = handleErros(error);
+        return res.status(status).json({message});
     }
   }
+}
+
+export { CreateItemController }

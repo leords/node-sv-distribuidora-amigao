@@ -1,4 +1,5 @@
-import { HTTP_STATUS_CODES, ERROR_MESSAGES_USER, ERROR_MESSAGES_PROFISSION, ERROR_MESSAGES_PRODUCT, SUCESS_MESSAGES_PRODUCT, HTTP_API, ERROR_MESSAGES_CLIENT } from "../config/httpStatusCodes.js";
+import { HttpStatusCode } from "axios";
+import { HTTP_STATUS_CODES, ERROR_MESSAGES_USER, ERROR_MESSAGES_PROFISSION, ERROR_MESSAGES_PRODUCT, SUCESS_MESSAGES_PRODUCT, HTTP_API, ERROR_MESSAGES_CLIENT, ERROR_MESSAGES_ITEM, ERROR_MESSAGES_CART } from "../config/httpStatusCodes.js";
 
 
 function handleErros(error) {
@@ -154,7 +155,6 @@ function handleErros(error) {
     }
 
     // message of the errors for client model!
-
     else if (error.message === ERROR_MESSAGES_CLIENT.SYNCHRONIZE_CLIENT_ERROR) {
         return {
             status: HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR, message: ERROR_MESSAGES_CLIENT.SYNCHRONIZE_CLIENT_ERROR
@@ -165,6 +165,36 @@ function handleErros(error) {
             status: HTTP_STATUS_CODES.NOT_FOUND, message: HTTP_STATUS_CODE_ERROR_FATCH
         }
     }
+
+    // message of the errors for item model!
+    else if (error.message === ERROR_MESSAGES_ITEM.PRODUCT_NOT_FOUND) {
+        return {
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_ITEM.PRODUCT_NOT_FOUND
+        }
+    }
+    else if (error.message === ERROR_MESSAGES_ITEM.PRODUCT_ERROR_ADD_TO_CART) {
+        return {
+            status: HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR, message: ERROR_MESSAGES_ITEM.PRODUCT_ERROR_ADD_TO_CART
+        }
+    }
+
+    // message of the errors for cart model!
+    else if (error.message === ERROR_MESSAGES_CART.CART_NOT_FOUND) {
+        return {
+            status: HTTP_STATUS_CODES.NOT_FOUND, message: ERROR_MESSAGES_CART.CART_NOT_FOUND
+        }
+    }
+    else if (error.message === ERROR_MESSAGES_CART.INVALID_CLIENT_ID_TO_CART) {
+        return {
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_CART.INVALID_CLIENT_ID_TO_CART
+        }
+    }
+    else if (error.message === ERROR_MESSAGES_CART.INVALID_USER_ID_TO_CART) {
+        return {
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_CART.INVALID_CLIENT_ID_TO_CART
+        }
+    }
+
     
     return {
         status: HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR,
