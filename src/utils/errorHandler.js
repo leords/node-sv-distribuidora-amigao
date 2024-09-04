@@ -1,5 +1,5 @@
 import { HttpStatusCode } from "axios";
-import { HTTP_STATUS_CODES, ERROR_MESSAGES_USER, ERROR_MESSAGES_PROFISSION, ERROR_MESSAGES_PRODUCT, SUCESS_MESSAGES_PRODUCT, HTTP_API, ERROR_MESSAGES_CLIENT, ERROR_MESSAGES_ITEM, ERROR_MESSAGES_CART } from "../config/httpStatusCodes.js";
+import { HTTP_STATUS_CODES, ERROR_MESSAGES_USER, ERROR_MESSAGES_PROFISSION, ERROR_MESSAGES_PRODUCT, SUCESS_MESSAGES_PRODUCT, HTTP_API, ERROR_MESSAGES_CLIENT, ERROR_MESSAGES_CART, ERROR_MESSAGES_CART_ITEM } from "../config/httpStatusCodes.js";
 
 
 function handleErros(error) {
@@ -136,6 +136,7 @@ function handleErros(error) {
         }
     }
 
+
     // message of the erros for product model!
     else if (error.message === ERROR_MESSAGES_PRODUCT.SYNCHRONIZE_PRODUCT_ERROR) {
         return {
@@ -154,6 +155,8 @@ function handleErros(error) {
         }
     }
 
+
+    
     // message of the errors for client model!
     else if (error.message === ERROR_MESSAGES_CLIENT.SYNCHRONIZE_CLIENT_ERROR) {
         return {
@@ -166,17 +169,42 @@ function handleErros(error) {
         }
     }
 
+
+
+
     // message of the errors for item model!
-    else if (error.message === ERROR_MESSAGES_ITEM.PRODUCT_NOT_FOUND) {
+    else if (error.message === ERROR_MESSAGES_CART_ITEM.PRODUCT_NOT_FOUND) {
         return {
-            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_ITEM.PRODUCT_NOT_FOUND
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_CART_ITEM.PRODUCT_NOT_FOUND
         }
     }
-    else if (error.message === ERROR_MESSAGES_ITEM.PRODUCT_ERROR_ADD_TO_CART) {
+    else if (error.message === ERROR_MESSAGES_CART_ITEM.PRODUCT_ERROR_ADD_TO_CART) {
         return {
-            status: HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR, message: ERROR_MESSAGES_ITEM.PRODUCT_ERROR_ADD_TO_CART
+            status: HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR, message: ERROR_MESSAGES_CART_ITEM.PRODUCT_ERROR_ADD_TO_CART
         }
     }
+    else if (error.message === ERROR_MESSAGES_CART_ITEM.INVALID_TYPE_QUANTITY) {
+        return {
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_CART_ITEM.INVALID_TYPE_QUANTITY
+        }
+    }
+    else if (error.message === ERROR_MESSAGES_CART_ITEM.INVALID_PRODUCT_ID) {
+        return {
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_CART_ITEM.INVALID_PRODUCT_ID
+        }
+    }
+    else if(error.message === ERROR_MESSAGES_CART_ITEM.INVALID_CART_ID) {
+        return {
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_CART_ITEM.INVALID_CART_ID
+        }
+    }
+    else if (error.message === ERROR_MESSAGES_CART_ITEM.INVALID_ID_EMPTY) {
+        return {
+            statusbar: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_CART_ITEM.INVALID_ID_EMPTY
+        }
+    }
+
+
 
     // message of the errors for cart model!
     else if (error.message === ERROR_MESSAGES_CART.CART_NOT_FOUND) {

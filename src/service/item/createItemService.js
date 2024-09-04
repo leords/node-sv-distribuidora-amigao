@@ -1,4 +1,4 @@
-import { ERROR_MESSAGES_CART, ERROR_MESSAGES_ITEM} from "../../config/httpStatusCodes.js";
+import { ERROR_MESSAGES_CART, ERROR_MESSAGES_CART_ITEM} from "../../config/httpStatusCodes.js";
 import prismaClient from "../../prisma/index.js"
 
 
@@ -24,7 +24,7 @@ class CreateItemService {
             });
 
             if (!product) {
-                throw new Error(ERROR_MESSAGES_ITEM.PRODUCT_NOT_FOUND);
+                throw new Error(ERROR_MESSAGES_CART_ITEM.PRODUCT_NOT_FOUND);
             }
 
             const total = product.price * quantity;

@@ -37,7 +37,7 @@ export const ERROR_MESSAGES_PROFISSION = {
     INVALID_DESCRIPTION_EMPTY: 'A profissão não pode ser nula',
     INVALID_TYPE_ID: 'ID deve ser um número',
     INVALID_TYPE_DESCRIPTION: 'Descrição deve ser do tipo texto',
-    INVALID_ID_EMPTY: 'O ID não pode ser nulo',
+    INVALID_ID_EMPTY: 'o ID de profissão não pode ser vazio ou nulo',
 
     DESCRIPTION_NOT_FOUND: 'Profissão não encontrada',
 
@@ -77,16 +77,21 @@ export const SUCESS_MESSAGES_CLIENT = {
 }
 
 //item
-export const SUCESS_MESSAGES_ITEM = {
-    PRODUCT_REGISTERED_SUCCESSFULLY : 'Produto registrado com sucesso'
+export const SUCESS_MESSAGES_CART_ITEM = {
+    PRODUCT_REGISTERED_SUCCESSFULLY: 'Item registrado no carrinho com sucesso',
+    PRODUCT_DELETED_SUCCESSFULLY: 'Item deletado do carrinho com sucesso',
+    PRODUCT_UPDATED_SUCCESSFULLY: 'Item do carrinho atualizado com sucesso'
 }
 
-export const ERROR_MESSAGES_ITEM = {
+export const ERROR_MESSAGES_CART_ITEM = {
     PRODUCT_NOT_FOUND: 'Produto não encontrado',
     PRODUCT_ERROR_ADD_TO_CART: 'Erro ao adicionar o produto no carrinho',
-    INVALID_TYPE_QUANTITY: 'Quantidade deve ser um número valido',
+    INVALID_TYPE_QUANTITY: 'Quantidade espera um número valido',
     INVALID_PRODUCT_ID: 'ID Produto espera um número valido',
-    INVALID_CART_ID: 'CART ID espera um número valido'
+    INVALID_CART_ID: 'CART ID não pode ser nulo',
+    INVALID_QUANTIFY_EMPTY: 'Quantidade não pode ser vazia ou nulo',
+    INVALID_ID_EMPTY: 'o ID do produto não pode ser vazio ou nulo',
+    INVALID_QUATIFY_RANGE: 'Quantidade está fora do intervalo ideal de 1 - 100'
 }
 
 
