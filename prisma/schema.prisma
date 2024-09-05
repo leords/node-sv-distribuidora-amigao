@@ -67,7 +67,7 @@ model Cart {
   clientId  Int       // ID do cliente obtido da API
   client Client @relation(fields: [clientId], references: [id])
   userId Int
-  user User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   
   cartItems CartItem[]
 
@@ -79,7 +79,7 @@ model CartItem {
   id        Int     @id @default(autoincrement())
 
   cartId    Int
-  cart      Cart    @relation(fields: [cartId], references: [id])
+  cart      Cart    @relation( fields: [cartId], references: [id])
   productId Int     // ID do produto obtido da API
   product Product @relation(fields: [productId], references: [id])
 

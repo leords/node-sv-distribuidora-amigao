@@ -205,7 +205,7 @@ function handleErros(error) {
     }
 
 
-
+    
     // message of the errors for cart model!
     else if (error.message === ERROR_MESSAGES_CART.CART_NOT_FOUND) {
         return {
@@ -219,7 +219,17 @@ function handleErros(error) {
     }
     else if (error.message === ERROR_MESSAGES_CART.INVALID_USER_ID_TO_CART) {
         return {
-            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_CART.INVALID_CLIENT_ID_TO_CART
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_CART.INVALID_USER_ID_TO_CART
+        }
+    }
+    else if (error.message === ERROR_MESSAGES_CART.INVALID_ID) {
+        return {
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_CART.INVALID_ID
+        }
+    }
+    else if (error.message === ERROR_MESSAGES_CART.INVALID_ID_EMPTY) {
+        return {
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_CART.INVALID_ID_EMPTY
         }
     }
 

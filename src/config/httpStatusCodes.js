@@ -97,13 +97,16 @@ export const ERROR_MESSAGES_CART_ITEM = {
 
 //carrinho
 export const SUCESS_MESSAGES_CART = {
-    CART_CREATED_SUCEESSFULLY: 'Carrinho criado com sucesso'
+    CART_CREATED_SUCEESSFULLY: 'Carrinho criado com sucesso',
+    CART_DELETED_SUCEESSFULLY: 'Carrinho exluido com sucesso'
 }
 // clientId, userId
 export const ERROR_MESSAGES_CART = {
     CART_NOT_FOUND: 'Carrinho não encontrado',
     INVALID_CLIENT_ID_TO_CART: 'ID CLIENT espera um número valido',
-    INVALID_USER_ID_TO_CART: 'ID USER espera um número valido'
+    INVALID_USER_ID_TO_CART: 'ID USER espera um número valido',
+    INVALID_ID: 'ID espera um número valido',
+    INVALID_ID_EMPTY: 'ID não pode ser vazio ou nulo'
 }
 
 
