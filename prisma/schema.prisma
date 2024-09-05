@@ -67,7 +67,7 @@ model Cart {
   clientId  Int       // ID do cliente obtido da API
   client Client @relation(fields: [clientId], references: [id])
   userId Int
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  user User @relation(fields: [userId], references: [id])
   
   cartItems CartItem[]
 

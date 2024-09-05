@@ -5,7 +5,7 @@ class DeleteCartService {
     async execute(id) {
         try {
 
-            const cartExisting = prismaClient.cart.findUnique({
+            const cartExisting = await prismaClient.cart.findUnique({
                 where: {
                     id: id
                 }
@@ -15,7 +15,15 @@ class DeleteCartService {
                 throw new Error(ERROR_MESSAGES_CART.CART_NOT_FOUND);
             }
 
-            const deleteCart = prismaClient.cart.delete({
+            // verificar o que precisa ser excluido!!!!
+            await prismaClient.cartItem.deleteMany({
+                where: {
+                    cartId: cartExisting.clientId
+                }
+            });
+
+
+            const deleteCart = await prismaClient.cart.delete({
                 where: {
                     id: id
                 }
@@ -24,7 +32,8 @@ class DeleteCartService {
             return deleteCart;
 
         } catch (error) {
-            
+            console.log(error)
+            throw error
         }
     }
 }

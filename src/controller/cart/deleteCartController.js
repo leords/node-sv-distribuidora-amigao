@@ -8,6 +8,7 @@ class DeleteCartController {
         try {
             const {id} = req.body;
            
+            console.log(id)
             if(!id) {
                 throw new Error(ERROR_MESSAGES_CART.INVALID_ID_EMPTY);
             }
