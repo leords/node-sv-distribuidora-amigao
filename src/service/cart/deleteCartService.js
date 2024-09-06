@@ -5,24 +5,25 @@ class DeleteCartService {
     async execute(id) {
         try {
 
+            // verifica a existencia do carrinho.
             const cartExisting = await prismaClient.cart.findUnique({
                 where: {
                     id: id
                 }
             });
-
+            // caso não existir, retorna o erro.
             if(!cartExisting) {
                 throw new Error(ERROR_MESSAGES_CART.CART_NOT_FOUND);
             }
 
-            // verificar o que precisa ser excluido!!!!
+            // exclui todos os item do carrinho a ser excluido.
             await prismaClient.cartItem.deleteMany({
                 where: {
                     cartId: cartExisting.clientId
                 }
             });
 
-
+            // exclui o carrinho.
             const deleteCart = await prismaClient.cart.delete({
                 where: {
                     id: id
