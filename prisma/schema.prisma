@@ -71,6 +71,9 @@ model Cart {
   
   cartItems CartItem[]
 
+  //QUANTIDADE
+  //FORMA DE PAGAMENTO
+
 
   @@map("carts")
 }

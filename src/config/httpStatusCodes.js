@@ -13,7 +13,7 @@ export const ERROR_MESSAGES_USER = {
     SHORT_PASSWORD: 'A senha deve conter ao menos 8 caracteres',
     ERROR_REQ: 'ID de usuário é obrigatório',
     INVALID_USER: 'Usuário não encontrado',
-    INVALID_TYPE_ID: 'ID deve ser um número',
+    INVALID_TYPE_ID: 'User Id deve ser um número',
     INVALID_TYPE_STATUS: 'Status deve ser do tipo boleano, false ou true',
     INVALID_TYPE_ACCESSLEVEL: 'Nivel de acesso deve ser do tipo texto',
     INVALID_TYPE_PROFESSION: 'Profissão deve ser no tipo texto',
@@ -69,7 +69,8 @@ export const SUCESS_MESSAGES_PRODUCT = {
 //cliente
 export const ERROR_MESSAGES_CLIENT = {
     SYNCHRONIZE_CLIENT_ERROR: 'Erro ao sincronizar clientes',
-    HTTP_STATUS_CODE_ERROR_FATCH: 'HTTP ERROR! status:'
+    HTTP_STATUS_CODE_ERROR_FATCH: 'HTTP ERROR! status:',
+    INVALID_ID: 'ClientId espera um número valido'
 }
 
 export const SUCESS_MESSAGES_CLIENT = {
@@ -105,8 +106,10 @@ export const ERROR_MESSAGES_CART = {
     CART_NOT_FOUND: 'Carrinho não encontrado',
     INVALID_CLIENT_ID_TO_CART: 'ID CLIENT espera um número valido',
     INVALID_USER_ID_TO_CART: 'ID USER espera um número valido',
-    INVALID_ID: 'ID espera um número valido',
-    INVALID_ID_EMPTY: 'ID não pode ser vazio ou nulo'
+    INVALID_ID: 'CartId espera um número valido',
+    INVALID_ID_EMPTY: 'ID não pode ser vazio ou nulo',
+    INVALID_DATE: 'Date espera uma data válida',
+    DATA_RANGE_ERROR: 'A data final não pode ser menor que a data inicial'
 }
 
 

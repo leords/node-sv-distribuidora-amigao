@@ -168,6 +168,11 @@ function handleErros(error) {
             status: HTTP_STATUS_CODES.NOT_FOUND, message: HTTP_STATUS_CODE_ERROR_FATCH
         }
     }
+    else if(error.message === ERROR_MESSAGES_CLIENT.INVALID_ID) {
+        return {
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_CLIENT.INVALID_ID
+        }
+    }
 
 
 
@@ -230,6 +235,16 @@ function handleErros(error) {
     else if (error.message === ERROR_MESSAGES_CART.INVALID_ID_EMPTY) {
         return {
             status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_CART.INVALID_ID_EMPTY
+        }
+    }
+    else if(error.message === ERROR_MESSAGES_CART.INVALID_DATE) {
+        return {
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_CART.INVALID_DATE
+        }
+    }
+    else if(error.message === ERROR_MESSAGES_CART.DATA_RANGE_ERROR) {
+        return {
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_CART.DATA_RANGE_ERROR
         }
     }
 
