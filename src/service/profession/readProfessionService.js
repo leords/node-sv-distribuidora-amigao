@@ -10,7 +10,7 @@ class ReadProfessionService {
             return profession;
 
         } catch (error) {
-            throw new Error(ERROR_MESSAGES_PROFISSION.DATABASE_ERROR);
+            throw error
         }
     }
 
@@ -23,7 +23,7 @@ class ReadProfessionService {
             });
             return profession
         } catch (error) {
-            throw new Error(ERROR_MESSAGES_PROFISSION.DATABASE_ERROR);
+            throw error
         }
     }
 }

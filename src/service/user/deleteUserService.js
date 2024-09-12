@@ -14,7 +14,7 @@ class DeleteUserService {
             return deleteUser
             
         } catch (error) {
-            throw new Error(ERROR_MESSAGES_USER.DATABASE_DELETE_ERROR);
+            throw error
         }
     }
 

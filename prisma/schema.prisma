@@ -58,11 +58,20 @@ model Product {
   cartItens CartItem[]
 }
 
+model PaymentMethod {
+  id Int @id
+  name String
+  status Boolean @default(true)
+
+  carts Cart[]
+}
+
 
 model Cart {
   id        Int       @id @default(autoincrement())
   createdAt DateTime  @default(now())
   total     Decimal @default(0.0)
+  quantity  Int
 
   clientId  Int       // ID do cliente obtido da API
   client Client @relation(fields: [clientId], references: [id])
@@ -70,9 +79,9 @@ model Cart {
   user User @relation(fields: [userId], references: [id])
   
   cartItems CartItem[]
-
-  //QUANTIDADE
-  //FORMA DE PAGAMENTO
+  
+  paymentId Int
+  payment PaymentMethod @relation(fields: [paymentId], references: [id])
 
 
   @@map("carts")

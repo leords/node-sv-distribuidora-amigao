@@ -5,13 +5,13 @@ import { handleErros } from "../../utils/errorHandler.js";
 
 class ReadCartController {
     async handle(req, res) {
-        try {
-            const id = req.query.id ? Number(req.query.id) : undefined
-            const clientId = req.query.clientId ? Number(req.query.clientId) : undefined
-            const createdFrom = req.query.createdFrom ? new Date(req.query.createdFrom) : undefined
-            const createdUntil = req.query.createdUntil ? new Date(req.query.createdUntil) : undefined
-            const userId = req.query.userId ? Number(req.query.userId) : undefined
+        const id = req.query.id ? Number(req.query.id) : undefined;
+        const clientId = req.query.clientId ? Number(req.query.clientId) : undefined;
+        const createdFrom = req.query.createdFrom ? new Date(req.query.createdFrom) : undefined;
+        const createdUntil = req.query.createdUntil ? new Date(req.query.createdUntil) : undefined;
+        const userId = req.query.userId ? Number(req.query.userId) : undefined;
 
+        try {
             if(id && isNaN(id)) {
                 throw new Error(ERROR_MESSAGES_CART.INVALID_ID);
             }
@@ -48,7 +48,7 @@ class ReadCartController {
 
         } catch (error) {
             const { status, message } = handleErros(error);
-            return res.status(status).json({message});
+            return res.status(status).json({error: message});
         }
     }
 }

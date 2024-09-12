@@ -23,9 +23,8 @@ class ReadProfessionController {
     }
 
     async handleRealUniqueProfession(req, res) {
+        const { id } = req.params;
         try {
-            const { id } = req.params;
-
             const parsedID = Number(id);
 
             if(isNaN(parsedID)) {
@@ -38,7 +37,7 @@ class ReadProfessionController {
             return res.status(HTTP_STATUS_CODES.OK).json({profession: result});
         } catch (error) {
             const { status, message } = handleErros(error);
-            return res.status(status).json({message});
+            return res.status(status).json({error: message});
         }
     }
 }

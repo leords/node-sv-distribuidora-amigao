@@ -5,9 +5,8 @@ import { handleErros } from "../../utils/errorHandler.js";
 
 class DeleteProfessionController {
     async handle(req, res) {
+        const {id} = req.body;
         try {
-            const {id} = req.body;
-
             if(!id) {
                 throw new Error(ERROR_MESSAGES_PROFISSION.INVALID_ID_EMPTY);
             }
@@ -25,7 +24,7 @@ class DeleteProfessionController {
 
         } catch (error) {
             const { status, message } = handleErros(error);
-            return res.status(status).json({message})
+            return res.status(status).json({error: message})
         }
     }
 }

@@ -1,4 +1,3 @@
-import { ERROR_MESSAGES_PROFISSION } from "../../config/httpStatusCodes.js";
 import prismaClient from "../../prisma/index.js";
 
 
@@ -12,7 +11,7 @@ class CreateProfessionService {
             });
             return newProfission
         } catch (error) {
-            throw new Error(ERROR_MESSAGES_PROFISSION.DATABASE_CREATE_ERROR);
+            throw error
         }
     }
 }

@@ -5,9 +5,9 @@ import { handleErros } from "../../utils/errorHandler.js";
 
 class UpdateItemController {
     async handle(req, res) {
+        const { id, quantify } = req.body;
+        
         try {
-            const { id, quantify } = req.body;
-
             if(!id) {
                 throw new Error(ERROR_MESSAGES_CART_ITEM.INVALID_ID_EMPTY);
             }
@@ -34,7 +34,7 @@ class UpdateItemController {
 
         } catch (error) {
             const { status, message } = handleErros(error);
-            res.status(status).json({message});
+            res.status(status).json({error: message});
         }
     }
 }

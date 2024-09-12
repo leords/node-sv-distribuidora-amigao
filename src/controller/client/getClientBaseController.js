@@ -9,8 +9,6 @@ class GetClientBaseController {
             const response = await fetch('https://script.google.com/macros/s/AKfycbxJ4re9BSBYjhdFhn0q3kYTRYno188Gv7AqF86WkA_BaxsLYoU55CIZN1fKv_3k9rfG/exec')
             const data = await response.json();
 
-            //console.log(data.saida);
-
             if(!response.ok) {
                 throw new Error(`ERROR_MESSAGES_PRODUCT.HTTP_STATUS_CODE_ERROR_FATCH ${response.status}`);
             }
@@ -25,7 +23,7 @@ class GetClientBaseController {
            
         } catch (error) {
             const { status, message } = handleErros(error);
-            return res.status(status).json({message});
+            return res.status(status).json({error: message});
         }
     }
 } 

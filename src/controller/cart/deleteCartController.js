@@ -5,10 +5,8 @@ import { handleErros } from "../../utils/errorHandler.js";
 
 class DeleteCartController {
     async handle(req, res) {
-        try {
-            const {id} = req.body;
-           
-            console.log(id)
+        const {id} = req.body;
+        try {           
             if(!id) {
                 throw new Error(ERROR_MESSAGES_CART.INVALID_ID_EMPTY);
             }
@@ -20,12 +18,12 @@ class DeleteCartController {
             const result = await service.execute(id);
 
             return res.status(HTTP_STATUS_CODES.OK).json({
-                message: SUCESS_MESSAGES_CART.CART_DELETED_SUCEESSFULLY ,
+                message: SUCESS_MESSAGES_CART.CART_DELETED_SUCCESSFULLY ,
                 cart: result
             })
         } catch (error) {
             const { status, message } = handleErros(error);
-            return res.status(status).json(message);
+            return res.status(status).json({error: message});
         }
     }
 }

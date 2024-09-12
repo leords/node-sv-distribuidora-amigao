@@ -10,9 +10,7 @@ class CreateUserController {
         //valida os dados e retorna
         try {
             const usuarioModel = new Usuario(name, email, accessLevel, password, professionId);
-
             const service = new CreateUserService();
-
             const result = await service.execute(
                 usuarioModel.name,
                 usuarioModel.email, 
@@ -32,7 +30,7 @@ class CreateUserController {
 
             // Verifica o tipo de erro e retorna uma resposta específica.
             const { status, message } = handleErros(error);
-            return res.status(status).json({error: message}); 
+            return res.status(status).json({error:message}); 
         }
     }
 } 

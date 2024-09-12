@@ -8,12 +8,9 @@ class GetProductBaseController {
             const response = await fetch('https://script.google.com/macros/s/AKfycbw8aGUzKFs_p-qH_cSKoLiAZYEgsst34MjHJwYJW2kpUVDBs_WRyMtAQTrUcLCwipg/exec')
             const data = await response.json();
 
-            console.log(data.saida)
-
             if(!response.ok) {
                 throw new Error(`ERROR_MESSAGES_CLIENT.HTTP_STATUS_CODE_ERROR_FATCH ${response.status}`);
             }
-
             if(!data || !data.saida) {
                 throw new Error(ERROR_MESSAGES_PRODUCT.SYNCHRONIZE_PRODUCT_ERROR);
             }

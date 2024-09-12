@@ -1,5 +1,5 @@
 import { HttpStatusCode } from "axios";
-import { HTTP_STATUS_CODES, ERROR_MESSAGES_USER, ERROR_MESSAGES_PROFISSION, ERROR_MESSAGES_PRODUCT, SUCESS_MESSAGES_PRODUCT, HTTP_API, ERROR_MESSAGES_CLIENT, ERROR_MESSAGES_CART, ERROR_MESSAGES_CART_ITEM } from "../config/httpStatusCodes.js";
+import { HTTP_STATUS_CODES, ERROR_MESSAGES_USER, ERROR_MESSAGES_PROFISSION, ERROR_MESSAGES_PRODUCT, SUCESS_MESSAGES_PRODUCT, HTTP_API, ERROR_MESSAGES_CLIENT, ERROR_MESSAGES_CART, ERROR_MESSAGES_CART_ITEM, ERROR_MESSAGES_PAYMENT } from "../config/httpStatusCodes.js";
 
 
 function handleErros(error) {
@@ -245,6 +245,27 @@ function handleErros(error) {
     else if(error.message === ERROR_MESSAGES_CART.DATA_RANGE_ERROR) {
         return {
             status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_CART.DATA_RANGE_ERROR
+        }
+    }
+
+    else if(error.message === ERROR_MESSAGES_PAYMENT.INVALID_NAME) {
+        return {
+            status: HTTP_STATUS_CODES.BAD_REQUEST , message: ERROR_MESSAGES_PAYMENT.INVALID_NAME
+        }
+    }
+    else if(error.message === ERROR_MESSAGES_PAYMENT.INVALID_NAME_EMPTY) {
+        return {
+            status: HTTP_STATUS_CODES.BAD_REQUEST , message: ERROR_MESSAGES_PAYMENT.INVALID_NAME_EMPTY
+        }
+    }
+    else if(error.message === ERROR_MESSAGES_PAYMENT.INVALID_LENGTH_NAME) {
+        return {
+            status: HTTP_STATUS_CODES.BAD_REQUEST , message: ERROR_MESSAGES_PAYMENT.INVALID_LENGTH_NAME
+        }
+    }
+    else if(error.message === ERROR_MESSAGES_PAYMENT.INVALID_ONLY_LETTERS) {
+        return {
+            status: HTTP_STATUS_CODES.BAD_REQUEST , message: ERROR_MESSAGES_PAYMENT.INVALID_ONLY_LETTERS
         }
     }
 

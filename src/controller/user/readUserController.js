@@ -5,9 +5,8 @@ import { handleErros } from "../../utils/errorHandler.js";
 class ReadUserController {
 
     async handleReadAnyUsers(req, res) {
+        const { status, profession, accessLevel } = req.query;
         try {
-            const { status, profession, accessLevel } = req.query;
-
             if (status && !['true', 'false'].includes(status)) {
                 throw new Error(`Status não pode ser nulo e '${ERROR_MESSAGES_USER.INVALID_TYPE_STATUS}'`);
             }
@@ -27,20 +26,18 @@ class ReadUserController {
 
             const service = new ReadUserService();
             const result = await service.executeAnyUsers(filters);
-
-
+            
             return res.status(HTTP_STATUS_CODES.OK).json({result});
             
         } catch (error) {
             const { status, message } = handleErros(error);
-            return res.status(status).json({message});
+            return res.status(status).json({error: message});
         }
     }
 
     async handleReadUniqueUser(req, res) {
+        const { id } = req.params;
         try {
-            const { id } = req.params;
-
             // convertendo ID em número
             const parsedID = Number(id)
 
@@ -56,7 +53,7 @@ class ReadUserController {
 
         } catch (error) {
            const { status, message } = handleErros(error);
-           return res.status(status).json({message});
+           return res.status(status).json({error: message});
         }
     }
 }

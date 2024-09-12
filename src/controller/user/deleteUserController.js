@@ -5,9 +5,8 @@ import { handleErros } from "../../utils/errorHandler.js";
 
 class DeleteUserController {
     async handle(req, res) {
-        try {
-            const {id} = req.body;
-            
+        const {id} = req.body;
+        try {            
             //verifica se o id não é nulo!
             if(!id) {
                 throw new Error(ERROR_MESSAGES_USER.ERROR_REQ);
@@ -28,7 +27,7 @@ class DeleteUserController {
         } catch (error) {
             //chamando a função que verifica e trata os erros: 
             const { status, message } = handleErros(error);
-            return res.status(status).json({message});
+            return res.status(status).json({error: message});
         }
     }
 }

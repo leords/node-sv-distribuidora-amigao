@@ -98,8 +98,8 @@ export const ERROR_MESSAGES_CART_ITEM = {
 
 //carrinho
 export const SUCESS_MESSAGES_CART = {
-    CART_CREATED_SUCEESSFULLY: 'Carrinho criado com sucesso',
-    CART_DELETED_SUCEESSFULLY: 'Carrinho exluido com sucesso'
+    CART_CREATED_SUCCESSFULLY: 'Carrinho criado com sucesso',
+    CART_DELETED_SUCCESSFULLY: 'Carrinho exluido com sucesso'
 }
 // clientId, userId
 export const ERROR_MESSAGES_CART = {
@@ -110,6 +110,18 @@ export const ERROR_MESSAGES_CART = {
     INVALID_ID_EMPTY: 'ID não pode ser vazio ou nulo',
     INVALID_DATE: 'Date espera uma data válida',
     DATA_RANGE_ERROR: 'A data final não pode ser menor que a data inicial'
+}
+
+export const SUCESS_MESSAGE_PAYMENT = {
+    PAYMENT_CREATED_SUCCESSFULLY: 'Forma de pagamento criado com sucesso',
+    PAYMENT_DELETED_SUCCESSFULLY: 'Forma de pagamento excluida com sucesso'
+}
+
+export const ERROR_MESSAGES_PAYMENT = {
+    INVALID_NAME: 'NAME espera um texto',
+    INVALID_NAME_EMPTY: 'NAME não pode ser vazio ou nulo',
+    INVALID_LENGTH_NAME: 'NAME está com o tamanho maior que o intervalo ideial de até 50 caracteres',
+    INVALID_ONLY_LETTERS: 'NAME espera somente letras de a-z'
 }
 
 

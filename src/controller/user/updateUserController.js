@@ -23,8 +23,8 @@ class UpdateUserController {
             });
             
         } catch (error) {
-            const {status, user} = handleErros(error);
-            return res.status(status).json({user});
+            const {status, message} = handleErros(error);
+            return res.status(status).json({error: message});
         }
     }
 
@@ -32,7 +32,6 @@ class UpdateUserController {
     // método para atualizar o nivel de acesso do usuário
     async handleUpdateAcessLevel(req, res) {
         const {id, accessLevel} = req.body;
-
         try {
             if(!id || accessLevel === undefined) {
                 throw new Error(ERROR_MESSAGES_USER.ERROR_REQ);
@@ -55,8 +54,8 @@ class UpdateUserController {
             });
 
         } catch (error) {
-            const {status, user} = handleErros(error);
-            return res.status(status).json({user});
+            const {status, message} = handleErros(error);
+            return res.status(status).json({error: message});
         }
     }
 
@@ -78,8 +77,8 @@ class UpdateUserController {
             });
 
         } catch (error) {
-            const {status, user} = handleErros(error);
-            return res.status(status).json({user});
+            const {status, message} = handleErros(error);
+            return res.status(status).json({error: message});
         }
     }
 }
