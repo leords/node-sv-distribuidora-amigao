@@ -1,14 +1,13 @@
-import { ERROR_MESSAGES_PAYMENT } from "../config/httpStatusCodes";
+import { ERROR_MESSAGES_PAYMENT } from "../config/httpStatusCodes.js";
 
 class Payment {
     constructor(name) {
         this.name = name;
-
-        const validatePaymentForm = this.validate(name);
-
-        if(validatePaymentForm) {
-            throw new Error(validatePaymentForm);
+        if(!name) {
+            throw new Error('name invalid!')
         }
+
+        this.validate();
     }
 
     //método para validar o tamanho da string

@@ -9,7 +9,7 @@ class Profession {
             throw new Error(ERROR_MESSAGES_PROFISSION.INVALID_DESCRIPTION_EMPTY);
         }
 
-        const validateDescription = this.validate(description);
+        this.validate(description);
 
         if(validateDescription) {
             throw new Error(validateDescription);

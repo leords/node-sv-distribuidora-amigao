@@ -9,7 +9,7 @@ class DeleteUserController {
         try {            
             //verifica se o id não é nulo!
             if(!id) {
-                throw new Error(ERROR_MESSAGES_USER.ERROR_REQ);
+                throw new Error(ERROR_MESSAGES_USER.INVALID_ID_USER_EMPTY);
             }
             //verifica se o id é do tipo number!
             if(typeof id !== 'number') {

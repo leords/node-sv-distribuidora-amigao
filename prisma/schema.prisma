@@ -59,7 +59,7 @@ model Product {
 }
 
 model PaymentMethod {
-  id Int @id
+  id Int @id @default(autoincrement())
   name String
   status Boolean @default(true)
 
@@ -71,7 +71,7 @@ model Cart {
   id        Int       @id @default(autoincrement())
   createdAt DateTime  @default(now())
   total     Decimal @default(0.0)
-  quantity  Int
+  quantity  Int @default(0)
 
   clientId  Int       // ID do cliente obtido da API
   client Client @relation(fields: [clientId], references: [id])
@@ -83,6 +83,7 @@ model Cart {
   paymentId Int
   payment PaymentMethod @relation(fields: [paymentId], references: [id])
 
+  pendingDelivery String @default("pendente")
 
   @@map("carts")
 }

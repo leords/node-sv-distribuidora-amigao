@@ -11,7 +11,7 @@ class UpdateUserController {
         const {id} = req.body;
         try {
             if(!id) {
-                throw new Error(ERROR_MESSAGES_USER.ERROR_REQ);
+                throw new Error(ERROR_MESSAGES_USER.INVALID_ID_USER_EMPTY);
             }
 
             const service = new UpdateUserService();
@@ -34,7 +34,7 @@ class UpdateUserController {
         const {id, accessLevel} = req.body;
         try {
             if(!id || accessLevel === undefined) {
-                throw new Error(ERROR_MESSAGES_USER.ERROR_REQ);
+                throw new Error(ERROR_MESSAGES_USER.INVALID_ID_USER_EMPTY);
             }
 
             if(typeof id !== 'number') {
@@ -65,7 +65,7 @@ class UpdateUserController {
 
         try {
             if(!id || professionId === undefined) {
-                throw new Error(ERROR_MESSAGES_USER.ERROR_REQ);
+                throw new Error(ERROR_MESSAGES_USER.INVALID_ID_USER_EMPTY);
             }
 
             const service = new UpdateUserService();

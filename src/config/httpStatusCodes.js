@@ -11,13 +11,13 @@ export const HTTP_STATUS_CODES = {
 export const ERROR_MESSAGES_USER = {
     INVALID_EMAIL: 'Email fornecido é inválido',
     SHORT_PASSWORD: 'A senha deve conter ao menos 8 caracteres',
-    ERROR_REQ: 'ID de usuário é obrigatório',
-    INVALID_USER: 'Usuário não encontrado',
+    INVALID_ID_USER_EMPTY: 'ID de usuário é obrigatório',
+    INVALID_USER_NOT_FOUND: 'Usuário não encontrado',
     INVALID_TYPE_ID: 'User Id deve ser um número',
-    INVALID_TYPE_STATUS: 'Status deve ser do tipo boleano, false ou true',
-    INVALID_TYPE_ACCESSLEVEL: 'Nivel de acesso deve ser do tipo texto',
-    INVALID_TYPE_PROFESSION: 'Profissão deve ser no tipo texto',
-    INVALID_PROFESSION_NOT_EXIST: 'Profissão escolhida não existe',
+    INVALID_TYPE_STATUS: 'Status deve ser boleano',
+    INVALID_TYPE_ACCESSLEVEL: 'Nivel de acesso deve ser um texto',
+    INVALID_TYPE_PROFESSION: 'Profissão deve ser um texto',
+    INVALID_PROFESSION_NOT_FOUND: 'Profissão não encontrada',
     DATABASE_ERROR: 'Erro ao criar o usuário no banco de dados',
     DATABASE_DELETE_ERROR: 'Erro ao excluir usuário no banco de dados',
     DATABASE_UPDATE_ERROR: 'Erro ao atualizar usuário no banco de dados',
@@ -77,6 +77,7 @@ export const SUCESS_MESSAGES_CLIENT = {
     SYNCHRONIZE_CLIENT_SUCESS: 'Clientes sincronizados com sucesso',
 }
 
+
 //item
 export const SUCESS_MESSAGES_CART_ITEM = {
     PRODUCT_REGISTERED_SUCCESSFULLY: 'Item registrado no carrinho com sucesso',
@@ -87,12 +88,13 @@ export const SUCESS_MESSAGES_CART_ITEM = {
 export const ERROR_MESSAGES_CART_ITEM = {
     PRODUCT_NOT_FOUND: 'Produto não encontrado',
     PRODUCT_ERROR_ADD_TO_CART: 'Erro ao adicionar o produto no carrinho',
-    INVALID_TYPE_QUANTITY: 'Quantidade espera um número valido',
-    INVALID_PRODUCT_ID: 'ID Produto espera um número valido',
-    INVALID_CART_ID: 'CART ID não pode ser nulo',
-    INVALID_QUANTIFY_EMPTY: 'Quantidade não pode ser vazia ou nulo',
-    INVALID_ID_EMPTY: 'o ID do produto não pode ser vazio ou nulo',
-    INVALID_QUATIFY_RANGE: 'Quantidade está fora do intervalo ideal de 1 - 100'
+    INVALID_TYPE_QUANTITY: 'A Quantidade deve ser um número',
+    INVALID_PRODUCT_ID: 'ID Produto deve ser um número',
+    INVALID_QUANTIFY_EMPTY: 'A Quantidade é obrigatória',
+    INVALID_ID_EMPTY: 'ID do Produto é obrigatório',
+    INVALID_QUATIFY_RANGE: 'Quantidade está fora do intervalo ideal de 1 - 100',
+    INVALID_CART_ID_EMPTY: 'ID do Carrinho é obrigatório',
+    INVALID_CART_ID_TYPE: 'O ID do Carrinho deve ser um número'
 }
 
 
@@ -104,12 +106,14 @@ export const SUCESS_MESSAGES_CART = {
 // clientId, userId
 export const ERROR_MESSAGES_CART = {
     CART_NOT_FOUND: 'Carrinho não encontrado',
-    INVALID_CLIENT_ID_TO_CART: 'ID CLIENT espera um número valido',
-    INVALID_USER_ID_TO_CART: 'ID USER espera um número valido',
-    INVALID_ID: 'CartId espera um número valido',
-    INVALID_ID_EMPTY: 'ID não pode ser vazio ou nulo',
-    INVALID_DATE: 'Date espera uma data válida',
-    DATA_RANGE_ERROR: 'A data final não pode ser menor que a data inicial'
+    INVALID_CLIENT_ID_TO_CART: 'ID CLIENT deve ser um número',
+    INVALID_USER_ID_TO_CART: 'ID USER deve ser um número',
+    INVALID_ID: 'CartId deve ser um número',
+    INVALID_ID_EMPTY: 'ID é obrigatório',
+    INVALID_DATE: 'Date deve ser uma data válida',
+    INVALID_PAYMENT_ID_TO_CART: 'PaymentId deve ser um número',
+    DATA_RANGE_ERROR: 'A data final não pode ser menor que a data inicial',
+
 }
 
 export const SUCESS_MESSAGE_PAYMENT = {
@@ -118,10 +122,13 @@ export const SUCESS_MESSAGE_PAYMENT = {
 }
 
 export const ERROR_MESSAGES_PAYMENT = {
-    INVALID_NAME: 'NAME espera um texto',
-    INVALID_NAME_EMPTY: 'NAME não pode ser vazio ou nulo',
+    INVALID_NAME: 'NAME deve ser um texto',
+    INVALID_NAME_EMPTY: 'NAME é obrigatório',
     INVALID_LENGTH_NAME: 'NAME está com o tamanho maior que o intervalo ideial de até 50 caracteres',
-    INVALID_ONLY_LETTERS: 'NAME espera somente letras de a-z'
+    INVALID_ONLY_LETTERS: 'NAME espera somente letras de a-z',
+    INVALID_ID: 'ID deve ser um número',
+    INVALID_ID_EMPTY: 'ID é obrigatório',
+    PAYMENT_NOT_FOUND: 'Está forma de pagamento não foi encontrada',
 }
 
 

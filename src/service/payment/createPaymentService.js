@@ -9,7 +9,6 @@ class CreatePaymentService {
                 }
             });
             return newPayment
-            
         } catch (error) {
             throw error
         }

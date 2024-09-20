@@ -1,5 +1,7 @@
-import { ERROR_MESSAGES_PAYMENT, SUCESS_MESSAGE_PAYMENT } from "../../config/httpStatusCodes.js";
+import { ERROR_MESSAGES_PAYMENT, HTTP_STATUS_CODES, SUCESS_MESSAGE_PAYMENT } from "../../config/httpStatusCodes.js";
 import { CreatePaymentService } from "../../service/payment/createPaymentService.js";
+import { handleErros } from "../../utils/errorHandler.js"
+import { Payment } from "../../models/payment.js";
 
 
 class CreatePaymentController {
@@ -24,7 +26,7 @@ class CreatePaymentController {
 
         } catch (error) {
             const { status, message } = handleErros(error);
-            return res.status(status).json({error:message});
+            return res.status(status).json({message});
         }
     }
 }

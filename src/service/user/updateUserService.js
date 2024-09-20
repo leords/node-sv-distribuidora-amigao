@@ -39,7 +39,7 @@ class UpdateUserService {
             });
 
             if(!statusUser) {
-                throw new Error(ERROR_MESSAGES_USER.INVALID_USER);
+                throw new Error(ERROR_MESSAGES_USER.INVALID_USER_NOT_FOUND);
             }
 
             if(typeof statusUser.status === "boolean") {
@@ -55,7 +55,7 @@ class UpdateUserService {
                 return update;
             }
 
-            throw new Error(ERROR_MESSAGES_USER.ERROR_REQ);
+            throw new Error(ERROR_MESSAGES_USER.INVALID_ID_USER_EMPTY);
 
         } catch (error) {
             throw error

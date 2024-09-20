@@ -12,7 +12,7 @@ class UpdateItemController {
                 throw new Error(ERROR_MESSAGES_CART_ITEM.INVALID_ID_EMPTY);
             }
             if(typeof id !== 'number') {
-                throw new Error(ERROR_MESSAGES_CART_ITEM.INVALID_CART_ID);
+                throw new Error(ERROR_MESSAGES_CART_ITEM.INVALID_CART_ID_TYPE);
             }
             if(!quantify) {
                 throw new Error(ERROR_MESSAGES_CART_ITEM.INVALID_QUANTIFY_EMPTY);

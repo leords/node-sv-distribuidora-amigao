@@ -10,7 +10,7 @@ class CreateItemController {
     
     try {
       if(!typeof cartId === 'number') {
-        throw new Error(ERROR_MESSAGES_CART_ITEM.INVALID_CART_ID);
+        throw new Error(ERROR_MESSAGES_CART_ITEM.INVALID_CART_ID_TYPE);
       }
       if(!typeof productId === 'number') {
         throw new Error(ERROR_MESSAGES_CART_ITEM.INVALID_PRODUCT_ID);

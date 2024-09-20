@@ -56,13 +56,23 @@ class CreateItemService {
                         cartId: cartId
                     }
                 });
-                // atualizando o total do Cart com o retorno da soma de todos os CartItem relacionados à ele.
+                // calculando novamente a quantidade dos cartItem(item) que estão relacionados ao cartID(carrinho) após a exclusão do item
+                const sumQuantityCartItem = await tx.cartItem.aggregate({
+                    _sum: {
+                        quantity: true
+                    },
+                    where: {
+                        cartId: cartId
+                    }
+                });
+                // atualizando o total do Cart com o retorno da qauntidade e com a soma de todos os CartItem relacionados à ele.
                 await tx.cart.update({
                     where: {
                         id: cartId
                     },
                     data: {
-                        total: Decimal(sumCartItem._sum.total) || 0
+                        total: Decimal(sumCartItem._sum.total) || 0,
+                        quantity:sumQuantityCartItem._sum.quantity || 0
                     }
                 })
     

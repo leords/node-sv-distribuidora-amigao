@@ -1,6 +1,5 @@
 import prismaClient from "../../prisma/index.js";
 
-
 class CreateProfessionService {
     async execute(description) {
         try {

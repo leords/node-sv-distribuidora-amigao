@@ -44,7 +44,7 @@ class ReadUserService {
             });
             // validando a existencia desse usuário com esse ID
             if(!existingUser) {
-                throw new Error(ERROR_MESSAGES_USER.INVALID_USER);
+                throw new Error(ERROR_MESSAGES_USER.INVALID_USER_NOT_FOUND);
             }
 
             return existingUser;

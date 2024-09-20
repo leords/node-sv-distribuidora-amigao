@@ -18,7 +18,6 @@ class UpdateItemService {
             }
 
             const newPrice = item.price * quantify;
-
             const updateItem = await prismaClient.cartItem.update({
                 where: {
                     id: id
@@ -32,7 +31,7 @@ class UpdateItemService {
             return updateItem;
 
         } catch (error) {
-            console.log(error)
+            console.log(error);
             throw error
         }
     }

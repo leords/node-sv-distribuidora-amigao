@@ -4,6 +4,7 @@ import { HTTP_STATUS_CODES, ERROR_MESSAGES_USER, ERROR_MESSAGES_PROFISSION, ERRO
 
 function handleErros(error) {
 
+
     // message of the errors for user model!
     if (error.message === ERROR_MESSAGES_USER.INVALID_EMAIL) {
         return {
@@ -25,9 +26,9 @@ function handleErros(error) {
             status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_USER.INVALID_TYPE_PROFESSION
         }
     }
-    else if (error.message === ERROR_MESSAGES_USER.INVALID_PROFESSION_NOT_EXIST) {
+    else if (error.message === ERROR_MESSAGES_USER.INVALID_PROFESSION_NOT_FOUND) {
         return {
-            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_USER.INVALID_PROFESSION_NOT_EXIST
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_USER.INVALID_PROFESSION_NOT_FOUND
         }
     }
     else if (error.message === ERROR_MESSAGES_USER.INVALID_TYPE_ID) {
@@ -50,9 +51,9 @@ function handleErros(error) {
             status: HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR , message: ERROR_MESSAGES_USER.DATABASE_DELETE_ERROR
         }
     } 
-    else if(error.message === ERROR_MESSAGES_USER.ERROR_REQ) {
+    else if(error.message === ERROR_MESSAGES_USER.INVALID_ID_USER_EMPTY) {
         return {
-            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_USER.ERROR_REQ
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_USER.INVALID_ID_USER_EMPTY
         }
     }
     else if (error.message === ERROR_MESSAGES_USER.DATABASE_UPDATE_ERROR) {
@@ -60,9 +61,9 @@ function handleErros(error) {
             status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_USER.DATABASE_UPDATE_ERROR
         }
     }
-    else if (error.message === ERROR_MESSAGES_USER.INVALID_USER) {
+    else if (error.message === ERROR_MESSAGES_USER.INVALID_USER_NOT_FOUND) {
         return {
-            status: HTTP_STATUS_CODES.NOT_FOUND, message: ERROR_MESSAGES_USER.INVALID_USER
+            status: HTTP_STATUS_CODES.NOT_FOUND, message: ERROR_MESSAGES_USER.INVALID_USER_NOT_FOUND
         }
     }
 
@@ -198,9 +199,9 @@ function handleErros(error) {
             status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_CART_ITEM.INVALID_PRODUCT_ID
         }
     }
-    else if(error.message === ERROR_MESSAGES_CART_ITEM.INVALID_CART_ID) {
+    else if(error.message === ERROR_MESSAGES_CART_ITEM.INVALID_CART_ID_EMPTY) {
         return {
-            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_CART_ITEM.INVALID_CART_ID
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_CART_ITEM.INVALID_CART_ID_EMPTY
         }
     }
     else if (error.message === ERROR_MESSAGES_CART_ITEM.INVALID_ID_EMPTY) {
@@ -208,8 +209,18 @@ function handleErros(error) {
             statusbar: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_CART_ITEM.INVALID_ID_EMPTY
         }
     }
+    else if(error.message === ERROR_MESSAGES_CART_ITEM.INVALID_CART_ID_EMPTY) {
+        return {
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_CART_ITEM.INVALID_CART_ID_EMPTY
+        }
+    }
+    else if(error.message === ERROR_MESSAGES_CART_ITEM.INVALID_CART_ID_TYPE) {
+        return {
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_CART_ITEM.INVALID_CART_ID_TYPE
+        }
+    }
 
-
+    // INVALID_CART_ID
     
     // message of the errors for cart model!
     else if (error.message === ERROR_MESSAGES_CART.CART_NOT_FOUND) {
@@ -247,7 +258,14 @@ function handleErros(error) {
             status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_CART.DATA_RANGE_ERROR
         }
     }
+    else if(error.message === ERROR_MESSAGES_CART.INVALID_PAYMENT_ID_TO_CART) {
+        return {
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_CART.INVALID_PAYMENT_ID_TO_CART
+        }
+    }
 
+
+    // message of the errors for payment model!    
     else if(error.message === ERROR_MESSAGES_PAYMENT.INVALID_NAME) {
         return {
             status: HTTP_STATUS_CODES.BAD_REQUEST , message: ERROR_MESSAGES_PAYMENT.INVALID_NAME
@@ -266,6 +284,21 @@ function handleErros(error) {
     else if(error.message === ERROR_MESSAGES_PAYMENT.INVALID_ONLY_LETTERS) {
         return {
             status: HTTP_STATUS_CODES.BAD_REQUEST , message: ERROR_MESSAGES_PAYMENT.INVALID_ONLY_LETTERS
+        }
+    }
+    else if(error.message === ERROR_MESSAGES_PAYMENT.INVALID_ID) {
+        return {
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_PAYMENT.INVALID_ID
+        }
+    }
+    else if(error.message === ERROR_MESSAGES_PAYMENT.INVALID_ID_EMPTY) {
+        return {
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_PAYMENT.INVALID_ID_EMPTY
+        }
+    }
+    else if(error.message === ERROR_MESSAGES_PAYMENT.PAYMENT_NOT_FOUND) { 
+        return {
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_PAYMENT.PAYMENT_NOT_FOUND
         }
     }
 

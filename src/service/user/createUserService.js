@@ -12,7 +12,7 @@ class CreateUserService {
             });
 
             if(!profession) {
-                throw new Error(ERROR_MESSAGES_USER.INVALID_PROFESSION_NOT_EXIST);
+                throw new Error(ERROR_MESSAGES_USER.INVALID_PROFESSION_NOT_FOUND);
             }
 
 
