@@ -101,9 +101,10 @@ export const ERROR_MESSAGES_CART_ITEM = {
 //carrinho
 export const SUCESS_MESSAGES_CART = {
     CART_CREATED_SUCCESSFULLY: 'Carrinho criado com sucesso',
-    CART_DELETED_SUCCESSFULLY: 'Carrinho exluido com sucesso'
+    CART_DELETED_SUCCESSFULLY: 'Carrinho exluido com sucesso',
+    CART_UPDATED_SUCCESSFULLY: 'Carrinho atualizado com sucesso'
 }
-// clientId, userId
+
 export const ERROR_MESSAGES_CART = {
     CART_NOT_FOUND: 'Carrinho não encontrado',
     INVALID_CLIENT_ID_TO_CART: 'ID CLIENT deve ser um número',
@@ -113,14 +114,15 @@ export const ERROR_MESSAGES_CART = {
     INVALID_DATE: 'Date deve ser uma data válida',
     INVALID_PAYMENT_ID_TO_CART: 'PaymentId deve ser um número',
     DATA_RANGE_ERROR: 'A data final não pode ser menor que a data inicial',
-
+    INVALID_STATUS_DELIVERY: 'Status do Delivery deve ser um texto',
+    INVALID_STATUS_DELIVERY_EMPTY: 'Status do Delivery é obrigatório',
+    INVALID_STATUS_DELIVERY_TYPE: 'Status do Delivery só aceita as opção: "pendente" | "entregue" | "devolvido" | "carregado" ',
 }
-
+// forma de pagamento
 export const SUCESS_MESSAGE_PAYMENT = {
     PAYMENT_CREATED_SUCCESSFULLY: 'Forma de pagamento criado com sucesso',
     PAYMENT_DELETED_SUCCESSFULLY: 'Forma de pagamento excluida com sucesso'
 }
-
 export const ERROR_MESSAGES_PAYMENT = {
     INVALID_NAME: 'NAME deve ser um texto',
     INVALID_NAME_EMPTY: 'NAME é obrigatório',

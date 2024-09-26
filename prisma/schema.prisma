@@ -29,7 +29,6 @@ model User {
 
   carts Cart[]
 
-
   @@map("users")
 }
 
@@ -66,7 +65,7 @@ model PaymentMethod {
   carts Cart[]
 }
 
-
+// MUDAR O ID DE TODOS OS MODEL PARA STRING E TRATAR TODO PARA STRING!!!
 model Cart {
   id        Int       @id @default(autoincrement())
   createdAt DateTime  @default(now())
@@ -83,7 +82,7 @@ model Cart {
   paymentId Int
   payment PaymentMethod @relation(fields: [paymentId], references: [id])
 
-  pendingDelivery String @default("pendente")
+  statusDelivery String @default("pendente")
 
   @@map("carts")
 }
