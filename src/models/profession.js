@@ -1,5 +1,4 @@
 import { ERROR_MESSAGES_PROFISSION } from "../config/httpStatusCodes.js";
-// Importa as mensagens de erro personalizadas, centralizando-as em um arquivo de configuração.
 
 class Profession {
     constructor(description) {
@@ -9,10 +8,10 @@ class Profession {
             throw new Error(ERROR_MESSAGES_PROFISSION.INVALID_DESCRIPTION_EMPTY);
         }
 
-        this.validate(description);
+        const validationError = this.validate();
 
-        if(validateDescription) {
-            throw new Error(validateDescription);
+        if(validationError) {
+            throw new Error(validationError);
         }
     }
 
@@ -42,4 +41,4 @@ class Profession {
 
 }
 
-export { Profession }
+export default Profession

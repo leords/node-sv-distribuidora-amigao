@@ -6,16 +6,17 @@ import { handleErros } from "../../utils/errorHandler.js";
 class ReadCartController {
     async handle(req, res) {
         const id = req.query.id ? Number(req.query.id) : undefined;
-        const clientId = req.query.clientId ? Number(req.query.clientId) : undefined;
+        const clientId = req.query.clientId || undefined;
         const createdFrom = req.query.createdFrom ? new Date(req.query.createdFrom) : undefined;
         const createdUntil = req.query.createdUntil ? new Date(req.query.createdUntil) : undefined;
         const userId = req.query.userId ? Number(req.query.userId) : undefined;
+        const paymentId = req.query.paymentId ? Number(req.query.paymentId) : undefined;
 
         try {
             if(id && isNaN(id)) {
                 throw new Error(ERROR_MESSAGES_CART.INVALID_ID);
             }
-            if(clientId && isNaN(clientId)) {
+            if(clientId !== undefined && typeof clientId !== 'string') {
                 throw new Error(ERROR_MESSAGES_CLIENT.INVALID_ID);
             }
             if(userId && isNaN(userId)) {
@@ -31,13 +32,17 @@ class ReadCartController {
             if(createdUntil && createdFrom && createdUntil < createdFrom) {
                 throw new Error(ERROR_MESSAGES_CART.DATA_RANGE_ERROR);
             }
+            if(paymentId && isNaN(paymentId)) {
+                throw new Error(ERROR_MESSAGES_CART.INVALID_PAYMENT_ID_TO_CART);
+            }
 
             const filters = {
                 id: id,
                 clientId: clientId,
                 createdFrom: createdFrom,
                 createdUntil: createdUntil,
-                userId: userId
+                userId: userId,
+                paymentId: paymentId
             }
 
             const service = new ReadCartService();

@@ -8,7 +8,7 @@ class CreateCartController {
         const { clientId, userId, paymentId } = req.body;
         try {
             
-            if (!typeof clientId === 'number') {
+            if (!typeof clientId === 'string') {
                 throw new Error(ERROR_MESSAGES_CART.INVALID_CLIENT_ID_TO_CART);
             }
 

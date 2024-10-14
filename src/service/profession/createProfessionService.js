@@ -10,6 +10,7 @@ class CreateProfessionService {
             });
             return newProfission
         } catch (error) {
+            console.log(error)
             throw error
         }
     }

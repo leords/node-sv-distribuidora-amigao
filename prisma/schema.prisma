@@ -33,7 +33,7 @@ model User {
 }
 
 model Client {
-  id Int @id
+  id String @id
   name String
   phone String
   address String
@@ -72,7 +72,7 @@ model Cart {
   total     Decimal @default(0.0)
   quantity  Int @default(0)
 
-  clientId  Int       // ID do cliente obtido da API
+  clientId  String       // ID do cliente obtido da API
   client Client @relation(fields: [clientId], references: [id])
   userId Int
   user User @relation(fields: [userId], references: [id])

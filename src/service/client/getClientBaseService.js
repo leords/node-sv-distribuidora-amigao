@@ -11,7 +11,7 @@ class GetClientBaseService {
             for (const client of clients) {
                 await prismaClient.client.upsert({
                     where: {
-                        id: client.Id,
+                        id: String(client.Id),
                     }, 
                     update: {
                         name: client.Nome,
@@ -22,7 +22,7 @@ class GetClientBaseService {
                         serviceDay: client.Atendimento,
                     },
                     create: {
-                        id: client.Id,
+                        id: String(client.Id),
                         name: client.Nome,
                         phone: String(client.Telefone),
                         address: client.Endereco,

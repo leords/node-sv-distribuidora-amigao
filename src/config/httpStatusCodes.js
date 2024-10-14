@@ -117,6 +117,7 @@ export const ERROR_MESSAGES_CART = {
     INVALID_STATUS_DELIVERY: 'Status do Delivery deve ser um texto',
     INVALID_STATUS_DELIVERY_EMPTY: 'Status do Delivery é obrigatório',
     INVALID_STATUS_DELIVERY_TYPE: 'Status do Delivery só aceita as opção: "pendente" | "entregue" | "devolvido" | "carregado" ',
+
 }
 // forma de pagamento
 export const SUCESS_MESSAGE_PAYMENT = {

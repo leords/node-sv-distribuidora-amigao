@@ -20,24 +20,25 @@ class ReadCartService {
                 },
                 _avg: {
                     total: true,
-                    clientId: true
                 },
                 where: {
                     id: filters.id ? Number(filters.id) : undefined,
-                    clientId: filters.clientId ? Number(filters.clientId) : undefined,
+                    clientId: filters.clientId ? filters.clientId : undefined,
                     userId: filters.userId ? Number(filters.userId) : undefined,
+                    paymentId: filters.paymentId ? Number(filters.paymentId) : undefined,
                     createdAt: {
                         gte: filters.createdFrom || undefined,
                         lte: filters.createdUntil || undefined
-                    }
+                    } 
                 },
             });
 
             const itens = await prismaClient.cart.findMany({
                 where: {
                     id: filters.id ? Number(filters.id) : undefined,
-                    clientId: filters.clientId ? Number(filters.clientId) : undefined,
+                    clientId: filters.clientId ? filters.clientId : undefined,
                     userId: filters.userId ? Number(filters.userId) : undefined,
+                    paymentId: filters.paymentId ? Number(filters.paymentId) : undefined,
                     createdAt: {
                         gte: filters.createdFrom || undefined,
                         lte: filters.createdUntil || undefined
@@ -49,7 +50,7 @@ class ReadCartService {
             })
 
 
-            return itens
+            return carts
             
         } catch (error) {
             console.log(error)
