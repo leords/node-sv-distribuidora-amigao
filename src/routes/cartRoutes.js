@@ -10,7 +10,7 @@ const router = Router();
 router.post('/create-cart', new CreateCartController().handle);
 router.delete('/delete-cart', new DeleteCartController().handle);
 router.get('/read-cart', new ReadCartController().handle);
-router.patch('update-cart', new UpdateCartController().handle)
+router.patch('/update-cart', new UpdateCartController().handle)
 
 
 export { router as cartRouter }

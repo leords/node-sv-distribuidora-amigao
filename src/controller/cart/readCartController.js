@@ -1,4 +1,4 @@
-import { ERROR_MESSAGES_CART, ERROR_MESSAGES_CART_ITEM, ERROR_MESSAGES_CLIENT, ERROR_MESSAGES_USER, HTTP_STATUS_CODES } from "../../config/httpStatusCodes.js";
+import { ERROR_MESSAGES_CART, ERROR_MESSAGES_CLIENT, ERROR_MESSAGES_USER, HTTP_STATUS_CODES } from "../../config/httpStatusCodes.js";
 import { ReadCartService } from "../../service/cart/readCartService.js";
 import { handleErros } from "../../utils/errorHandler.js";
 
@@ -11,6 +11,8 @@ class ReadCartController {
         const createdUntil = req.query.createdUntil ? new Date(req.query.createdUntil) : undefined;
         const userId = req.query.userId ? Number(req.query.userId) : undefined;
         const paymentId = req.query.paymentId ? Number(req.query.paymentId) : undefined;
+        const filterType = req.query.filterType || 'sales';
+        const statusDelivery = req.query.statusDelivery || undefined;
 
         try {
             if(id && isNaN(id)) {
@@ -36,19 +38,37 @@ class ReadCartController {
                 throw new Error(ERROR_MESSAGES_CART.INVALID_PAYMENT_ID_TO_CART);
             }
 
+            const allowedTypes = ['sales', 'orders'];
+
+            if(!allowedTypes.includes(filterType)) {
+                throw new Error(ERROR_MESSAGES_CART.INVALID_FILTER_TYPE);
+            }
+
+            const allowedStatuses = ['carregado', 'entregue', 'devolvido', 'pendente', undefined];
+
+            if (!allowedStatuses.includes(statusDelivery)) {
+                throw new Error(ERROR_MESSAGES_CART.INVALID_STATUS_DELIVERY_TYPE);
+            }
+
             const filters = {
                 id: id,
                 clientId: clientId,
                 createdFrom: createdFrom,
                 createdUntil: createdUntil,
                 userId: userId,
-                paymentId: paymentId
+                paymentId: paymentId,
+                statusDelivery: statusDelivery
             }
 
             const service = new ReadCartService();
-            const result = await service.execute(filters);
-
-            return res.status(HTTP_STATUS_CODES.OK).json({result});
+            if (filterType === 'sales') {
+                const result = await service.searchSale(filters);
+                return res.status(HTTP_STATUS_CODES.OK).json({result});
+            }
+            if (filterType === 'orders') {
+                const result = await service.searchCart(filters);
+                return res.status(HTTP_STATUS_CODES.OK).json({result});
+            }
 
 
         } catch (error) {

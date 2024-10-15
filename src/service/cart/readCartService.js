@@ -3,7 +3,7 @@ import prismaClient from "../../prisma/index.js"
 
 
 class ReadCartService {
-    async execute(filters) {
+    async searchSale(filters) {
         try {            
             const carts = await prismaClient.cart.aggregate({
                 _sum: {
@@ -33,12 +33,23 @@ class ReadCartService {
                 },
             });
 
+            return carts
+            
+        } catch (error) {
+            console.log(error)
+            throw error
+        }
+    }
+
+    async searchCart(filters) {
+        try {
             const itens = await prismaClient.cart.findMany({
                 where: {
                     id: filters.id ? Number(filters.id) : undefined,
                     clientId: filters.clientId ? filters.clientId : undefined,
                     userId: filters.userId ? Number(filters.userId) : undefined,
                     paymentId: filters.paymentId ? Number(filters.paymentId) : undefined,
+                    statusDelivery: filters.statusDelivery || undefined,
                     createdAt: {
                         gte: filters.createdFrom || undefined,
                         lte: filters.createdUntil || undefined
@@ -49,11 +60,9 @@ class ReadCartService {
                 }
             })
 
+            return itens
 
-            return carts
-            
         } catch (error) {
-            console.log(error)
             throw error
         }
     }
