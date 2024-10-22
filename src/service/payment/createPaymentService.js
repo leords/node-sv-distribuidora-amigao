@@ -1,18 +1,23 @@
-import prismaClient from "../../prisma/index.js";
+import prismaClient from "../../prisma/index.js"
 
-class CreatePaymentService {
-    async execute(name) {
+class createPaymentService {
+    async execute(value, clientId, paymentId, userId) {
         try {
-            const newPayment = await prismaClient.paymentMethod.create({
+            const newPayment = await prismaClient.payment.create({
                 data: {
-                    name: name
+                    value: value,
+                    clientId: clientId,
+                    paymentId: paymentId,
+                    userId: userId
                 }
             });
+
             return newPayment
         } catch (error) {
+            console.log(error)
             throw error
         }
     }
 }
 
-export { CreatePaymentService }
+export { createPaymentService }

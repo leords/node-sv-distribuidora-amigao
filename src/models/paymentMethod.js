@@ -1,6 +1,6 @@
-import { ERROR_MESSAGES_PAYMENT } from "../config/httpStatusCodes.js";
+import { ERROR_MESSAGES_PAYMENT_METHOD } from "../config/httpStatusCodes.js";
 
-class Payment {
+class PaymentMethod {
     constructor(name) {
         this.name = name;
         if(!name) {
@@ -23,10 +23,10 @@ class Payment {
 
     validate() {
         if(!Payment.validateLength(this.name)) {
-            throw new Error(ERROR_MESSAGES_PAYMENT.INVALID_LENGTH_NAME)
+            throw new Error(ERROR_MESSAGES_PAYMENT_METHOD.INVALID_LENGTH_NAME)
         }
         if(!Payment.validateOnlyLetters(this.name)){
-            throw new Error(ERROR_MESSAGES_PAYMENT.INVALID_ONLY_LETTERS)
+            throw new Error(ERROR_MESSAGES_PAYMENT_METHOD.INVALID_ONLY_LETTERS)
         }
 
         return null
@@ -35,4 +35,4 @@ class Payment {
 
 }
 
-export {Payment}
+export {PaymentMethod}

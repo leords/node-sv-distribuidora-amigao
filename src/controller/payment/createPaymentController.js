@@ -1,33 +1,54 @@
-import { ERROR_MESSAGES_PAYMENT, HTTP_STATUS_CODES, SUCESS_MESSAGE_PAYMENT } from "../../config/httpStatusCodes.js";
-import { CreatePaymentService } from "../../service/payment/createPaymentService.js";
-import { handleErros } from "../../utils/errorHandler.js"
-import { Payment } from "../../models/payment.js";
-
+import { ERROR_MESSAGES_PAYMENT, HTTP_STATUS_CODES, SUCESS_MESSAGES_PAYMENT } from "../../config/httpStatusCodes.js";
+import { CreateCartService } from "../../service/cart/createCartService.js";
+import { createPaymentService } from "../../service/payment/createPaymentService.js";
+import { handleErros } from "../../utils/errorHandler.js";
 
 class CreatePaymentController {
     async handle(req, res) {
-        const { name } = req.body;
+        const {value, clientId, paymentId, userId} = req.body;
+        
         try {
-            if(!name) {
-                throw new Error(ERROR_MESSAGES_PAYMENT.INVALID_NAME_EMPTY);
+            if (!value) {
+                throw new Error(ERROR_MESSAGES_PAYMENT.INVALID_VALUE)
             }
-            if(typeof name !== 'string') {
-                throw new Error(ERROR_MESSAGES_PAYMENT.INVALID_NAME);
+            if (isNaN(value)) {
+                throw new Error(ERROR_MESSAGES_PAYMENT.INVALID_VALUE_TYPE);
+            }
+            if (value <= 0) {
+                throw new Error(ERROR_MESSAGES_PAYMENT.INVALID_VALUE_AMOUNT);
+            }
+            if (!clientId) {
+                throw new Error(ERROR_MESSAGES_PAYMENT.INVALID_CLIENT_ID);
+            }
+            if (isNaN(clientId)) {
+                throw new Error(ERROR_MESSAGES_PAYMENT.INVALID_CLIENT_ID_TYPE);
+            }
+            if (!paymentId) {
+                throw new Error(ERROR_MESSAGES_PAYMENT.INVALID_PAYMENT_ID);
+            }
+            if (isNaN(paymentId)) {
+                throw new Error(ERROR_MESSAGES_PAYMENT.INVALID_PAYMENT_ID_TYPE);
+            }
+            if (!userId) {
+                throw new Error(ERROR_MESSAGES_PAYMENT.INVALID_USER_ID)
+            }
+            if (isNaN(userId)) {
+                throw new Error(ERROR_MESSAGES_PAYMENT.INVALID_USER_ID_TYPE)
             }
 
-            const newPayment = new Payment(name);
-            const service = new CreatePaymentService();
-            const result = await service.execute(newPayment.name);
-    
+            const service = new createPaymentService();
+            const result = await service.execute(value, clientId, paymentId, userId);
+
             return res.status(HTTP_STATUS_CODES.CREATED).json({
-                message: SUCESS_MESSAGE_PAYMENT.PAYMENT_CREATED_SUCCESSFULLY ,
-                payment: result
-            });
+                message: SUCESS_MESSAGES_PAYMENT.PAYMENT_CREATED_SUCCESSFULLY,
+                paymentMethod: result
+            })
 
         } catch (error) {
             const { status, message } = handleErros(error);
-            return res.status(status).json({message});
+            return res.status(status).json({error: message});
         }
+
     }
 }
 

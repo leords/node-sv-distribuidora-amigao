@@ -1,5 +1,5 @@
 import { HttpStatusCode } from "axios";
-import { HTTP_STATUS_CODES, ERROR_MESSAGES_USER, ERROR_MESSAGES_PROFISSION, ERROR_MESSAGES_PRODUCT, SUCESS_MESSAGES_PRODUCT, HTTP_API, ERROR_MESSAGES_CLIENT, ERROR_MESSAGES_CART, ERROR_MESSAGES_CART_ITEM, ERROR_MESSAGES_PAYMENT } from "../config/httpStatusCodes.js";
+import { HTTP_STATUS_CODES, ERROR_MESSAGES_USER, ERROR_MESSAGES_PROFISSION, ERROR_MESSAGES_PRODUCT, SUCESS_MESSAGES_PRODUCT, HTTP_API, ERROR_MESSAGES_CLIENT, ERROR_MESSAGES_CART, ERROR_MESSAGES_CART_ITEM, ERROR_MESSAGES_PAYMENT_METHOD, ERROR_MESSAGES_PAYMENT } from "../config/httpStatusCodes.js";
 
 
 function handleErros(error) {
@@ -265,43 +265,100 @@ function handleErros(error) {
     }
 
 
-    // message of the errors for payment model!    
-    else if(error.message === ERROR_MESSAGES_PAYMENT.INVALID_NAME) {
+    // message of the errors for payment id model!    
+    else if(error.message === ERROR_MESSAGES_PAYMENT_METHOD.INVALID_NAME) {
         return {
-            status: HTTP_STATUS_CODES.BAD_REQUEST , message: ERROR_MESSAGES_PAYMENT.INVALID_NAME
+            status: HTTP_STATUS_CODES.BAD_REQUEST , message: ERROR_MESSAGES_PAYMENT_METHOD.INVALID_NAME
         }
     }
-    else if(error.message === ERROR_MESSAGES_PAYMENT.INVALID_NAME_EMPTY) {
+    else if(error.message === ERROR_MESSAGES_PAYMENT_METHOD.INVALID_NAME_EMPTY) {
         return {
-            status: HTTP_STATUS_CODES.BAD_REQUEST , message: ERROR_MESSAGES_PAYMENT.INVALID_NAME_EMPTY
+            status: HTTP_STATUS_CODES.BAD_REQUEST , message: ERROR_MESSAGES_PAYMENT_METHOD.INVALID_NAME_EMPTY
         }
     }
-    else if(error.message === ERROR_MESSAGES_PAYMENT.INVALID_LENGTH_NAME) {
+    else if(error.message === ERROR_MESSAGES_PAYMENT_METHOD.INVALID_LENGTH_NAME) {
         return {
-            status: HTTP_STATUS_CODES.BAD_REQUEST , message: ERROR_MESSAGES_PAYMENT.INVALID_LENGTH_NAME
+            status: HTTP_STATUS_CODES.BAD_REQUEST , message: ERROR_MESSAGES_PAYMENT_METHOD.INVALID_LENGTH_NAME
         }
     }
-    else if(error.message === ERROR_MESSAGES_PAYMENT.INVALID_ONLY_LETTERS) {
+    else if(error.message === ERROR_MESSAGES_PAYMENT_METHOD.INVALID_ONLY_LETTERS) {
         return {
-            status: HTTP_STATUS_CODES.BAD_REQUEST , message: ERROR_MESSAGES_PAYMENT.INVALID_ONLY_LETTERS
+            status: HTTP_STATUS_CODES.BAD_REQUEST , message: ERROR_MESSAGES_PAYMENT_METHOD.INVALID_ONLY_LETTERS
         }
     }
+    else if(error.message === ERROR_MESSAGES_PAYMENT_METHOD.INVALID_ID) {
+        return {
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_PAYMENT_METHOD.INVALID_ID
+        }
+    }
+    else if(error.message === ERROR_MESSAGES_PAYMENT_METHOD.INVALID_ID_EMPTY) {
+        return {
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_PAYMENT_METHOD.INVALID_ID_EMPTY
+        }
+    }
+    else if(error.message === ERROR_MESSAGES_PAYMENT_METHOD.PAYMENT_NOT_FOUND) { 
+        return {
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_PAYMENT_METHOD.PAYMENT_NOT_FOUND
+        }
+    }
+
+    // message of the errors for payment model!
+    else if(error.message === ERROR_MESSAGES_PAYMENT.INVALID_USER_ID_TYPE) {
+        return {
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_PAYMENT.INVALID_USER_ID_TYPE
+        }
+    }
+    else if(error.message === ERROR_MESSAGES_PAYMENT.INVALID_USER_ID) {
+        return {
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_PAYMENT.INVALID_USER_ID
+        }
+    }
+    else if(error.message === ERROR_MESSAGES_PAYMENT.INVALID_PAYMENT_ID_TYPE) {
+        return {
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_PAYMENT.INVALID_PAYMENT_ID_TYPE
+        }
+    }
+    else if(error.message === ERROR_MESSAGES_PAYMENT.INVALID_PAYMENT_ID) {
+        return {
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_PAYMENT.INVALID_PAYMENT_ID
+        }
+    }
+    else if(error.message === ERROR_MESSAGES_PAYMENT.INVALID_VALUE_AMOUNT) {
+        return {
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_PAYMENT.INVALID_VALUE_AMOUNT
+        }
+    }
+    else if(error.message === ERROR_MESSAGES_PAYMENT.INVALID_VALUE_TYPE) {
+        return {
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_PAYMENT.INVALID_VALUE_TYPE
+        }
+    }
+    else if(error.message === ERROR_MESSAGES_PAYMENT.INVALID_VALUE) {
+        return {
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_PAYMENT.INVALID_VALUE
+        }
+    }
+    else if(error.message === ERROR_MESSAGES_PAYMENT.INVALID_CLIENT_ID) {
+        return {
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_PAYMENT.INVALID_CLIENT_ID
+        }
+    }
+    else if(error.message === ERROR_MESSAGES_PAYMENT.INVALID_CLIENT_ID_TYPE) {
+        return {
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_PAYMENT.INVALID_CLIENT_ID_TYPE
+        }
+    }
+
     else if(error.message === ERROR_MESSAGES_PAYMENT.INVALID_ID) {
         return {
             status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_PAYMENT.INVALID_ID
         }
     }
-    else if(error.message === ERROR_MESSAGES_PAYMENT.INVALID_ID_EMPTY) {
+    else if(error.message === ERROR_MESSAGES_PAYMENT.INVALID_ID_TYPE) {
         return {
-            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_PAYMENT.INVALID_ID_EMPTY
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_PAYMENT.INVALID_ID_TYPE
         }
     }
-    else if(error.message === ERROR_MESSAGES_PAYMENT.PAYMENT_NOT_FOUND) { 
-        return {
-            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_PAYMENT.PAYMENT_NOT_FOUND
-        }
-    }
-
     
     return {
         status: HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR,

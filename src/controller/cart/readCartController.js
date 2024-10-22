@@ -15,6 +15,7 @@ class ReadCartController {
         const statusDelivery = req.query.statusDelivery || undefined;
 
         try {
+            // verificação do ID é necessaria, pois mesmo undefined o isNaN retorna false! 
             if(id && isNaN(id)) {
                 throw new Error(ERROR_MESSAGES_CART.INVALID_ID);
             }

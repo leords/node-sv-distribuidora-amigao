@@ -1,30 +1,32 @@
-import { ERROR_MESSAGES_PAYMENT } from "../../config/httpStatusCodes";
-import prismaClient from "../../prisma"
+import prismaClient from "../../prisma/index.js"
+
 
 class DeletePaymentService {
     async execute(id) {
         try {
-
-            const existingPayment = await prismaClient.paymentMethod.findUnique({
+            const existingPayment = await prismaClient.payment.findUnique({
                 where: {
                     id: id
                 }
             });
 
-            if(!existingPayment) {
-                throw new Error(ERROR_MESSAGES_PAYMENT.PAYMENT_NOT_FOUND)
+            if (existingPayment) {
+                const deletePayment = await prismaClient.payment.delete({
+                    where:{
+                        id: id
+                    }
+                });
+    
+                return deletePayment;
+
+            } else {
+                throw new Error()
             }
 
-            const deletePayment = await prismaClient.paymentMethod.delete({
-                where: {
-                    id: id
-                }
-            });
-            return deletePayment
         } catch (error) {
+            console.log(error)
             throw error
         }
-
     }
 }
 

@@ -120,11 +120,11 @@ export const ERROR_MESSAGES_CART = {
     INVALID_FILTER_TYPE: 'Filter type só aceita as opção: "sales" | "orders" ',
 }
 // forma de pagamento
-export const SUCESS_MESSAGE_PAYMENT = {
+export const SUCESS_MESSAGE_PAYMENT_METHOD = {
     PAYMENT_CREATED_SUCCESSFULLY: 'Forma de pagamento criado com sucesso',
     PAYMENT_DELETED_SUCCESSFULLY: 'Forma de pagamento excluida com sucesso'
 }
-export const ERROR_MESSAGES_PAYMENT = {
+export const ERROR_MESSAGES_PAYMENT_METHOD = {
     INVALID_NAME: 'NAME deve ser um texto',
     INVALID_NAME_EMPTY: 'NAME é obrigatório',
     INVALID_LENGTH_NAME: 'NAME está com o tamanho maior que o intervalo ideial de até 50 caracteres',
@@ -134,6 +134,28 @@ export const ERROR_MESSAGES_PAYMENT = {
     PAYMENT_NOT_FOUND: 'Está forma de pagamento não foi encontrada',
 }
 
+export const SUCESS_MESSAGES_PAYMENT = {
+    PAYMENT_CREATED_SUCCESSFULLY: 'Pagamento criado com sucesso',
+    PAYMENT_DELETED_SUCCESSFULLY: 'Pagamento excluido com sucesso',
+    PAYMENT_UPDATED_SUCCESSFULLY: 'Pagamento deletado com sucesso'
+}
+
+export const ERROR_MESSAGES_PAYMENT = {
+    INVALID_ID: 'ID é obrigatório',
+    INVALID_ID_TYPE: 'ID deve ser um número',
+    INVALID_VALUE: 'Valor deve ser um número',
+    INVALID_VALUE_TYPE: 'Valor é obrigatório',
+    INVALID_VALUE_AMOUNT: 'Obrigatório que o valor de pagamento seja maior que 1',
+    INVALID_CLIENT_ID: 'Client ID deve ser um número',
+    INVALID_CLIENT_ID_TYPE: 'Client ID é obrigatório',
+    INVALID_PAYMENT_ID: 'Payment ID deve ser um número',
+    INVALID_PAYMENT_ID_TYPE: 'Payment ID deve ser número',
+    INVALID_USER_ID: 'User ID é obrigatório',
+    INVALID_USER_ID_TYPE: 'User ID deve ser número',
+    INVALID_DATE: 'Date deve ser uma data válida',
+    DATA_RANGE_ERROR: 'A data final não pode ser menor que a data inicial',
+
+}
 
 export const HTTP_API = {
     HTTP_STATUS_CODE_ERROR_FATCH: 'HTTP STATUS CODE ERROR'

@@ -28,6 +28,7 @@ model User {
   professionId Int
 
   carts Cart[]
+  payments Payment[]
 
   @@map("users")
 }
@@ -43,6 +44,7 @@ model Client {
   status Boolean @default(true)
 
   carts Cart[]
+  payments Payment[]
 
   @@map("clients")
 }
@@ -63,6 +65,7 @@ model PaymentMethod {
   status Boolean @default(true)
 
   carts Cart[]
+  payments Payment[]
 }
 
 // MUDAR O ID DE TODOS OS MODEL PARA STRING E TRATAR TODO PARA STRING!!!
@@ -103,3 +106,20 @@ model CartItem {
 
   @@map("cartItems")
 }
+
+model Payment {
+  id Int @id @default(autoincrement())
+  value Decimal @default(0.0)
+  createdAt DateTime @default(now())
+
+  clientId String
+  client Client @relation(fields: [clientId], references: [id])
+
+  paymentId Int
+  payment PaymentMethod @relation(fields: [paymentId], references: [id])
+
+  userId Int
+  user User @relation(fields: [userId], references: [id])
+
+  @@map("payments")
+} 
