@@ -21,6 +21,7 @@ export const ERROR_MESSAGES_USER = {
     DATABASE_ERROR: 'Erro ao criar o usuário no banco de dados',
     DATABASE_DELETE_ERROR: 'Erro ao excluir usuário no banco de dados',
     DATABASE_UPDATE_ERROR: 'Erro ao atualizar usuário no banco de dados',
+    INVALID_ACCESS_LEVEL: 'Access Level só aceita: 1 | 2 | 3'
 };
 
 export const SUCESS_MESSAGES_USER = {
@@ -127,11 +128,10 @@ export const SUCESS_MESSAGE_PAYMENT_METHOD = {
 export const ERROR_MESSAGES_PAYMENT_METHOD = {
     INVALID_NAME: 'NAME deve ser um texto',
     INVALID_NAME_EMPTY: 'NAME é obrigatório',
-    INVALID_LENGTH_NAME: 'NAME está com o tamanho maior que o intervalo ideial de até 50 caracteres',
-    INVALID_ONLY_LETTERS: 'NAME espera somente letras de a-z',
     INVALID_ID: 'ID deve ser um número',
     INVALID_ID_EMPTY: 'ID é obrigatório',
     PAYMENT_NOT_FOUND: 'Está forma de pagamento não foi encontrada',
+    INVALID_TYPE_METHOD: 'Apenas é aceito as formas de pagamentos como: vale | vista | pix | cartao | cheque '
 }
 
 export const SUCESS_MESSAGES_PAYMENT = {
@@ -154,6 +154,9 @@ export const ERROR_MESSAGES_PAYMENT = {
     INVALID_USER_ID_TYPE: 'User ID deve ser número',
     INVALID_DATE: 'Date deve ser uma data válida',
     DATA_RANGE_ERROR: 'A data final não pode ser menor que a data inicial',
+    PAYMENT_NOT_FOUND: 'Pagamento não encontrado',
+    VALUE_GREATER_PENDING: 'Valor de pagamento é maior que a pendencia',
+    NO_PENDING: 'Cliente não tem pendencias em aberto'
 
 }
 

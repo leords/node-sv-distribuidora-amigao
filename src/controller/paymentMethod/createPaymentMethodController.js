@@ -1,7 +1,6 @@
-import { ERROR_MESSAGES_PAYMENT_METHOD, HTTP_STATUS_CODES, SUCESS_MESSAGE_PAYMENT_METHOD } from "../../config/httpStatusCodes.js";
+import { ERROR_MESSAGES_PAYMENT, ERROR_MESSAGES_PAYMENT_METHOD, HTTP_STATUS_CODES, SUCESS_MESSAGE_PAYMENT_METHOD } from "../../config/httpStatusCodes.js";
 import { CreatePaymentMethodService } from "../../service/paymentMethod/createPaymentMethodService.js";
 import { handleErros } from "../../utils/errorHandler.js"
-import { PaymentMethod } from "../../models/paymentMethod.js";
 
 
 class CreatePaymentMethodController {
@@ -15,9 +14,14 @@ class CreatePaymentMethodController {
                 throw new Error(ERROR_MESSAGES_PAYMENT_METHOD.INVALID_NAME);
             }
 
-            const newPayment = new PaymentMethod(name);
+            const allowedStatuses = ['vale', 'a vista', 'pix', 'cartao', 'cheque'];
+
+            if (!allowedStatuses.includes(name)) {
+                throw new Error(ERROR_MESSAGES_PAYMENT_METHOD.INVALID_TYPE_METHOD)
+            }
+
             const service = new CreatePaymentMethodService();
-            const result = await service.execute(newPayment.name);
+            const result = await service.execute(name);
     
             return res.status(HTTP_STATUS_CODES.CREATED).json({
                 message: SUCESS_MESSAGE_PAYMENT_METHOD.PAYMENT_CREATED_SUCCESSFULLY ,

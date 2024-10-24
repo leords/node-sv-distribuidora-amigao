@@ -7,17 +7,18 @@ class ReadPaymentService {
                 where: {
                     id: filters.id ? Number(filters.id) : undefined,
                     userId: filters.userId ? filters.userId : undefined,
-                    clientId: filters.clientId ? Number(filters.clientId) : undefined ,
+                    clientId: filters.clientId ? filters.clientId : undefined ,
                     paymentId: filters.paymentId ? Number(filters.paymentId) : undefined ,
                     createdAt: {    
-                        gte: filters.createdFrom ,
-                        lte: filters.createdUntil
+                        gte: filters.createdFrom || undefined,
+                        lte: filters.createdUntil || undefined
                     }
                 }
             })
 
             return payments
         } catch (error) {
+            console.log(error)
             throw error
         }
     }

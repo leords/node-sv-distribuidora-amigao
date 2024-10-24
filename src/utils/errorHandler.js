@@ -66,6 +66,11 @@ function handleErros(error) {
             status: HTTP_STATUS_CODES.NOT_FOUND, message: ERROR_MESSAGES_USER.INVALID_USER_NOT_FOUND
         }
     }
+    else if(error.message === ERROR_MESSAGES_USER.INVALID_ACCESS_LEVEL) {
+        return {
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_USER.INVALID_ACCESS_LEVEL
+        }
+    }
 
 
 
@@ -265,7 +270,7 @@ function handleErros(error) {
     }
 
 
-    // message of the errors for payment id model!    
+    // message of the errors for payment method model!    
     else if(error.message === ERROR_MESSAGES_PAYMENT_METHOD.INVALID_NAME) {
         return {
             status: HTTP_STATUS_CODES.BAD_REQUEST , message: ERROR_MESSAGES_PAYMENT_METHOD.INVALID_NAME
@@ -276,16 +281,7 @@ function handleErros(error) {
             status: HTTP_STATUS_CODES.BAD_REQUEST , message: ERROR_MESSAGES_PAYMENT_METHOD.INVALID_NAME_EMPTY
         }
     }
-    else if(error.message === ERROR_MESSAGES_PAYMENT_METHOD.INVALID_LENGTH_NAME) {
-        return {
-            status: HTTP_STATUS_CODES.BAD_REQUEST , message: ERROR_MESSAGES_PAYMENT_METHOD.INVALID_LENGTH_NAME
-        }
-    }
-    else if(error.message === ERROR_MESSAGES_PAYMENT_METHOD.INVALID_ONLY_LETTERS) {
-        return {
-            status: HTTP_STATUS_CODES.BAD_REQUEST , message: ERROR_MESSAGES_PAYMENT_METHOD.INVALID_ONLY_LETTERS
-        }
-    }
+
     else if(error.message === ERROR_MESSAGES_PAYMENT_METHOD.INVALID_ID) {
         return {
             status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_PAYMENT_METHOD.INVALID_ID
@@ -357,6 +353,16 @@ function handleErros(error) {
     else if(error.message === ERROR_MESSAGES_PAYMENT.INVALID_ID_TYPE) {
         return {
             status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_PAYMENT.INVALID_ID_TYPE
+        }
+    }
+    else if(error.message === ERROR_MESSAGES_PAYMENT.PAYMENT_NOT_FOUND) {
+        return {
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_PAYMENT.PAYMENT_NOT_FOUND
+        }
+    }
+    else if(error.message === ERROR_MESSAGES_PAYMENT.NO_PENDING) {
+        return {
+            status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_PAYMENT.NO_PENDING
         }
     }
     

@@ -1,5 +1,5 @@
 import { ERROR_MESSAGES_CART } from "../../config/httpStatusCodes.js";
-import prismaClient from "../../prisma/index.js"
+import prismaClient from "../../prisma/index.js";
 
 
 class UpdateCartService {

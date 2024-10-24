@@ -1,3 +1,4 @@
+import { ERROR_MESSAGES_PAYMENT } from "../../config/httpStatusCodes.js";
 import prismaClient from "../../prisma/index.js"
 
 
@@ -20,7 +21,7 @@ class DeletePaymentService {
                 return deletePayment;
 
             } else {
-                throw new Error()
+                throw new Error(ERROR_MESSAGES_PAYMENT.PAYMENT_NOT_FOUND)
             }
 
         } catch (error) {
