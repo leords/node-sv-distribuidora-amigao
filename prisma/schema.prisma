@@ -54,6 +54,8 @@ model Product {
   name String
   price Decimal @default(0.0)
   segment String
+  supplier String
+  weight Decimal 
   status Boolean @default(true)
 
   cartItens CartItem[]

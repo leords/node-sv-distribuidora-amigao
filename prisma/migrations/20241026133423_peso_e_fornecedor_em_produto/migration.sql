@@ -18,7 +18,7 @@ CREATE TABLE "users" (
 
 -- CreateTable
 CREATE TABLE "clients" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "id" TEXT NOT NULL PRIMARY KEY,
     "name" TEXT NOT NULL,
     "phone" TEXT NOT NULL,
     "address" TEXT NOT NULL,
@@ -34,6 +34,8 @@ CREATE TABLE "Product" (
     "name" TEXT NOT NULL,
     "price" DECIMAL NOT NULL DEFAULT 0.0,
     "segment" TEXT NOT NULL,
+    "supplier" TEXT NOT NULL,
+    "weight" DECIMAL NOT NULL,
     "status" BOOLEAN NOT NULL DEFAULT true
 );
 
@@ -50,10 +52,10 @@ CREATE TABLE "carts" (
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "total" DECIMAL NOT NULL DEFAULT 0.0,
     "quantity" INTEGER NOT NULL DEFAULT 0,
-    "clientId" INTEGER NOT NULL,
+    "clientId" TEXT NOT NULL,
     "userId" INTEGER NOT NULL,
     "paymentId" INTEGER NOT NULL,
-    "pendingDelivery" TEXT NOT NULL DEFAULT 'pendente',
+    "statusDelivery" TEXT NOT NULL DEFAULT 'pendente',
     CONSTRAINT "carts_clientId_fkey" FOREIGN KEY ("clientId") REFERENCES "clients" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT "carts_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT "carts_paymentId_fkey" FOREIGN KEY ("paymentId") REFERENCES "PaymentMethod" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
@@ -70,6 +72,19 @@ CREATE TABLE "cartItems" (
     "total" DECIMAL NOT NULL DEFAULT 0.0,
     CONSTRAINT "cartItems_cartId_fkey" FOREIGN KEY ("cartId") REFERENCES "carts" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT "cartItems_productId_fkey" FOREIGN KEY ("productId") REFERENCES "Product" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+-- CreateTable
+CREATE TABLE "payments" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "value" DECIMAL NOT NULL DEFAULT 0.0,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "clientId" TEXT NOT NULL,
+    "paymentId" INTEGER NOT NULL,
+    "userId" INTEGER NOT NULL,
+    CONSTRAINT "payments_clientId_fkey" FOREIGN KEY ("clientId") REFERENCES "clients" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
+    CONSTRAINT "payments_paymentId_fkey" FOREIGN KEY ("paymentId") REFERENCES "PaymentMethod" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
+    CONSTRAINT "payments_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 -- CreateIndex

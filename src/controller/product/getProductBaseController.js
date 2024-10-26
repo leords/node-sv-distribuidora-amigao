@@ -5,7 +5,7 @@ import { handleErros } from "../../utils/errorHandler.js";
 class GetProductBaseController {
     async handle( req, res ) {
         try {
-            const response = await fetch('https://script.google.com/macros/s/AKfycbw8aGUzKFs_p-qH_cSKoLiAZYEgsst34MjHJwYJW2kpUVDBs_WRyMtAQTrUcLCwipg/exec')
+            const response = await fetch('https://script.google.com/macros/s/AKfycby7axQlshqlD18sUIlyyergk3l9WCDzgm5V0LA_bwTn2xB72tXecEXyKilxh7eKGKxk/exec')
             const data = await response.json();
 
             if(!response.ok) {

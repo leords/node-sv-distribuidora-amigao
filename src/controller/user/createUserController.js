@@ -8,61 +8,60 @@ class CreateUserController {
 
         try {
             if(!name) {
-                throw new Error()
+                throw new Error(ERROR_MESSAGES_USER.INVALID_NAME)
             }
             if(typeof name !== 'string') {
-                throw new Error()
+                throw new Error(ERROR_MESSAGES_USER.INVALID_NAME_TYPE)
             }
-            if(name.length >= 4 && name.length <= 40) {
-                throw new Error()
+            if(name.length < 4 && name.length > 40) {
+                throw new Error(ERROR_MESSAGES_USER.INVALID_NAME_LENGTH)
             }
-
             if(!email) {
-                throw new Error()
-            }
-            if(typeof email !== 'string') {
-                throw new Error()
-            }
-            const emailRegex =  /^[^\s@]+@[^\s@]+\.[^\s@]+$/;            
-            if(!emailRegex.test(email)) {
                 throw new Error(ERROR_MESSAGES_USER.INVALID_EMAIL)
             }
+            if(typeof email !== 'string') {
+                throw new Error(ERROR_MESSAGES_USER.INVALID_EMAIL_TYPE)
+            }
 
+            const emailRegex =  /^[^\s@]+@[^\s@]+\.[^\s@]+$/;  
+
+            if(!emailRegex.test(email)) {
+                throw new Error(ERROR_MESSAGES_USER.INVALID_EMAIL_FORMAT)
+            }
             if(!accessLevel) {
-                throw new Error()
+                throw new Error(ERROR_MESSAGES_USER.INVALID_ACCESS_LEVEL)
             } 
             if(typeof accessLevel !== 'string') {
-                throw new Error()
-            }
-            const AllowedLevels = ['1', '2', '3']
-            if(!AllowedLevels.includes(accessLevel)) {
-                throw new Error(ERROR_MESSAGES_USER.INVALID_ACCESS_LEVEL)
+                throw new Error(ERROR_MESSAGES_USER.INVALID_ACCESS_LEVEL_TYPE)
             }
 
+            const AllowedLevels = ['1', '2', '3']
+
+            if(!AllowedLevels.includes(accessLevel)) {
+                throw new Error(ERROR_MESSAGES_USER.INVALID_ACCESS_OPTION)
+            }
             if(!password) {
-                throw new Error()
+                throw new Error(ERROR_MESSAGES_USER.INVALID_PASSWORD)
             }
 
             if(typeof password !== 'string') {
-                throw new Error()
+                throw new Error(ERROR_MESSAGES_USER.INVALID_PASSWORD_TYPE)
             }
             if(password.length < 8) {
-                throw new Error(ERROR_MESSAGES_USER.SHORT_PASSWORD)
+                throw new Error(ERROR_MESSAGES_USER.INVALID_PASSWORD_SHORT)
             }
 
             if(!professionId) {
-                throw new Error()
+                throw new Error(ERROR_MESSAGES_USER.INVALID_PROFESSION_ID)
             }
 
             if(isNaN(professionId)) {
-                throw new Error()
+                throw new Error(ERROR_MESSAGES_USER.INVALID_PROFESSION_ID_TYPE)
             }
-
 
             const service = new CreateUserService();
             const result = await service.execute(name, email, accessLevel, password, professionId)
  
-
             //retorno de usuário criado com sucesso!
             return res.status(HTTP_STATUS_CODES.CREATED).json({
                 message: SUCESS_MESSAGES_USER.USER_CREATED,

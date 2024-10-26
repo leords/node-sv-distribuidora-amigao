@@ -9,8 +9,20 @@ export const HTTP_STATUS_CODES = {
 
 // usuário
 export const ERROR_MESSAGES_USER = {
-    INVALID_EMAIL: 'Email fornecido é inválido',
-    SHORT_PASSWORD: 'A senha deve conter ao menos 8 caracteres',
+    INVALID_NAME: 'Name é obrigatório',
+    INVALID_NAME_TYPE: 'Name deve ser texto',
+    INVALID_NAME_LENGTH: 'Name deve ter no mínimo 4 caracteres e no máx 40 caracteres',
+    INVALID_EMAIL: 'Email é obrigatório',
+    INVALID_EMAIL_TYPE: 'Email deve ser texto',
+    INVALID_EMAIL_FORMAT: 'Email precisa ser no formato meuemail@gmail.com',
+    INVALID_ACCESS_LEVEL: 'Access Level é obrigatório',
+    INVALID_ACCESS_LEVEL_TYPE: 'Access deve ser um texto',
+    INVALID_ACCESS_OPTION: 'Access Level só aceita os valores: | 1 | 2 | 3 |',
+    INVALID_PASSWORD: 'Password é obrigatório',
+    INVALID_PASSWORD_TYPE: 'Password deve ser do tipo texto',
+    INVALID_PASSWORD_SHORT: 'A senha deve conter no mínimo 8 caracteres',
+    INVALID_PROFESSION_ID: 'ProfessionId é obrigatório',
+    INVALID_PROFESSION_ID_TYPE: 'ProfessionId deve ser um número',
     INVALID_ID_USER_EMPTY: 'ID de usuário é obrigatório',
     INVALID_USER_NOT_FOUND: 'Usuário não encontrado',
     INVALID_TYPE_ID: 'User Id deve ser um número',
@@ -21,7 +33,6 @@ export const ERROR_MESSAGES_USER = {
     DATABASE_ERROR: 'Erro ao criar o usuário no banco de dados',
     DATABASE_DELETE_ERROR: 'Erro ao excluir usuário no banco de dados',
     DATABASE_UPDATE_ERROR: 'Erro ao atualizar usuário no banco de dados',
-    INVALID_ACCESS_LEVEL: 'Access Level só aceita: 1 | 2 | 3'
 };
 
 export const SUCESS_MESSAGES_USER = {

@@ -4,14 +4,83 @@ import { HTTP_STATUS_CODES, ERROR_MESSAGES_USER, ERROR_MESSAGES_PROFISSION, ERRO
 
 function handleErros(error) {
 
-
     // message of the errors for user model!
+    if(error.message === ERROR_MESSAGES_USER.INVALID_PROFESSION_ID_TYPE) {
+        return {
+            status:HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_USER.INVALID_PROFESSION_ID_TYPE
+        }
+    }
+    if(error.message === ERROR_MESSAGES_USER.INVALID_PROFESSION_ID) {
+        return {
+            status:HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_USER.INVALID_PROFESSION_ID
+        }
+    }
+    if(error.message === ERROR_MESSAGES_USER.INVALID_PASSWORD_SHORT) {
+        return {
+            status:HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_USER.INVALID_PASSWORD_SHORT
+        }
+    }
+    if(error.message === ERROR_MESSAGES_USER.INVALID_PASSWORD_TYPE) {
+        return {
+            status:HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_USER.INVALID_PASSWORD_TYPE
+        }
+    }
+    if(error.message === ERROR_MESSAGES_USER.INVALID_PASSWORD) {
+        return {
+            status:HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_USER.INVALID_PASSWORD
+        }
+    }
+    if(error.message === ERROR_MESSAGES_USER.INVALID_ACCESS_OPTION) {
+        return {
+            status:HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_USER.INVALID_ACCESS_OPTION
+        }
+    }
+    if(error.message === ERROR_MESSAGES_USER.INVALID_ACCESS_LEVEL_TYPE) {
+        return {
+            status:HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_USER.INVALID_ACCESS_LEVEL_TYPE
+        }
+    }
+    if(error.message === ERROR_MESSAGES_USER.INVALID_ACCESS_LEVEL) {
+        return {
+            status:HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_USER.INVALID_ACCESS_LEVEL
+        }
+    }
+    if(error.message === ERROR_MESSAGES_USER.INVALID_EMAIL_FORMAT) {
+        return {
+            status:HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_USER.INVALID_EMAIL_FORMAT
+        }
+    }
+    if(error.message === ERROR_MESSAGES_USER.INVALID_EMAIL_TYPE) {
+        return {
+            status:HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_USER.INVALID_EMAIL_TYPE
+        }
+    }
+    if(error.message === ERROR_MESSAGES_USER.INVALID_EMAIL) {
+        return {
+            status:HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_USER.INVALID_EMAIL
+        }
+    }
+    if(error.message === ERROR_MESSAGES_USER.INVALID_NAME_LENGTH) {
+        return {
+            status:HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_USER.INVALID_NAME_LENGTH
+        }
+    }
+    if(error.message === ERROR_MESSAGES_USER.INVALID_NAME_TYPE) {
+        return {
+            status:HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_USER.INVALID_NAME_TYPE
+        }
+    }
+    if(error.message === ERROR_MESSAGES_USER.INVALID_NAME) {
+        return {
+            status:HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_USER.INVALID_NAME
+        }
+    }
     if (error.message === ERROR_MESSAGES_USER.INVALID_EMAIL) {
         return {
             status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_USER.INVALID_EMAIL,
         };
     } 
-    else if (error.message === ERROR_MESSAGES_USER.SHORT_PASSWORD) {
+    else if (error.message === ERROR_MESSAGES_USER.INVALID_PASSWORD_SHORT) {
         return {
             status: HTTP_STATUS_CODES.BAD_REQUEST, message: ERROR_MESSAGES_USER.SHORT_PASSWORD,
         };

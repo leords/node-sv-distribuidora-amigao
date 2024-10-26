@@ -9,7 +9,6 @@ class GetProductBaseService {
             if (products.length === 0) {
                 throw new Error(ERROR_MESSAGES_PRODUCT.SYNCHRONIZE_CLIENT_ERROR);
             }
-
             for (const product of products) {
                 await prismaClient.product.upsert({
                     where: {
@@ -18,18 +17,21 @@ class GetProductBaseService {
                     update: {
                         name: String(product.Produto),
                         price: product.Valor,
-                        segment: product.Segmento
+                        segment: product.Segmento,
+                        supplier: product.Fornecedor,
+                        weight: product.Peso ? product.Peso : 0,
                     },
                     create: {
                         id: product.Id,
                         name: String(product.Produto),
                         price: product.Valor,
                         segment: product.Segmento,
+                        supplier: product.Fornecedor,
+                        weight: product.Peso ? product.Peso : 0,
                         status: true
                     }
                 });
             }
-            
         } catch (error) {
             console.log('Error', error)
             throw error
