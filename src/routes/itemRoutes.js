@@ -5,8 +5,8 @@ import { UpdateItemController } from "../controller/item/updateItemController.js
 
 const router = Router();
 
-router.post('/create-item', new CreateItemController().handle);
-router.delete('/delete-item', new DeleteItemController().handler);
-router.patch('/update-item-quantify', new UpdateItemController().handle);
+router.post("/create-item", new CreateItemController().handle);
+router.delete("/delete-item", new DeleteItemController().handler);
+router.patch("/update-item-quantify", new UpdateItemController().handle);
 
-export { router as itemRouter }
+export { router as itemRouter };

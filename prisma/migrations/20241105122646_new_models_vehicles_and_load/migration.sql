@@ -1,0 +1,24 @@
+-- CreateTable
+CREATE TABLE "vehicles" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "model" TEXT NOT NULL,
+    "licensePlate" TEXT NOT NULL,
+    "brand" TEXT NOT NULL,
+    "weight" INTEGER NOT NULL,
+    "status" BOOLEAN NOT NULL DEFAULT true
+);
+
+-- CreateTable
+CREATE TABLE "loads" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "name" TEXT NOT NULL,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "vehiclesId" INTEGER NOT NULL,
+    "cartId" INTEGER NOT NULL,
+    "UserId" INTEGER NOT NULL,
+    "status" TEXT NOT NULL DEFAULT 'Preparação',
+    CONSTRAINT "loads_vehiclesId_fkey" FOREIGN KEY ("vehiclesId") REFERENCES "vehicles" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
+    CONSTRAINT "loads_cartId_fkey" FOREIGN KEY ("cartId") REFERENCES "carts" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
+    CONSTRAINT "loads_UserId_fkey" FOREIGN KEY ("UserId") REFERENCES "users" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);

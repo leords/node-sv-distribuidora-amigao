@@ -29,6 +29,7 @@ model User {
 
   carts Cart[]
   payments Payment[]
+  loads Load[]
 
   @@map("users")
 }
@@ -89,6 +90,8 @@ model Cart {
 
   statusDelivery String @default("pendente")
 
+  loads Load[]
+
   @@map("carts")
 }
 
@@ -125,3 +128,33 @@ model Payment {
 
   @@map("payments")
 } 
+
+model Vehicles {
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  model String
+  licensePlate String
+  brand String
+  weight Int
+  status Boolean @default(true)
+
+  loads Load[]
+  
+  @@map("vehicles")
+}
+
+model Load {
+  id Int @id @default(autoincrement())
+  name String
+  createdAt DateTime @default(now())
+
+  vehiclesId Int
+  vehicle Vehicles @relation(fields: [vehiclesId], references: [id])
+  cartId Int
+  cart Cart @relation(fields: [cartId], references: [id])
+  UserId Int
+  user User @relation(fields: [UserId], references: [id])
+  status String @default("Preparação")
+
+  @@map("loads")
+}
