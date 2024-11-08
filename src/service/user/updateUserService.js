@@ -4,6 +4,15 @@ import prismaClient from "../../prisma/index.js";
 class UpdateUserService {
   async execute(id, updateData) {
     try {
+      const userExisting = await prismaClient.user.findUnique({
+        where: {
+          id: id,
+        },
+      });
+      if (!userExisting) {
+        throw new Error(ERROR_MESSAGES_USER.INVALID_USER_NOT_FOUND);
+      }
+
       const updateUser = await prismaClient.user.update({
         where: {
           id: id,
@@ -12,7 +21,7 @@ class UpdateUserService {
       });
       return updateUser;
     } catch (error) {
-      throw new Error(ERROR_MESSAGES_USER.DATABASE_UPDATE_ERROR);
+      throw error;
     }
   }
 

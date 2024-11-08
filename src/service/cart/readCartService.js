@@ -1,4 +1,3 @@
-import { ERROR_MESSAGES_CART_ITEM } from "../../config/httpStatusCodes.js";
 import prismaClient from "../../prisma/index.js";
 
 class ReadCartService {
