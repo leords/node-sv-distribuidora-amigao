@@ -6,7 +6,9 @@ import { productRouter } from "./productRoutes.js";
 import { itemRouter } from "./itemRoutes.js";
 import { cartRouter } from "./cartRoutes.js";
 import { paymentMethodRouter } from "./paymentMethodRoutes.js";
-import { paymentRouter } from "./payment.js";
+import { paymentRouter } from "./paymentRoutes.js";
+import { vehicleRouter } from "./vehicleRoutes.js";
+import { loadRouter } from "./loadRoutes.js";
 
 const router = Router();
 
@@ -18,5 +20,7 @@ router.use(itemRouter);
 router.use(cartRouter);
 router.use(paymentMethodRouter);
 router.use(paymentRouter);
+router.use(vehicleRouter);
+router.use(loadRouter);
 
 export { router };

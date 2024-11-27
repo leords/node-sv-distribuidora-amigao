@@ -1,14 +1,16 @@
 import {
   ERROR_MESSAGES_USER,
   ERROR_MESSAGES_VEHICLE,
-} from "../../config/httpStatusCodes";
-import prismaClient from "../../prisma";
+} from "../../config/httpStatusCodes.js";
+import prismaClient from "../../prisma/index.js";
 
 class UpdateVehicleService {
   async executeUpdateVehicleStatus(id, status) {
     try {
       const vehicleExisting = await prismaClient.vehicles.findUnique({
-        where: id,
+        where: {
+          id: id,
+        },
       });
       if (!vehicleExisting) {
         throw new Error(ERROR_MESSAGES_VEHICLE.VEHICLE_NOT_FOUND);
@@ -17,10 +19,13 @@ class UpdateVehicleService {
         where: {
           id: id,
         },
-        data: status,
+        data: {
+          status: status,
+        },
       });
       return editStatusVehicle;
     } catch (error) {
+      console.log(error);
       throw error;
     }
   }
@@ -28,7 +33,9 @@ class UpdateVehicleService {
   async executeUpdateVehicleLicensePlate(id, licensePlate) {
     try {
       const vehicleExisting = await prismaClient.vehicles.findUnique({
-        where: id,
+        where: {
+          id: id,
+        },
       });
       if (!vehicleExisting) {
         throw new Error(ERROR_MESSAGES_VEHICLE.VEHICLE_NOT_FOUND);
@@ -37,10 +44,13 @@ class UpdateVehicleService {
         where: {
           id: id,
         },
-        data: licensePlate,
+        data: {
+          licensePlate: licensePlate,
+        },
       });
       return editLicensePlateVehicle;
     } catch (error) {
+      console.log(error);
       throw error;
     }
   }

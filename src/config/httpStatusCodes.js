@@ -121,7 +121,9 @@ export const ERROR_MESSAGES_CART = {
   INVALID_USER_ID_TO_CART: "ID USER deve ser um número",
   INVALID_ID: "CartId deve ser um número",
   INVALID_ID_EMPTY: "ID é obrigatório",
-  INVALID_DATE: "Date deve ser uma data válida",
+  INVALID_DATE_FROM: "Data de início é obrigatória e deve ser uma data válida",
+  INVALID_DATE_UNTIL:
+    "Data de término é obrigatória e deve ser uma data válida",
   INVALID_PAYMENT_ID_TO_CART: "PaymentId deve ser um número",
   DATA_RANGE_ERROR: "A data final não pode ser menor que a data inicial",
   INVALID_STATUS_DELIVERY: "Status do Delivery deve ser um texto",
@@ -163,7 +165,9 @@ export const ERROR_MESSAGES_PAYMENT = {
   INVALID_PAYMENT_ID_TYPE: "Payment ID deve ser número",
   INVALID_USER_ID: "User ID é obrigatório",
   INVALID_USER_ID_TYPE: "User ID deve ser número",
-  INVALID_DATE: "Data deve ser uma data válida",
+  INVALID_DATE_FROM: "Data de início é obrigatória e deve ser uma data válida",
+  INVALID_DATE_UNTIL:
+    "Data de término é obrigatória e deve ser uma data válida",
   DATA_RANGE_ERROR: "A data final não pode ser menor que a data inicial",
   PAYMENT_NOT_FOUND: "Pagamento não encontrado",
   VALUE_GREATER_PENDING: "Valor de pagamento é maior que a pendencia",
@@ -195,6 +199,7 @@ export const ERROR_MESSAGES_VEHICLE = {
     "Apenas são aceitos somente as seguintes opções: | true | | false |",
 
   VEHICLE_NOT_FOUND: "Este veículo não existe",
+  VEHICLE_ALREADY_EXISTS: "Um véiculo com está placa já foi cadastrado!",
 };
 
 export const SUCESS_MESSAGE_LOAD = {
@@ -203,10 +208,13 @@ export const SUCESS_MESSAGE_LOAD = {
   LOAD_UPDATED_SUCCESSFULLY: "Carga alterada com sucesso",
 };
 export const ERROR_MESSAGES_LOAD = {
+  INVALID_NAME: "Nome é obrigatório",
+  INVALID_NAME_TYPE: "Nome deve ser um texto",
   INVALID_ID: "ID é obrigatório",
   INVALID_ID_TYPE: "ID deve ser um número",
-  INVALID_DATE: "Data é obrigatório",
-  INVALID_DATE_TYPE: "Data deve ser uma data válida",
+  INVALID_DATE_FROM: "Data de início é obrigatória e deve ser uma data válida",
+  INVALID_DATE_UNTIL:
+    "Data de término é obrigatória e deve ser uma data válida",
   INVALID_VEHICLE_ID: "ID do veículo é obrigatório",
   INVALID_VEHICLE_ID_TYPE: "ID do veículo deve ser um número",
   INVALID_CART_ID: "Cart ID é obrigatório",
@@ -216,7 +224,17 @@ export const ERROR_MESSAGES_LOAD = {
   INVALID_STATUS: "Status é obrigatório",
   INVALID_STATUS_TYPE: "Status deve ser do tipo booleano",
   INVALID_STATUS_METHOD:
-    "Apenas são aceitos as seguintes opções: | Preparação | | Carregamento | Transito | | Entregue | ",
+    "Apenas são aceitos as seguintes opções: | aberta | | fechada | transporte | | entregue | | retornada |",
+  OPEN_LOAD: "Este veículo já está com carregado, verefique!",
+  DATA_RANGE_ERROR: "A data final não pode ser menor que a data inicial",
+
+  LOAD_NOT_FOUND: "A carga que deseja fazer alterações não foi encontrada",
+  DUPLICATE_NAME:
+    "Nome passado para alteração já esta sendo utilizado em outra carga não finalizada",
+  VEHICLE_NOT_FOUND: "Veículo não encontrado",
+  VEHICLE_ALREADY_REGISTERED: "Este véiculo já está cadastrado nesta carga",
+  ERROR_DUPLICATE_STATUS:
+    "Este status já esta cadastrado nesta carga, verifique novamente!",
 };
 
 export const HTTP_API = {

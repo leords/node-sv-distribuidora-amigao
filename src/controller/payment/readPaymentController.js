@@ -26,10 +26,10 @@ class ReadPaymentController {
         throw new Error(ERROR_MESSAGES_PAYMENT.INVALID_USER_ID);
       }
       if (createdFrom && isNaN(createdFrom.getTime())) {
-        throw new Error(ERROR_MESSAGES_PAYMENT.INVALID_DATE);
+        throw new Error(ERROR_MESSAGES_PAYMENT.INVALID_DATE_FROM);
       }
       if (createdUntil && isNaN(createdUntil.getTime())) {
-        throw new Error(ERROR_MESSAGES_PAYMENT.INVALID_DATE);
+        throw new Error(ERROR_MESSAGES_PAYMENT.INVALID_DATE_UNTIL);
       }
       if (createdUntil && createdFrom && createdUntil < createdFrom) {
         throw new Error(ERROR_MESSAGES_PAYMENT.DATA_RANGE_ERROR);

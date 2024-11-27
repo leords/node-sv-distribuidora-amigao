@@ -11,6 +11,8 @@ import {
   ERROR_MESSAGES_CART_ITEM,
   ERROR_MESSAGES_PAYMENT_METHOD,
   ERROR_MESSAGES_PAYMENT,
+  ERROR_MESSAGES_VEHICLE,
+  ERROR_MESSAGES_LOAD,
 } from "../config/httpStatusCodes.js";
 
 function handleErros(error) {
@@ -368,10 +370,15 @@ function handleErros(error) {
       status: HTTP_STATUS_CODES.BAD_REQUEST,
       message: ERROR_MESSAGES_CART.INVALID_ID_EMPTY,
     };
-  } else if (error.message === ERROR_MESSAGES_CART.INVALID_DATE) {
+  } else if (error.message === ERROR_MESSAGES_CART.INVALID_DATE_FROM) {
     return {
       status: HTTP_STATUS_CODES.BAD_REQUEST,
-      message: ERROR_MESSAGES_CART.INVALID_DATE,
+      message: ERROR_MESSAGES_CART.INVALID_DATE_FROM,
+    };
+  } else if (error.message === ERROR_MESSAGES_CART.INVALID_DATE_UNTIL) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_CART.INVALID_DATE_UNTIL,
     };
   } else if (error.message === ERROR_MESSAGES_CART.DATA_RANGE_ERROR) {
     return {
@@ -482,6 +489,194 @@ function handleErros(error) {
     return {
       status: HTTP_STATUS_CODES.BAD_REQUEST,
       message: ERROR_MESSAGES_PAYMENT.NO_PENDING,
+    };
+  } else if (error.message === ERROR_MESSAGES_PAYMENT.INVALID_DATE_FROM) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_PAYMENT.INVALID_DATE_FROM,
+    };
+  } else if (error.message === ERROR_MESSAGES_PAYMENT.INVALID_DATE_UNTIL) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_PAYMENT.INVALID_DATE_UNTIL,
+    };
+  }
+
+  // message of the errors for vehicle model!
+  else if (error.message === ERROR_MESSAGES_VEHICLE.VEHICLE_ALREADY_EXISTS) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_VEHICLE.VEHICLE_ALREADY_EXISTS,
+    };
+  } else if (error.message === ERROR_MESSAGES_VEHICLE.VEHICLE_NOT_FOUND) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_VEHICLE.VEHICLE_NOT_FOUND,
+    };
+  } else if (error.message === ERROR_MESSAGES_VEHICLE.INVALID_OPTION) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_VEHICLE.INVALID_OPTION,
+    };
+  } else if (error.message === ERROR_MESSAGES_VEHICLE.INVALID_STATUS_TYPE) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_VEHICLE.INVALID_STATUS_TYPE,
+    };
+  } else if (error.message === ERROR_MESSAGES_VEHICLE.INVALID_STATUS) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_VEHICLE.INVALID_STATUS,
+    };
+  } else if (error.message === ERROR_MESSAGES_VEHICLE.INVALID_WEIGHT_TYPE) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_VEHICLE.INVALID_WEIGHT_TYPE,
+    };
+  } else if (error.message === ERROR_MESSAGES_VEHICLE.INVALID_WEIGHT) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_VEHICLE.INVALID_WEIGHT,
+    };
+  } else if (error.message === ERROR_MESSAGES_VEHICLE.INVALID_BRAND_TYPE) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_VEHICLE.INVALID_BRAND_TYPE,
+    };
+  } else if (error.message === ERROR_MESSAGES_VEHICLE.INVALID_BRAND) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_VEHICLE.INVALID_BRAND,
+    };
+  } else if (error.message === ERROR_MESSAGES_VEHICLE.NOT_ALLOWED_CHARACTER) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_VEHICLE.NOT_ALLOWED_CHARACTER,
+    };
+  } else if (
+    error.message === ERROR_MESSAGES_VEHICLE.INVALID_LICENSE_PLATE_TYPE
+  ) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_VEHICLE.INVALID_LICENSE_PLATE_TYPE,
+    };
+  } else if (error.message === ERROR_MESSAGES_VEHICLE.INVALID_LICENSE_PLATE) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_VEHICLE.INVALID_LICENSE_PLATE,
+    };
+  } else if (error.message === ERROR_MESSAGES_VEHICLE.INVALID_MODEL_LENGTH) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_VEHICLE.INVALID_MODEL_LENGTH,
+    };
+  } else if (error.message === ERROR_MESSAGES_VEHICLE.INVALID_MODEL_TYPE) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_VEHICLE.INVALID_MODEL_TYPE,
+    };
+  } else if (error.message === ERROR_MESSAGES_VEHICLE.INVALID_MODEL) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_VEHICLE.INVALID_MODEL,
+    };
+  } else if (error.message === ERROR_MESSAGES_VEHICLE.INVALID_ID) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_VEHICLE.INVALID_ID,
+    };
+  } else if (error.message === ERROR_MESSAGES_VEHICLE.INVALID_ID_TYPE) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_VEHICLE.INVALID_ID_TYPE,
+    };
+  }
+
+  // message of the errors for vehicle model!
+  else if (error.message === ERROR_MESSAGES_LOAD.INVALID_NAME) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_LOAD.INVALID_NAME,
+    };
+  } else if (error.message === ERROR_MESSAGES_LOAD.INVALID_NAME_TYPE) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_LOAD.INVALID_NAME_TYPE,
+    };
+  } else if (error.message === ERROR_MESSAGES_LOAD.INVALID_ID) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_LOAD.INVALID_ID,
+    };
+  } else if (error.message === ERROR_MESSAGES_LOAD.INVALID_ID_TYPE) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_LOAD.INVALID_ID_TYPE,
+    };
+  } else if (error.message === ERROR_MESSAGES_LOAD.INVALID_DATE) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_LOAD.INVALID_DATE,
+    };
+  } else if (error.message === ERROR_MESSAGES_LOAD.INVALID_DATE_TYPE) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_LOAD.INVALID_DATE_TYPE,
+    };
+  } else if (error.message === ERROR_MESSAGES_LOAD.INVALID_VEHICLE_ID) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_LOAD.INVALID_VEHICLE_ID,
+    };
+  } else if (error.message === ERROR_MESSAGES_LOAD.INVALID_VEHICLE_ID_TYPE) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_LOAD.INVALID_VEHICLE_ID_TYPE,
+    };
+  } else if (error.message === ERROR_MESSAGES_LOAD.INVALID_CART_ID) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_LOAD.INVALID_CART_ID,
+    };
+  } else if (error.message === ERROR_MESSAGES_LOAD.INVALID_CART_ID_TYPE) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_LOAD.INVALID_CART_ID_TYPE,
+    };
+  } else if (error.message === ERROR_MESSAGES_LOAD.INVALID_USER_ID) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_LOAD.INVALID_USER_ID,
+    };
+  } else if (error.message === ERROR_MESSAGES_LOAD.INVALID_USER_ID_TYPE) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_LOAD.INVALID_USER_ID_TYPE,
+    };
+  } else if (error.message === ERROR_MESSAGES_LOAD.INVALID_STATUS) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_LOAD.INVALID_STATUS,
+    };
+  } else if (error.message === ERROR_MESSAGES_LOAD.INVALID_STATUS_TYPE) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_LOAD.INVALID_STATUS_TYPE,
+    };
+  } else if (error.message === ERROR_MESSAGES_LOAD.INVALID_STATUS_METHOD) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_LOAD.INVALID_STATUS_METHOD,
+    };
+  } else if (error.message === ERROR_MESSAGES_LOAD.OPEN_LOAD) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_LOAD.OPEN_LOAD,
+    };
+  } else if (error.message === ERROR_MESSAGES_LOAD.DATA_RANGE_ERROR) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_LOAD.DATA_RANGE_ERROR,
     };
   }
 

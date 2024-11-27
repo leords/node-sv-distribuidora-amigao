@@ -1,6 +1,7 @@
 import {
   ERROR_MESSAGES_VEHICLE,
   HTTP_STATUS_CODES,
+  SUCESS_MESSAGES_VEHICLE,
 } from "../../config/httpStatusCodes.js";
 import { UpdateVehicleService } from "../../service/vehicle/updateVehicleService.js";
 import { handleErros } from "../../utils/errorHandler.js";
@@ -30,8 +31,12 @@ class UpdateVehicleController {
       const service = new UpdateVehicleService();
       const result = await service.executeUpdateVehicleStatus(id, statusVerify);
 
-      return res.status(HTTP_STATUS_CODES.OK).json({ result });
+      return res.status(HTTP_STATUS_CODES.OK).json({
+        message: SUCESS_MESSAGES_VEHICLE.VEHICLE_CREATED_SUCCESSFULLY,
+        vehicle: result,
+      });
     } catch (error) {
+      console.error(error);
       const { status, message } = handleErros(error);
       return res.status(status).json({ error: message });
     }

@@ -3,8 +3,8 @@ import {
   HTTP_STATUS_CODES,
   SUCESS_MESSAGES_VEHICLE,
 } from "../../config/httpStatusCodes.js";
-import { DeleteVehicleService } from "../../service/vehicle/deleteVehicleService";
-import { handleErros } from "../../utils/errorHandler";
+import { DeleteVehicleService } from "../../service/vehicle/deleteVehicleService.js";
+import { handleErros } from "../../utils/errorHandler.js";
 
 class DeleteVehicleController {
   async handle(req, res) {

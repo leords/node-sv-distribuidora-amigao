@@ -1,3 +1,7 @@
+import {
+  ERROR_MESSAGES_VEHICLE,
+  HTTP_STATUS_CODES,
+} from "../../config/httpStatusCodes.js";
 import prismaClient from "../../prisma/index.js";
 
 class CreateVehicleService {
@@ -9,15 +13,15 @@ class CreateVehicleService {
         },
       });
       if (existingVehicle) {
-        throw new Error("Um véiculo com está placa já foi cadastrado!");
+        throw new Error(ERROR_MESSAGES_VEHICLE.VEHICLE_ALREADY_EXISTS);
       }
 
       const newVehicle = await prismaClient.vehicles.create({
         data: {
-          model: model,
-          licensePlate: licensePlate,
-          brand: brand,
-          weight: weight,
+          model,
+          licensePlate,
+          brand,
+          weight,
         },
       });
       return newVehicle;

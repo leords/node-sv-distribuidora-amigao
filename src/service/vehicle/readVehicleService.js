@@ -6,7 +6,8 @@ class ReadVehicleService {
       const readVerhicle = await prismaClient.vehicles.findMany({
         where: {
           id: filters.id ? Number(filters.id) : undefined,
-          status: filters.status ? Boolean(filters.status) : undefined,
+          status:
+            filters.status !== undefined ? Boolean(filters.status) : undefined,
         },
       });
       return readVerhicle;

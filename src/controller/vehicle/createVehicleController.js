@@ -38,7 +38,7 @@ class CreateVehicleController {
       if (!weight) {
         throw new Error(ERROR_MESSAGES_VEHICLE.INVALID_WEIGHT);
       }
-      if (NaN(weight)) {
+      if (isNaN(weight)) {
         throw new Error(ERROR_MESSAGES_VEHICLE.INVALID_WEIGHT_TYPE);
       }
 
@@ -50,6 +50,7 @@ class CreateVehicleController {
         vehicle: result,
       });
     } catch (error) {
+      console.error(error);
       const { status, message } = handleErros(error);
       return res.status(status).json({ error: message });
     }

@@ -1,11 +1,12 @@
 import { Router } from "express";
-import { ReadVehicleController } from "../controller/vehicle/readVehicleController";
-import { UpdateVehicleController } from "../controller/vehicle/updateVehicleController";
-import { DeleteVehicleController } from "../controller/vehicle/deleteVehicleController";
+import { ReadVehicleController } from "../controller/vehicle/readVehicleController.js";
+import { UpdateVehicleController } from "../controller/vehicle/updateVehicleController.js";
+import { DeleteVehicleController } from "../controller/vehicle/deleteVehicleController.js";
+import { CreateVehicleController } from "../controller/vehicle/createVehicleController.js";
 
 const router = Router();
-router.post("/new-vehicle", new ReadVehicleController().handle);
-router.get("/read-vehicle-id", new ReadVehicleController().handle);
+router.post("/new-vehicle", new CreateVehicleController().handle);
+router.get("/read-vehicle", new ReadVehicleController().handle);
 router.patch(
   "/update-vehicle-status",
   new UpdateVehicleController().HandleEditStatusVehicle
