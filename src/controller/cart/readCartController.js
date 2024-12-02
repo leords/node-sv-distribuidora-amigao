@@ -80,10 +80,20 @@ class ReadCartController {
       const service = new ReadCartService();
       if (filterType === "sales") {
         const result = await service.searchSale(filters);
+        if (!result || result.length === 0) {
+          return res
+            .status(HTTP_STATUS_CODES.NOT_FOUND)
+            .json({ message: "Nenhum resultado encontrado." });
+        }
         return res.status(HTTP_STATUS_CODES.OK).json({ result });
       }
       if (filterType === "orders") {
         const result = await service.searchCart(filters);
+        if (!result || result.length === 0) {
+          return res
+            .status(HTTP_STATUS_CODES.NOT_FOUND)
+            .json({ message: "Nenhum resultado encontrado." });
+        }
         return res.status(HTTP_STATUS_CODES.OK).json({ result });
       }
     } catch (error) {

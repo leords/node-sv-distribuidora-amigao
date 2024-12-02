@@ -35,6 +35,11 @@ class ReadVehicleController {
 
       const service = new ReadVehicleService();
       const result = await service.execute(filters);
+      if (!result || result.length === 0) {
+        return res
+          .status(HTTP_STATUS_CODES.NOT_FOUND)
+          .json({ message: "Nenhum resultado encontrado." });
+      }
       return res.status(HTTP_STATUS_CODES.OK).json({ result });
     } catch (error) {
       const { status, message } = handleErros(error);

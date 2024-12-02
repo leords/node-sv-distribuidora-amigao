@@ -221,13 +221,11 @@ export const ERROR_MESSAGES_LOAD = {
   INVALID_CART_ID_TYPE: "Cart ID deve ser um número",
   INVALID_USER_ID: "User ID é obrigatório",
   INVALID_USER_ID_TYPE: "User ID deve ser um número",
-  INVALID_STATUS: "Status é obrigatório",
-  INVALID_STATUS_TYPE: "Status deve ser do tipo booleano",
-  INVALID_STATUS_METHOD:
-    "Apenas são aceitos as seguintes opções: | aberta | | fechada | transporte | | entregue | | retornada |",
-  OPEN_LOAD: "Este veículo já está com carregado, verefique!",
+  INVALID_STATUS:
+    "Status é obrigatório, são aceitos as seguintes opções: | aberta | | fechada | transporte | | entregue | | retornada |",
+  OPEN_LOAD: "Este veículo já está carregado, verefique!",
   DATA_RANGE_ERROR: "A data final não pode ser menor que a data inicial",
-
+  //------
   LOAD_NOT_FOUND: "A carga que deseja fazer alterações não foi encontrada",
   DUPLICATE_NAME:
     "Nome passado para alteração já esta sendo utilizado em outra carga não finalizada",
@@ -235,6 +233,7 @@ export const ERROR_MESSAGES_LOAD = {
   VEHICLE_ALREADY_REGISTERED: "Este véiculo já está cadastrado nesta carga",
   ERROR_DUPLICATE_STATUS:
     "Este status já esta cadastrado nesta carga, verifique novamente!",
+  LOAD_NAME_PENDING: "Já existe carga com este nome ainda pendente",
 };
 
 export const HTTP_API = {

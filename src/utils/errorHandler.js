@@ -658,16 +658,6 @@ function handleErros(error) {
       status: HTTP_STATUS_CODES.BAD_REQUEST,
       message: ERROR_MESSAGES_LOAD.INVALID_STATUS,
     };
-  } else if (error.message === ERROR_MESSAGES_LOAD.INVALID_STATUS_TYPE) {
-    return {
-      status: HTTP_STATUS_CODES.BAD_REQUEST,
-      message: ERROR_MESSAGES_LOAD.INVALID_STATUS_TYPE,
-    };
-  } else if (error.message === ERROR_MESSAGES_LOAD.INVALID_STATUS_METHOD) {
-    return {
-      status: HTTP_STATUS_CODES.BAD_REQUEST,
-      message: ERROR_MESSAGES_LOAD.INVALID_STATUS_METHOD,
-    };
   } else if (error.message === ERROR_MESSAGES_LOAD.OPEN_LOAD) {
     return {
       status: HTTP_STATUS_CODES.BAD_REQUEST,
@@ -677,6 +667,36 @@ function handleErros(error) {
     return {
       status: HTTP_STATUS_CODES.BAD_REQUEST,
       message: ERROR_MESSAGES_LOAD.DATA_RANGE_ERROR,
+    };
+  } else if (error.message === ERROR_MESSAGES_LOAD.LOAD_NOT_FOUND) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_LOAD.LOAD_NOT_FOUND,
+    };
+  } else if (error.message === ERROR_MESSAGES_LOAD.DUPLICATE_NAME) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_LOAD.DUPLICATE_NAME,
+    };
+  } else if (error.message === ERROR_MESSAGES_LOAD.VEHICLE_NOT_FOUND) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_LOAD.VEHICLE_NOT_FOUND,
+    };
+  } else if (error.message === ERROR_MESSAGES_LOAD.VEHICLE_ALREADY_REGISTERED) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_LOAD.VEHICLE_ALREADY_REGISTERED,
+    };
+  } else if (error.message === ERROR_MESSAGES_LOAD.ERROR_DUPLICATE_STATUS) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_LOAD.ERROR_DUPLICATE_STATUS,
+    };
+  } else if (error.message === ERROR_MESSAGES_LOAD.LOAD_NAME_PENDING) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_LOAD.LOAD_NAME_PENDING,
     };
   }
 

@@ -35,7 +35,7 @@ class UpdateLoadService {
         nameAlreadyExists &&
         ["entregue", "retornada"].includes(nameAlreadyExists.status)
       ) {
-        throw new Error("Já existe carga com este nome ainda pendente");
+        throw new Error(ERROR_MESSAGES_LOAD.LOAD_NAME_PENDING);
       }
 
       await prismaClient.load.update({
@@ -71,7 +71,7 @@ class UpdateLoadService {
       }
       //valida se o veículo não esta com alguma carga em aberto
       if (["entregue", "retornada"].includes(validatingVehicle.status)) {
-        throw new Error("Este veículo possui carga em aberto");
+        throw new Error(ERROR_MESSAGES_LOAD.OPEN_LOAD);
       }
 
       await prismaClient.load.update({

@@ -3,7 +3,8 @@ import {
   HTTP_STATUS_CODES,
   SUCESS_MESSAGE_LOAD,
 } from "../../config/httpStatusCodes.js";
-import { CreateLoadService } from "../../service/load/createLoadService.js";
+import { CreateLoadService } from "../../service/load/CreateLoadService.js";
+
 import { handleErros } from "../../utils/errorHandler.js";
 
 class CreateLoadController {
@@ -13,7 +14,7 @@ class CreateLoadController {
       if (!name) {
         throw new Error(ERROR_MESSAGES_LOAD.INVALID_NAME);
       }
-      if (typeof name === "string") {
+      if (typeof name !== "string") {
         throw new Error(ERROR_MESSAGES_LOAD.INVALID_NAME_TYPE);
       }
       if (!vehiclesId) {
@@ -28,12 +29,7 @@ class CreateLoadController {
       if (isNaN(userId)) {
         throw new Error(ERROR_MESSAGES_LOAD.INVALID_USER_ID_TYPE);
       }
-      if (!status) {
-        throw new Error(ERROR_MESSAGES_LOAD.INVALID_STATUS);
-      }
-      if (typeof status === "string") {
-        throw new Error(ERROR_MESSAGES_LOAD.INVALID_STATUS_TYPE);
-      }
+
       const allowedStatuses = [
         "aberta",
         "fechada",
@@ -53,6 +49,7 @@ class CreateLoadController {
         load: result,
       });
     } catch (error) {
+      console.log(error);
       const { status, message } = handleErros(error);
       return res.status(status).json({ error: message });
     }

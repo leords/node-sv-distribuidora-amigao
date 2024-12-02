@@ -21,29 +21,16 @@ class ReadLoadController {
       : undefined;
 
     try {
-      if (!id) {
+      if (id && isNaN(id)) {
         throw new Error(ERROR_MESSAGES_LOAD.INVALID_ID);
       }
-      if (isNaN(id)) {
-        throw new Error(ERROR_MESSAGES_LOAD.INVALID_ID_TYPE);
-      }
-      if (!vehiclesId) {
+
+      if (vehiclesId && isNaN(vehiclesId)) {
         throw new Error(ERROR_MESSAGES_LOAD.INVALID_VEHICLE_ID);
       }
-      if (isNaN(vehiclesId)) {
-        throw new Error(ERROR_MESSAGES_LOAD.INVALID_ID_TYPE);
-      }
-      if (!userId) {
+
+      if (userId && isNaN(userId)) {
         throw new Error(ERROR_MESSAGES_LOAD.INVALID_USER_ID);
-      }
-      if (isNaN(userId)) {
-        throw new Error(ERROR_MESSAGES_LOAD.INVALID_USER_ID_TYPE);
-      }
-      if (!status) {
-        throw new Error(ERROR_MESSAGES_LOAD.INVALID_STATUS);
-      }
-      if (typeof status === "string") {
-        throw new Error(ERROR_MESSAGES_LOAD.INVALID_STATUS_TYPE);
       }
       const allowedStatuses = [
         "aberta",
@@ -52,9 +39,13 @@ class ReadLoadController {
         "entregue",
         "retornada",
       ];
-      if (allowedStatuses.includes(status)) {
-        throw new Error(ERROR_MESSAGES_LOAD.INVALID_STATUS_METHOD);
+      if (
+        status &&
+        (typeof status !== "string" || !allowedStatuses.includes(status))
+      ) {
+        throw new Error(ERROR_MESSAGES_LOAD.INVALID_STATUS);
       }
+
       if (createdFrom && isNaN(createdFrom.getTime())) {
         throw new Error(ERROR_MESSAGES_LOAD.INVALID_DATE_FROM);
       }
@@ -76,6 +67,11 @@ class ReadLoadController {
 
       const service = new ReadLoadService();
       const result = await service.execute(filters);
+      if (!result || result.length === 0) {
+        return res
+          .status(HTTP_STATUS_CODES.NOT_FOUND)
+          .json({ message: "Nenhum resultado encontrado." });
+      }
 
       return res.status(HTTP_STATUS_CODES.OK).json({ result });
     } catch (error) {
