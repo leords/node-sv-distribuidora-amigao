@@ -131,6 +131,8 @@ export const ERROR_MESSAGES_CART = {
   INVALID_STATUS_DELIVERY_TYPE:
     'Status do Delivery só aceita as opção: "pendente" | "entregue" | "devolvido" | "carregado" ',
   INVALID_FILTER_TYPE: 'Filter type só aceita as opção: "sales" | "orders" ',
+  CART_NOT_AVAILABLE:
+    "Este pedido não está disponivel para alocar em cargas, ele se encontra como: ",
 };
 // forma de pagamento
 export const SUCESS_MESSAGE_PAYMENT_METHOD = {
@@ -234,6 +236,8 @@ export const ERROR_MESSAGES_LOAD = {
   ERROR_DUPLICATE_STATUS:
     "Este status já esta cadastrado nesta carga, verifique novamente!",
   LOAD_NAME_PENDING: "Já existe carga com este nome ainda pendente",
+  LOAD_NOT_AVAILABLE:
+    "Está carga não está disponivel para alocar mais pedidos, ela está como: ",
 };
 
 export const HTTP_API = {

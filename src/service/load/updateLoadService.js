@@ -6,7 +6,7 @@ import {
 import prismaClient from "../../prisma/index.js";
 
 class UpdateLoadService {
-  // função que tem objetivo de validar a existencia de CARGA com o ID passado!
+  // função que tem objetivo de validar a existencia de uma CARGA com o ID passado!
   async validatingLoadForId(id) {
     const existingLoad = await prismaClient.load.findUnique({
       where: {
@@ -20,6 +20,7 @@ class UpdateLoadService {
     return existingLoad;
   }
 
+  // função que tem objetivo de atualizar o nome
   async executeUpdateName(id, name) {
     try {
       //valida existencia da carga
@@ -31,13 +32,14 @@ class UpdateLoadService {
           name: name,
         },
       });
+      // verifica se | nameAlreadyExists.status | é entregue ou retornada
       if (
         nameAlreadyExists &&
         ["entregue", "retornada"].includes(nameAlreadyExists.status)
       ) {
         throw new Error(ERROR_MESSAGES_LOAD.LOAD_NAME_PENDING);
       }
-
+      // faz o update de load
       await prismaClient.load.update({
         where: {
           id: id,
@@ -118,27 +120,69 @@ class UpdateLoadService {
     }
   }
 
+  // atualiza o status de uma carga
+  async updateStatus(tx, id, status) {
+    await tx.load.update({
+      where: {
+        id: id,
+      },
+      data: {
+        status: status,
+      },
+    });
+    return `O status da carga foi alterado para: ${status}`;
+  }
+
+  // Atualiza o statusDelivery dos carrinho conforme a atualização de status da carga
+  async updateCartStatusDelivery(tx, id, status) {
+    let newStatusDelivery;
+
+    switch (status) {
+      case "fechada":
+      case "transporte":
+        newStatusDelivery = "carregado";
+        break;
+      case "entregue":
+        newStatusDelivery = "entregue";
+        break;
+      case "retornada":
+        newStatusDelivery = "devolvido";
+        break;
+      default:
+    }
+    // atualiza todos os carrinhos que são associados a esta carga
+    await tx.cart.updateMany({
+      where: {
+        id: id,
+      },
+      data: {
+        statusDelivery: newStatusDelivery,
+      },
+    });
+  }
+
   async executeUpdateStatus(id, status) {
     try {
-      //valida existencia da carga
-      await this.validatingLoadForId(id);
-      const checkStatus = await prismaClient.load.findUnique({
-        where: {
-          id: id,
-        },
+      await prismaClient.$transaction(async (tx) => {
+        //função que valida a existecia de uma carga atravez do id
+        await this.validatingLoadForId(id);
+        //faz uma busca em cargas atrás da carga referente ao id passado
+        const checkStatus = await tx.load.findUnique({
+          where: {
+            id: id,
+          },
+        });
+        if (checkStatus.status === status) {
+          throw new Error(ERROR_MESSAGES_LOAD.ERROR_DUPLICATE_STATUS);
+        }
+        //verifica se status é igual à uma das 4 palavras e chama a função que faz a alteração do status da carga e função que altera o status delivery de todos os carrinho associados a esta carga.
+        if (
+          ["entregue", "retornada", "transporte", "fechada"].includes(status)
+        ) {
+          await this.updateStatus(tx, id, status);
+          await this.updateCartStatusDelivery(tx, id, status);
+        }
       });
-      if (checkStatus.status === status) {
-        throw new Error(ERROR_MESSAGES_LOAD.ERROR_DUPLICATE_STATUS);
-      }
-      await prismaClient.load.update({
-        where: {
-          id: id,
-        },
-        data: {
-          status: status,
-        },
-      });
-      return `Alteração de status na "${SUCESS_MESSAGE_LOAD.LOAD_UPDATED_SUCCESSFULLY}"`;
     } catch (error) {
       console.log(error);
       throw error;

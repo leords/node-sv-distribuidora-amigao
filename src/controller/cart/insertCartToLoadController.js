@@ -3,7 +3,7 @@ import {
   ERROR_MESSAGES_LOAD,
   SUCESS_MESSAGES_CART,
 } from "../../config/httpStatusCodes";
-import { InsertLoadToCartService } from "../../service/cart/inserLoadToCartService";
+import { InsertCartToLoadService } from "../../service/cart/InsertCartToLoadService";
 import { handleErros } from "../../utils/errorHandler";
 
 class InsertLoadToCartController {
@@ -24,7 +24,7 @@ class InsertLoadToCartController {
         throw new Error(ERROR_MESSAGES_CART.INVALID_ID);
       }
 
-      const service = new InsertLoadToCartService();
+      const service = new InsertCartToLoadService();
       const result = await service.execute(idLoad, idCart);
 
       return res

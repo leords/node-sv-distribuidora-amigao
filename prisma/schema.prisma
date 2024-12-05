@@ -158,6 +158,9 @@ model Load {
   userId Int
   user User @relation(fields: [userId], references: [id])
   status String @default("aberta")
+  quantity Int 
+  total Decimal @default(0.0)
+  weight Int
 
   @@map("loads")
 }
