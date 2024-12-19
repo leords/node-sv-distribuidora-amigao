@@ -14,6 +14,16 @@ class CreateUserService {
         throw new Error(ERROR_MESSAGES_USER.INVALID_PROFESSION_NOT_FOUND);
       }
 
+      const validateEmail = await prismaClient.user.findUnique({
+        where: {
+          email: email,
+        },
+      });
+
+      if (validateEmail) {
+        throw new Error(ERROR_MESSAGES_USER.VALIDATE_EMAIL);
+      }
+
       const newUser = await prismaClient.user.create({
         data: {
           name,

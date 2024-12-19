@@ -1,10 +1,11 @@
 import {
   ERROR_MESSAGES_CART,
   ERROR_MESSAGES_LOAD,
+  HTTP_STATUS_CODES,
   SUCESS_MESSAGES_CART,
-} from "../../config/httpStatusCodes";
-import { InsertCartToLoadService } from "../../service/cart/InsertCartToLoadService";
-import { handleErros } from "../../utils/errorHandler";
+} from "../../config/httpStatusCodes.js";
+import { InsertCartToLoadService } from "../../service/cart/InsertCartToLoadService.js";
+import { handleErros } from "../../utils/errorHandler.js";
 
 class InsertLoadToCartController {
   async handle(req, res) {
@@ -28,9 +29,13 @@ class InsertLoadToCartController {
       const result = await service.execute(idLoad, idCart);
 
       return res
-        .status(SUCESS_MESSAGES_CART.CART_UPDATED_SUCCESSFULLY)
-        .json({ result });
+        .status(HTTP_STATUS_CODES.OK)
+        .json({
+          message: SUCESS_MESSAGES_CART.CART_UPDATED_SUCCESSFULLY,
+          cart: result,
+        });
     } catch (error) {
+      console.log(error);
       const { status, message } = handleErros(error);
       return res.status(status).json({ error: message });
     }

@@ -28,7 +28,7 @@ class GetClientBaseController {
       throw new Error(SUCESS_MESSAGES_PRODUCT.SYNCHRONIZE_PRODUCT_SUCESS);
     } catch (error) {
       const { status, message } = handleErros(error);
-      return res.status(status).json({ error: message });
+      return res.status(status).json({ message });
     }
   }
 }

@@ -1,4 +1,7 @@
-import { ERROR_MESSAGES_PRODUCT } from "../../config/httpStatusCodes.js";
+import {
+  ERROR_MESSAGES_CLIENT,
+  ERROR_MESSAGES_PRODUCT,
+} from "../../config/httpStatusCodes.js";
 import prismaClient from "../../prisma/index.js";
 
 class GetClientBaseService {
@@ -6,7 +9,7 @@ class GetClientBaseService {
     console.log("service", clients);
     try {
       if (clients.length === 0) {
-        throw new Error(ERROR_MESSAGES_PRODUCT.SYNCHRONIZE_PRODUCT_ERROR);
+        throw new Error(ERROR_MESSAGES_CLIENT.SYNCHRONIZE_CLIENT_ERROR);
       }
       for (const client of clients) {
         await prismaClient.client.upsert({

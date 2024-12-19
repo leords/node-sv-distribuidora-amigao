@@ -6,8 +6,8 @@ import {
 import { DeleteItemService } from "../../service/item/deleteItemService.js";
 import { handleErros } from "../../utils/errorHandler.js";
 
-class DeleteItemController {
-  async handler(req, res) {
+class DeleteUniqueItemController {
+  async handle(req, res) {
     const { id, cartId } = req.body;
 
     try {
@@ -25,7 +25,7 @@ class DeleteItemController {
       }
 
       const service = new DeleteItemService();
-      const result = await service.execute(id, cartId);
+      const result = await service.executeDeleteUnique(id, cartId);
 
       return res.status(HTTP_STATUS_CODES.OK).json({
         message: SUCESS_MESSAGES_CART_ITEM.PRODUCT_DELETED_SUCCESSFULLY,
@@ -38,4 +38,4 @@ class DeleteItemController {
   }
 }
 
-export { DeleteItemController };
+export { DeleteUniqueItemController };

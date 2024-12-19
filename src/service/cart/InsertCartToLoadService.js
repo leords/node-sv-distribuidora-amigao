@@ -1,8 +1,8 @@
 import {
   ERROR_MESSAGES_CART,
   ERROR_MESSAGES_LOAD,
-} from "../../config/httpStatusCodes";
-import prismaClient from "../../prisma";
+} from "../../config/httpStatusCodes.js";
+import prismaClient from "../../prisma/index.js";
 
 class InsertCartToLoadService {
   async validateLoad(idLoad) {
@@ -16,12 +16,12 @@ class InsertCartToLoadService {
       throw new Error(ERROR_MESSAGES_LOAD.LOAD_NOT_FOUND);
     }
     //valida o status da carga verificando se a mesma está no status correto, ou seja em aberta
-    if (searchLoad.status !== "aberta") {
+    if (load.status !== "aberta") {
       throw new Error(
         `${ERROR_MESSAGES_LOAD.LOAD_NOT_AVAILABLE} ${searchLoad.status}`
       );
     }
-    return searchLoad;
+    return load;
   }
 
   async validateCart(idCart) {
@@ -49,8 +49,23 @@ class InsertCartToLoadService {
     }
   }
 
-  async addValueAndWeight(idLoad) {
-    //faz a soma de total e qiantity em todos os carrinhos que estão alocados na carga do idLoad passado
+  // fazer a contabilidade do peso dos produtos pata totalizar na carga
+  // tem que somar todos os carrinhos que tem o numero da carga!!!!
+  async returnWeightForCart(idLoad) {
+    const weightCart = await prismaClient.cart.aggregate({
+      _sum: {
+        weight: true,
+      },
+      where: {
+        loadId: idLoad,
+      },
+    });
+
+    return weightCart._sum.weight;
+  }
+
+  async addValueAndWeight(idLoad, idCart) {
+    //faz a soma de total e quantity em todos os carrinhos que estão alocados na carga do idLoad passado
     const addValues = await prismaClient.cart.aggregate({
       _sum: {
         total: true,
@@ -68,9 +83,11 @@ class InsertCartToLoadService {
       },
       data: {
         quantity: addValues._sum.quantity,
-        weight: addValues._sum.total,
+        total: addValues._sum.total,
+        weight: await this.returnWeightForCart(idLoad),
       },
     });
+    console.log(await this.returnWeightForCart(idLoad));
   }
 
   async execute(idLoad, idCart) {
@@ -91,11 +108,11 @@ class InsertCartToLoadService {
         });
       });
 
-      await this.addValueAndWeight(idLoad);
+      await this.addValueAndWeight(idLoad, idCart);
 
       return result;
     } catch (error) {
-      console.log(error);
+      console.log("aqui", error);
       throw error;
     }
   }

@@ -34,6 +34,7 @@ export const ERROR_MESSAGES_USER = {
   DATABASE_ERROR: "Erro ao criar o usuário no banco de dados",
   DATABASE_DELETE_ERROR: "Erro ao excluir usuário no banco de dados",
   DATABASE_UPDATE_ERROR: "Erro ao atualizar usuário no banco de dados",
+  VALIDATE_EMAIL: "Este Email já está sendo utilizado",
 };
 
 export const SUCESS_MESSAGES_USER = {
@@ -116,6 +117,12 @@ export const SUCESS_MESSAGES_CART = {
 };
 
 export const ERROR_MESSAGES_CART = {
+  INVALID_USER: "Usuário é obrigatório",
+  INVALID_CLIENT: "Cliente é obrigatório",
+  INVALID_PAYMENT: "Forma de pagamento é obrigatório",
+  USER_NOT_FOUND: "Este usuário não foi encontrado",
+  CLIENT_NOT_FOUND: "Este cliente não foi encontrado",
+  PAYMENT_NOT_FOUND: "Esta forma de pagamento não foi encontrada",
   CART_NOT_FOUND: "Carrinho não encontrado",
   INVALID_CLIENT_ID_TO_CART: "ID CLIENT deve ser um número",
   INVALID_USER_ID_TO_CART: "ID USER deve ser um número",
@@ -238,6 +245,8 @@ export const ERROR_MESSAGES_LOAD = {
   LOAD_NAME_PENDING: "Já existe carga com este nome ainda pendente",
   LOAD_NOT_AVAILABLE:
     "Está carga não está disponivel para alocar mais pedidos, ela está como: ",
+  LOAD_DELETE_RESTRICTED:
+    "Está carga está restrita. Não é possível apagá-la, devido seu status",
 };
 
 export const HTTP_API = {

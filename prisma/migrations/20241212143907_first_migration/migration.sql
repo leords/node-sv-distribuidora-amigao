@@ -40,7 +40,7 @@ CREATE TABLE "Product" (
 );
 
 -- CreateTable
-CREATE TABLE "PaymentMethod" (
+CREATE TABLE "formpayments" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "name" TEXT NOT NULL,
     "status" BOOLEAN NOT NULL DEFAULT true
@@ -52,15 +52,16 @@ CREATE TABLE "carts" (
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "total" DECIMAL NOT NULL DEFAULT 0.0,
     "quantity" INTEGER NOT NULL DEFAULT 0,
+    "weight" INTEGER,
     "clientId" TEXT NOT NULL,
     "userId" INTEGER NOT NULL,
     "paymentId" INTEGER NOT NULL,
-    "loadId" INTEGER NOT NULL,
+    "loadId" INTEGER,
     "statusDelivery" TEXT NOT NULL DEFAULT 'pendente',
     CONSTRAINT "carts_clientId_fkey" FOREIGN KEY ("clientId") REFERENCES "clients" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT "carts_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
-    CONSTRAINT "carts_paymentId_fkey" FOREIGN KEY ("paymentId") REFERENCES "PaymentMethod" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
-    CONSTRAINT "carts_loadId_fkey" FOREIGN KEY ("loadId") REFERENCES "loads" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+    CONSTRAINT "carts_paymentId_fkey" FOREIGN KEY ("paymentId") REFERENCES "formpayments" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
+    CONSTRAINT "carts_loadId_fkey" FOREIGN KEY ("loadId") REFERENCES "loads" ("id") ON DELETE SET NULL ON UPDATE CASCADE
 );
 
 -- CreateTable
@@ -85,7 +86,7 @@ CREATE TABLE "payments" (
     "paymentId" INTEGER NOT NULL,
     "userId" INTEGER NOT NULL,
     CONSTRAINT "payments_clientId_fkey" FOREIGN KEY ("clientId") REFERENCES "clients" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
-    CONSTRAINT "payments_paymentId_fkey" FOREIGN KEY ("paymentId") REFERENCES "PaymentMethod" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
+    CONSTRAINT "payments_paymentId_fkey" FOREIGN KEY ("paymentId") REFERENCES "formpayments" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT "payments_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
@@ -108,9 +109,9 @@ CREATE TABLE "loads" (
     "vehiclesId" INTEGER NOT NULL,
     "userId" INTEGER NOT NULL,
     "status" TEXT NOT NULL DEFAULT 'aberta',
-    "quantity" INTEGER NOT NULL,
-    "total" DECIMAL NOT NULL DEFAULT 0.0,
-    "weight" INTEGER NOT NULL,
+    "quantity" INTEGER,
+    "total" DECIMAL DEFAULT 0.0,
+    "weight" INTEGER,
     CONSTRAINT "loads_vehiclesId_fkey" FOREIGN KEY ("vehiclesId") REFERENCES "vehicles" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT "loads_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );

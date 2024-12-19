@@ -6,7 +6,6 @@ import prismaClient from "../../prisma/index.js";
 
 class GetProductBaseService {
   async execute(products) {
-    console.log(products);
     try {
       if (products.length === 0) {
         throw new Error(ERROR_MESSAGES_PRODUCT.SYNCHRONIZE_CLIENT_ERROR);

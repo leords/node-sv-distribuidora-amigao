@@ -69,6 +69,8 @@ model PaymentMethod {
 
   carts Cart[]
   payments Payment[]
+
+  @@map("formpayments")
 }
 
 // MUDAR O ID DE TODOS OS MODEL PARA STRING E TRATAR TODO PARA STRING!!!
@@ -77,6 +79,7 @@ model Cart {
   createdAt DateTime  @default(now())
   total     Decimal @default(0.0)
   quantity  Int @default(0)
+  weight Int?
 
   clientId  String       // ID do cliente obtido da API
   client Client @relation(fields: [clientId], references: [id])
@@ -88,8 +91,8 @@ model Cart {
   paymentId Int
   payment PaymentMethod @relation(fields: [paymentId], references: [id])
 
-  loadId Int 
-  load Load @relation(fields: [loadId], references: [id])
+  loadId Int?
+  load Load? @relation(fields: [loadId], references: [id])
 
   statusDelivery String @default("pendente")
 
@@ -158,9 +161,9 @@ model Load {
   userId Int
   user User @relation(fields: [userId], references: [id])
   status String @default("aberta")
-  quantity Int 
-  total Decimal @default(0.0)
-  weight Int
+  quantity Int?
+  total Decimal? @default(0.0)
+  weight Int?
 
   @@map("loads")
-}
+} 

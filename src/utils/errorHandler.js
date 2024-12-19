@@ -168,6 +168,11 @@ function handleErros(error) {
       status: HTTP_STATUS_CODES.BAD_REQUEST,
       message: ERROR_MESSAGES_USER.INVALID_ACCESS_LEVEL,
     };
+  } else if (error.message === ERROR_MESSAGES_USER.VALIDATE_EMAIL) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_USER.VALIDATE_EMAIL,
+    };
   }
 
   // message of the erros for profession model!
@@ -345,7 +350,37 @@ function handleErros(error) {
   // INVALID_CART_ID
 
   // message of the errors for cart model!
-  else if (error.message === ERROR_MESSAGES_CART.CART_NOT_FOUND) {
+  else if (error.message === ERROR_MESSAGES_CART.USER_NOT_FOUND) {
+    return {
+      status: HTTP_STATUS_CODES.NOT_FOUND,
+      message: ERROR_MESSAGES_CART.USER_NOT_FOUND,
+    };
+  } else if (error.message === ERROR_MESSAGES_CART.CLIENT_NOT_FOUND) {
+    return {
+      status: HTTP_STATUS_CODES.NOT_FOUND,
+      message: ERROR_MESSAGES_CART.CLIENT_NOT_FOUND,
+    };
+  } else if (error.message === ERROR_MESSAGES_CART.PAYMENT_NOT_FOUND) {
+    return {
+      status: HTTP_STATUS_CODES.NOT_FOUND,
+      message: ERROR_MESSAGES_CART.PAYMENT_NOT_FOUND,
+    };
+  } else if (error.message === ERROR_MESSAGES_CART.INVALID_PAYMENT) {
+    return {
+      status: HTTP_STATUS_CODES.NOT_FOUND,
+      message: ERROR_MESSAGES_CART.INVALID_PAYMENT,
+    };
+  } else if (error.message === ERROR_MESSAGES_CART.INVALID_CLIENT) {
+    return {
+      status: HTTP_STATUS_CODES.NOT_FOUND,
+      message: ERROR_MESSAGES_CART.INVALID_CLIENT,
+    };
+  } else if (error.message === ERROR_MESSAGES_CART.INVALID_USER) {
+    return {
+      status: HTTP_STATUS_CODES.NOT_FOUND,
+      message: ERROR_MESSAGES_CART.INVALID_USER,
+    };
+  } else if (error.message === ERROR_MESSAGES_CART.CART_NOT_FOUND) {
     return {
       status: HTTP_STATUS_CODES.NOT_FOUND,
       message: ERROR_MESSAGES_CART.CART_NOT_FOUND,
@@ -697,6 +732,11 @@ function handleErros(error) {
     return {
       status: HTTP_STATUS_CODES.BAD_REQUEST,
       message: ERROR_MESSAGES_LOAD.LOAD_NAME_PENDING,
+    };
+  } else if (error.message === ERROR_MESSAGES_LOAD.LOAD_DELETE_RESTRICTED) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_LOAD.LOAD_DELETE_RESTRICTED,
     };
   }
 
