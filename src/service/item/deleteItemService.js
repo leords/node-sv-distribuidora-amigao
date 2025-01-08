@@ -111,8 +111,12 @@ class DeleteItemService {
             id: cartId,
           },
           data: {
-            total: Decimal(sumCartItem._sum.total),
-            quantity: sumQuantityCartItem._sum.quantity,
+            total: Decimal(sumCartItem._sum.total)
+              ? Decimal(sumCartItem._sum.total)
+              : Decimal(0),
+            quantity: sumQuantityCartItem._sum.quantity
+              ? sumQuantityCartItem._sum.quantity
+              : 0,
           },
         });
 
