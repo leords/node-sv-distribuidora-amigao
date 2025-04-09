@@ -33,7 +33,7 @@ class DeleteUniqueItemController {
       });
     } catch (error) {
       const { status, message } = handleErros(error);
-      res.status(status).json({ error: message });
+      return res.status(status).json({ error: message });
     }
   }
 }

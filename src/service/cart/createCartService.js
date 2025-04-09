@@ -39,7 +39,6 @@ class CreateCartService {
 
       return newCart;
     } catch (error) {
-      console.log(error);
       throw error;
     }
   }

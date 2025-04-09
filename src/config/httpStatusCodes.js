@@ -140,6 +140,8 @@ export const ERROR_MESSAGES_CART = {
   INVALID_FILTER_TYPE: 'Filter type só aceita as opção: "sales" | "orders" ',
   CART_NOT_AVAILABLE:
     "Este pedido não está disponivel para alocar em cargas, ele se encontra como: ",
+  CART_EMPTY: "O carrinho está vazio. Adicione itens para continuar.",
+  CART_NOT_ASSOCIATED: "O carrinho não está associado a nenhuma carga",
 };
 // forma de pagamento
 export const SUCESS_MESSAGE_PAYMENT_METHOD = {

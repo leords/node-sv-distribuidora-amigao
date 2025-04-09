@@ -4,6 +4,7 @@ import { DeleteCartController } from "../controller/cart/deleteCartController.js
 import { ReadCartController } from "../controller/cart/readCartController.js";
 import { UpdateCartController } from "../controller/cart/updateCartController.js";
 import { InsertLoadToCartController } from "../controller/cart/insertCartToLoadController.js";
+import { DeleteCartToLoadController } from "../controller/cart/deleteCartToLoadController.js";
 
 const router = Router();
 
@@ -12,5 +13,6 @@ router.delete("/delete-cart", new DeleteCartController().handle);
 router.get("/read-cart", new ReadCartController().handle);
 router.patch("/update-cart", new UpdateCartController().handle);
 router.patch("/insert-cart", new InsertLoadToCartController().handle);
+router.patch("/delete-cart-to-load", new DeleteCartToLoadController().handle);
 
 export { router as cartRouter };

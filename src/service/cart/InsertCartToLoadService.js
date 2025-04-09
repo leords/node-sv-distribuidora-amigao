@@ -41,11 +41,15 @@ class InsertCartToLoadService {
         `${ERROR_MESSAGES_CART.CART_NOT_AVAILABLE} ${cart.statusDelivery}`
       );
     }
-    //valida se o statusDelivery nao é fechada
+    //valida se o statusDelivery não é fechada
     if (cart.statusDelivery === "fechada") {
       throw new Error(
         `${ERROR_MESSAGES_CART.CART_NOT_AVAILABLE} ${cart.statusDelivery}`
       );
+    }
+    //valida se o cartItem está vazio
+    if (cart.quantity == 0 || cart.total == 0) {
+      throw new Error(ERROR_MESSAGES_CART.CART_EMPTY)
     }
   }
 
@@ -90,13 +94,15 @@ class InsertCartToLoadService {
     console.log(await this.returnWeightForCart(idLoad));
   }
 
+
   async execute(idLoad, idCart) {
     try {
       const result = await prismaClient.$transaction(async (tx) => {
+
         await this.validateLoad(idLoad);
         await this.validateCart(idCart);
 
-        // faz a inserção do carrinho(idCart) em determinada carga passada pelo idLoad e altera o status delivery do carrinho para carregado!
+        //Faz a inserção do carrinho(idCart) em determinada carga passada pelo idLoad e altera o status delivery do carrinho para carregado!
         return await tx.cart.update({
           where: {
             id: idCart,
@@ -107,7 +113,7 @@ class InsertCartToLoadService {
           },
         });
       });
-
+      
       await this.addValueAndWeight(idLoad, idCart);
 
       return result;

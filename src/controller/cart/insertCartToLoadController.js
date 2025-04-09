@@ -14,7 +14,7 @@ class InsertLoadToCartController {
     try {
       if (!idLoad) {
         throw new Error(ERROR_MESSAGES_LOAD.INVALID_ID);
-      }
+    }
       if (isNaN(idLoad)) {
         throw new Error(ERROR_MESSAGES_LOAD.INVALID_ID_TYPE);
       }

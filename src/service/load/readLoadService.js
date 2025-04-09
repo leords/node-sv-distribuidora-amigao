@@ -10,12 +10,16 @@ class ReadLoadService {
             ? Number(filters.vehiclesId)
             : undefined,
           userId: filters.userId ? Number(filters.userId) : undefined,
-          status: filters.status ? Number(filters.status) : undefined,
+          status: filters.status ? filters.status : undefined,
           createdAt: {
             gte: filters.createdFrom || undefined,
             lte: filters.createdUntil || undefined,
           },
-        },
+        }, 
+        include: {
+          carts: true
+        }
+        
       });
       return readLoad;
     } catch (error) {

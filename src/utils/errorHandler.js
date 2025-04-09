@@ -425,6 +425,16 @@ function handleErros(error) {
       status: HTTP_STATUS_CODES.BAD_REQUEST,
       message: ERROR_MESSAGES_CART.INVALID_PAYMENT_ID_TO_CART,
     };
+  } else if (error.message === ERROR_MESSAGES_CART.CART_EMPTY) {
+      return {
+        status: HTTP_STATUS_CODES.BAD_REQUEST,
+        message: ERROR_MESSAGES_CART.CART_EMPTY
+      }
+  } else if (error.message === ERROR_MESSAGES_CART.CART_NOT_ASSOCIATED) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_CART.CART_NOT_ASSOCIATED
+    }
   }
 
   // message of the errors for payment method model!
