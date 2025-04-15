@@ -34,7 +34,7 @@ class UpdateUserService {
   async executeUpdateProfessionId(id, professionId) {
     return this.execute(id, { professionId });
 
-    // {professionId} Cria um objeto literal. - Usa o nome da variável professionId como chave do objeto. - Usa o valor da variável professionId como valor correspondente dessa chave.
+  //{professionId} Cria um objeto literal. - Usa o nome da variável professionId como chave do objeto. - Usa o valor da variável professionId como valor correspondente dessa chave.
   }
 
   async executeUpdateStatus(id) {

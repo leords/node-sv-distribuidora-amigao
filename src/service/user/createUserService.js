@@ -1,3 +1,4 @@
+import bcrypt from "bcryptjs";
 import { ERROR_MESSAGES_USER } from "../../config/httpStatusCodes.js";
 import prismaClient from "../../prisma/index.js";
 
@@ -24,12 +25,14 @@ class CreateUserService {
         throw new Error(ERROR_MESSAGES_USER.VALIDATE_EMAIL);
       }
 
+      const hashedPassword = await bcrypt.hash(password, 8)
+
       const newUser = await prismaClient.user.create({
         data: {
           name,
           email,
           accessLevel,
-          password,
+          password : hashedPassword,
           professionId,
         },
       });

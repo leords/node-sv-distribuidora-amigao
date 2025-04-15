@@ -7,8 +7,12 @@ import { CreateVehicleService } from "../../service/vehicle/createVehicleService
 import { handleErros } from "../../utils/errorHandler.js";
 
 class CreateVehicleController {
+  
   async handle(req, res) {
+    console.log('estou dentro do VehicleController');
     const { model, licensePlate, brand, weight } = req.body;
+
+    console.log('model: ', model);
 
     try {
       if (!model) {

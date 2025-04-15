@@ -13,9 +13,11 @@ import {
   ERROR_MESSAGES_PAYMENT,
   ERROR_MESSAGES_VEHICLE,
   ERROR_MESSAGES_LOAD,
+  ERROR_MESSAGE_AUTH,
 } from "../config/httpStatusCodes.js";
 
 function handleErros(error) {
+
   // message of the errors for user model!
   if (error.message === ERROR_MESSAGES_USER.INVALID_PROFESSION_ID_TYPE) {
     return {

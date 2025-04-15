@@ -9,9 +9,11 @@ import { paymentMethodRouter } from "./paymentMethodRoutes.js";
 import { paymentRouter } from "./paymentRoutes.js";
 import { vehicleRouter } from "./vehicleRoutes.js";
 import { loadRouter } from "./loadRoutes.js";
+import { AuthRouter } from "./authRoutes.js";
 
 const router = Router();
 
+router.use(AuthRouter)
 router.use(userRouter);
 router.use(professionRouter);
 router.use(clientRouter);

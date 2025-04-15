@@ -5,7 +5,14 @@ export const HTTP_STATUS_CODES = {
   NOT_FOUND: 404,
   CONFLICT: 409,
   INTERNAL_SERVER_ERROR: 500,
+  FORBIDDEN: 403
 };
+
+export const ERROR_MESSAGE_AUTH = {
+  TOKEN_NOT_FOUND: "Token ausente",
+  TOKEN_INVALID: "Token inválido", 
+  ACCESS_DENIED: 'Acesso negado',
+}
 
 // usuário
 export const ERROR_MESSAGES_USER = {
