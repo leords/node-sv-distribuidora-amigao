@@ -1,6 +1,7 @@
 import prismaClient from "../prisma/index.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import { ERROR_MESSAGE_AUTH } from "../config/httpStatusCodes.js";
 
 class AuthService {
     async login(email, password) {
@@ -11,12 +12,12 @@ class AuthService {
         });
 
         if(!user || !user.status) {
-            throw new Error("Invalid email or password");
+            throw new Error(ERROR_MESSAGE_AUTH.INVALID_CREDENTIALS);
         }
         // verifica se a senha está correta
         const isPasswordValid = await bcrypt.compare(password, user.password);
         if (!isPasswordValid) {
-            throw new Error("Invalid email or password");
+            throw new Error(ERROR_MESSAGE_AUTH.INVALID_CREDENTIALS);
         }
 
         const token = jwt.sign (

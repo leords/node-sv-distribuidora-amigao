@@ -12,16 +12,11 @@ function authMiddleware(req, res, next) {
 
         // remove a palavra "Bearer " por um espaço, removendo o bearer do inicio do token
         const token = authHeader.replace('Bearer ', '');
-        console.log("Token recebido:", token);
-        console.log("JWT_SECRET:", process.env.JWT_SECRET);
-
         try {
             //Tenta verificar (validar e decodificar) o token usando a chave secreta.
             // Se o token for válido, ele retorna os dados que foram "embedados" dentro do JWT.
             const decoded = jwt.verify(token, process.env.JWT_SECRET);
             req.user = decoded;
-
-            console.log(decoded)
             
             // se tudo estiver OK, chama o NEXT() e a requisição continua para o controller da rota
             next();

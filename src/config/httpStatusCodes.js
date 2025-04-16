@@ -11,7 +11,8 @@ export const HTTP_STATUS_CODES = {
 export const ERROR_MESSAGE_AUTH = {
   TOKEN_NOT_FOUND: "Token ausente",
   TOKEN_INVALID: "Token inválido", 
-  ACCESS_DENIED: 'Acesso negado',
+  ACCESS_DENIED: 'Acesso negado, procure por um admin!',
+  INVALID_CREDENTIALS: 'Email e password inválidos'
 }
 
 // usuário

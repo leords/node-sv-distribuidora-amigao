@@ -1,0 +1,2 @@
+::1 - - [16/Apr/2025:13:48:11 +0000] "POST /login HTTP/1.1" 200 215 "-" "Apidog/1.0.0 (https://apidog.com)"
+::1 - - [16/Apr/2025:13:48:23 +0000] "POST /new-vehicle HTTP/1.1" 201 179 "-" "Apidog/1.0.0 (https://apidog.com)"
