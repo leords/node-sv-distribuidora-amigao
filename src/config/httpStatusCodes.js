@@ -81,6 +81,9 @@ export const SUCESS_MESSAGES_PROFISSION = {
 export const ERROR_MESSAGES_PRODUCT = {
   SYNCHRONIZE_PRODUCT_ERROR: "Erro ao sincronizar produtos",
   HTTP_STATUS_CODE_ERROR_FATCH: "HTTP ERROR! status:",
+  INVALID_SEGMENT_TYPE: "Segmento deve ser um texto ",
+  INVALID_SUPPLIER_TYPE: "Fornecedor deve ser um texto",
+  INVALID_STATUS_TYPE: "Status deve ser um número, apenas 1 ou 2"
 };
 
 export const SUCESS_MESSAGES_PRODUCT = {

@@ -282,6 +282,21 @@ function handleErros(error) {
       status: HTTP_STATUS_CODES.NOT_FOUND,
       message: HTTP_API.HTTP_STATUS_CODE_ERROR_FATCH,
     };
+  } else if (error.message === ERROR_MESSAGES_PRODUCT.INVALID_SEGMENT_TYPE) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_PRODUCT.INVALID_SEGMENT_TYPE
+    }
+  } else if (error.message === ERROR_MESSAGES_PRODUCT.INVALID_STATUS_TYPE) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_PRODUCT.INVALID_STATUS_TYPE
+    }
+  } else if (error.message === ERROR_MESSAGES_PRODUCT.INVALID_SUPPLIER_TYPE) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_PRODUCT.INVALID_SUPPLIER_TYPE
+    }
   }
 
   // message of the errors for client model!
