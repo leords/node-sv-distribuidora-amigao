@@ -52,8 +52,36 @@ class ReadCartService {
             lte: filters.createdUntil || undefined,
           },
         },
+        // include: faz a inclusão de propriedades de entidades associadas
         include: {
           cartItems: true,
+          client: {
+            select: {
+              name: true,
+              city: true
+            },
+          },
+          payment: {
+            select: {
+              name: true
+            },
+          },
+          user: {
+            select: {
+              name: true
+            }
+          },
+          // aqui consigo acessar vehicle por movitos que LOAD tem associação com CART.
+          load: {
+            select: {
+              name: true,
+              vehicle: {
+                select: {
+                  model: true
+                }
+              }
+            }
+          }
         },
       });
 

@@ -95,6 +95,11 @@ export const ERROR_MESSAGES_CLIENT = {
   SYNCHRONIZE_CLIENT_ERROR: "Erro ao sincronizar clientes",
   HTTP_STATUS_CODE_ERROR_FATCH: "HTTP ERROR! status:",
   INVALID_ID: "ClientId espera um número valido",
+  INVALID_NAME: "Nome deve ser um texto",
+  INVALID_CITY: "Cidade deve ser um texto",
+  INVALID_SALESMAN: "Vendedor deve ser um texto",
+  INVALID_SERVICE_DAY: "Dia de atendimento deve ser um texto. SEGUNDA | TERÇA | QUARTA ...",
+  INVALID_STATUS: "Status deve ser do tipo booleano"
 };
 
 export const SUCESS_MESSAGES_CLIENT = {

@@ -1,5 +1,5 @@
-import { ERROR_MESSAGES_PAYMENT_METHOD } from "../../config/httpStatusCodes";
-import prismaClient from "../../prisma";
+import { ERROR_MESSAGES_PAYMENT_METHOD } from "../../config/httpStatusCodes.js";
+import prismaClient from "../../prisma/index.js";
 
 class DeletePaymentMethodService {
   async execute(id) {

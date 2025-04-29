@@ -317,6 +317,31 @@ function handleErros(error) {
       status: HTTP_STATUS_CODES.BAD_REQUEST,
       message: ERROR_MESSAGES_CLIENT.INVALID_ID,
     };
+  } else if (error.message === ERROR_MESSAGES_CLIENT.INVALID_NAME) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_CLIENT.INVALID_NAME
+    }
+  } else if (error.message === ERROR_MESSAGES_CLIENT.INVALID_CITY) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_CLIENT.INVALID_CITY
+    }
+  } else if (error.message === ERROR_MESSAGES_CLIENT.INVALID_SALESMAN) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_CLIENT.INVALID_SALESMAN
+    }
+  } else if (error.message === ERROR_MESSAGES_CLIENT.INVALID_SERVICE_DAY) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_CLIENT.INVALID_SERVICE_DAY
+    }
+  } else if (error.message === ERROR_MESSAGES_CLIENT.INVALID_STATUS) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_CLIENT.INVALID_STATUS
+    }
   }
 
   // message of the errors for item model!
