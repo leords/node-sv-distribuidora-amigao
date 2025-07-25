@@ -17,6 +17,13 @@ import {
 } from "../config/httpStatusCodes.js";
 
 function handleErros(error) {
+  // message of the errors for auth model!
+  if ((error.message = ERROR_MESSAGE_AUTH.INVALID_CREDENTIALS)) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGE_AUTH.INVALID_CREDENTIALS,
+    };
+  }
 
   // message of the errors for user model!
   if (error.message === ERROR_MESSAGES_USER.INVALID_PROFESSION_ID_TYPE) {
@@ -285,18 +292,18 @@ function handleErros(error) {
   } else if (error.message === ERROR_MESSAGES_PRODUCT.INVALID_SEGMENT_TYPE) {
     return {
       status: HTTP_STATUS_CODES.BAD_REQUEST,
-      message: ERROR_MESSAGES_PRODUCT.INVALID_SEGMENT_TYPE
-    }
+      message: ERROR_MESSAGES_PRODUCT.INVALID_SEGMENT_TYPE,
+    };
   } else if (error.message === ERROR_MESSAGES_PRODUCT.INVALID_STATUS_TYPE) {
     return {
       status: HTTP_STATUS_CODES.BAD_REQUEST,
-      message: ERROR_MESSAGES_PRODUCT.INVALID_STATUS_TYPE
-    }
+      message: ERROR_MESSAGES_PRODUCT.INVALID_STATUS_TYPE,
+    };
   } else if (error.message === ERROR_MESSAGES_PRODUCT.INVALID_SUPPLIER_TYPE) {
     return {
       status: HTTP_STATUS_CODES.BAD_REQUEST,
-      message: ERROR_MESSAGES_PRODUCT.INVALID_SUPPLIER_TYPE
-    }
+      message: ERROR_MESSAGES_PRODUCT.INVALID_SUPPLIER_TYPE,
+    };
   }
 
   // message of the errors for client model!
@@ -320,28 +327,28 @@ function handleErros(error) {
   } else if (error.message === ERROR_MESSAGES_CLIENT.INVALID_NAME) {
     return {
       status: HTTP_STATUS_CODES.BAD_REQUEST,
-      message: ERROR_MESSAGES_CLIENT.INVALID_NAME
-    }
+      message: ERROR_MESSAGES_CLIENT.INVALID_NAME,
+    };
   } else if (error.message === ERROR_MESSAGES_CLIENT.INVALID_CITY) {
     return {
       status: HTTP_STATUS_CODES.BAD_REQUEST,
-      message: ERROR_MESSAGES_CLIENT.INVALID_CITY
-    }
+      message: ERROR_MESSAGES_CLIENT.INVALID_CITY,
+    };
   } else if (error.message === ERROR_MESSAGES_CLIENT.INVALID_SALESMAN) {
     return {
       status: HTTP_STATUS_CODES.BAD_REQUEST,
-      message: ERROR_MESSAGES_CLIENT.INVALID_SALESMAN
-    }
+      message: ERROR_MESSAGES_CLIENT.INVALID_SALESMAN,
+    };
   } else if (error.message === ERROR_MESSAGES_CLIENT.INVALID_SERVICE_DAY) {
     return {
       status: HTTP_STATUS_CODES.BAD_REQUEST,
-      message: ERROR_MESSAGES_CLIENT.INVALID_SERVICE_DAY
-    }
+      message: ERROR_MESSAGES_CLIENT.INVALID_SERVICE_DAY,
+    };
   } else if (error.message === ERROR_MESSAGES_CLIENT.INVALID_STATUS) {
     return {
       status: HTTP_STATUS_CODES.BAD_REQUEST,
-      message: ERROR_MESSAGES_CLIENT.INVALID_STATUS
-    }
+      message: ERROR_MESSAGES_CLIENT.INVALID_STATUS,
+    };
   }
 
   // message of the errors for item model!
@@ -468,15 +475,15 @@ function handleErros(error) {
       message: ERROR_MESSAGES_CART.INVALID_PAYMENT_ID_TO_CART,
     };
   } else if (error.message === ERROR_MESSAGES_CART.CART_EMPTY) {
-      return {
-        status: HTTP_STATUS_CODES.BAD_REQUEST,
-        message: ERROR_MESSAGES_CART.CART_EMPTY
-      }
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_CART.CART_EMPTY,
+    };
   } else if (error.message === ERROR_MESSAGES_CART.CART_NOT_ASSOCIATED) {
     return {
       status: HTTP_STATUS_CODES.BAD_REQUEST,
-      message: ERROR_MESSAGES_CART.CART_NOT_ASSOCIATED
-    }
+      message: ERROR_MESSAGES_CART.CART_NOT_ASSOCIATED,
+    };
   }
 
   // message of the errors for payment method model!
