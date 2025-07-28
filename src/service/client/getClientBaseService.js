@@ -23,6 +23,7 @@ class GetClientBaseService {
             city: client.Cidade,
             salesman: client.Vendedor,
             serviceDay: client.Atendimento,
+            CNPJ: client.Cnpj,
           },
           create: {
             id: String(client.Id),
@@ -32,6 +33,7 @@ class GetClientBaseService {
             city: client.Cidade,
             salesman: client.Vendedor,
             serviceDay: client.Atendimento,
+            CNPJ: client.Cnpj,
           },
         });
       }

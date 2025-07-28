@@ -307,7 +307,13 @@ function handleErros(error) {
   }
 
   // message of the errors for client model!
-  else if (error.message === ERROR_MESSAGES_CLIENT.SYNCHRONIZE_CLIENT_ERROR) {
+  //INVALID_CNPJ
+  else if (error.message === ERROR_MESSAGES_CLIENT.INVALID_CNPJ) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_CLIENT.INVALID_CNPJ,
+    };
+  } else if (error.message === ERROR_MESSAGES_CLIENT.SYNCHRONIZE_CLIENT_ERROR) {
     return {
       status: HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR,
       message: ERROR_MESSAGES_CLIENT.SYNCHRONIZE_CLIENT_ERROR,

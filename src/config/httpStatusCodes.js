@@ -5,15 +5,15 @@ export const HTTP_STATUS_CODES = {
   NOT_FOUND: 404,
   CONFLICT: 409,
   INTERNAL_SERVER_ERROR: 500,
-  FORBIDDEN: 403
+  FORBIDDEN: 403,
 };
 
 export const ERROR_MESSAGE_AUTH = {
   TOKEN_NOT_FOUND: "Token ausente",
-  TOKEN_INVALID: "Token inválido", 
-  ACCESS_DENIED: 'Acesso negado, procure por um admin!',
-  INVALID_CREDENTIALS: 'Email e password inválidos'
-}
+  TOKEN_INVALID: "Token inválido",
+  ACCESS_DENIED: "Acesso negado, procure por um admin!",
+  INVALID_CREDENTIALS: "Email e password inválidos",
+};
 
 // usuário
 export const ERROR_MESSAGES_USER = {
@@ -83,7 +83,7 @@ export const ERROR_MESSAGES_PRODUCT = {
   HTTP_STATUS_CODE_ERROR_FATCH: "HTTP ERROR! status:",
   INVALID_SEGMENT_TYPE: "Segmento deve ser um texto ",
   INVALID_SUPPLIER_TYPE: "Fornecedor deve ser um texto",
-  INVALID_STATUS_TYPE: "Status deve ser um número, apenas 1 ou 2"
+  INVALID_STATUS_TYPE: "Status deve ser um número, apenas 1 ou 2",
 };
 
 export const SUCESS_MESSAGES_PRODUCT = {
@@ -98,8 +98,10 @@ export const ERROR_MESSAGES_CLIENT = {
   INVALID_NAME: "Nome deve ser um texto",
   INVALID_CITY: "Cidade deve ser um texto",
   INVALID_SALESMAN: "Vendedor deve ser um texto",
-  INVALID_SERVICE_DAY: "Dia de atendimento deve ser um texto. SEGUNDA | TERÇA | QUARTA ...",
-  INVALID_STATUS: "Status deve ser do tipo booleano"
+  INVALID_SERVICE_DAY:
+    "Dia de atendimento deve ser um texto. SEGUNDA | TERÇA | QUARTA ...",
+  INVALID_STATUS: "Status deve ser do tipo booleano",
+  INVALID_CNPJ: "CNPJ deve ser um texto",
 };
 
 export const SUCESS_MESSAGES_CLIENT = {
