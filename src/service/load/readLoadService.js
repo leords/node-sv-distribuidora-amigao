@@ -15,11 +15,17 @@ class ReadLoadService {
             gte: filters.createdFrom || undefined,
             lte: filters.createdUntil || undefined,
           },
-        }, 
+        },
         include: {
-          carts: true
-        }
-        
+          carts: {
+            include: {
+              client: true, // <- traz os dados completos do cliente
+              cartItems: true, // <- se quiser trazer os produtos
+            },
+          },
+          vehicle: true, // se quiser também os dados do veículo da carga
+          user: true, // e o usuário que criou a carga
+        },
       });
       return readLoad;
     } catch (error) {
