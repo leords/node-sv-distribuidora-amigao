@@ -8,6 +8,9 @@ class ReadVehicleService {
           id: filters.id ? Number(filters.id) : undefined,
           status:
             filters.status !== undefined ? Boolean(filters.status) : undefined,
+          licensePlate: filters.licensePlate
+            ? filters.licensePlate.toUpperCase()
+            : undefined,
         },
       });
       return readVerhicle;

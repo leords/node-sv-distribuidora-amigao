@@ -102,6 +102,7 @@ export const ERROR_MESSAGES_CLIENT = {
     "Dia de atendimento deve ser um texto. SEGUNDA | TERÇA | QUARTA ...",
   INVALID_STATUS: "Status deve ser do tipo booleano",
   INVALID_CNPJ: "CNPJ deve ser um texto",
+  CLIENT_NOT_FOUND: "Cliente não encontrado",
 };
 
 export const SUCESS_MESSAGES_CLIENT = {
@@ -252,7 +253,7 @@ export const ERROR_MESSAGES_LOAD = {
   INVALID_USER_ID_TYPE: "User ID deve ser um número",
   INVALID_STATUS:
     "Status é obrigatório, são aceitos as seguintes opções: | aberta | | fechada | transporte | | entregue | | retornada |",
-  OPEN_LOAD: "Este veículo já está carregado, verefique!",
+  OPEN_LOAD: "Este veículo já está carregado, verifique!",
   DATA_RANGE_ERROR: "A data final não pode ser menor que a data inicial",
   //------
   LOAD_NOT_FOUND: "A carga que deseja fazer alterações não foi encontrada",
@@ -267,6 +268,33 @@ export const ERROR_MESSAGES_LOAD = {
     "Está carga não está disponivel para alocar mais pedidos, ela está como: ",
   LOAD_DELETE_RESTRICTED:
     "Está carga está restrita. Não é possível apagá-la, devido seu status",
+  INVALID_LICENSE_PLATE: "Placa precisa ser texto e conter 7 caracteres",
+};
+
+export const SUCESS_MESSAGE_TRANSACTION = {
+  TRANSACTION_CREATED_SUCCESSFULLY: "criado com sucesso o",
+  TRANSACTION_DELETED_SUCCESSFULLY: "deletado com sucesso o ",
+  TRANSACTION_UPDATED_SUCCESSFULLY: "alterado com sucesso o",
+};
+
+export const ERROR_MESSAGES_TRANSACTION = {
+  INVALID_NAME: "Nome é obrigatório",
+  INVALID_NAME_TYPE: "Nome deve ser um texto",
+  INVALID_PRICE: "Preço é obrigatório",
+  INVALID_TYPE_PRICE: "Preço deve ser número",
+  INVALID_CLIENT_ID: "Client ID é obrigatório",
+  INVALID_TYPE_CLIENT_ID: "Client ID deve ser número",
+  INVALID_TYPE_TRANSACTION: "Type deve ser um texto",
+  INVALID_OPTION_TYPES_TRANSACTION:
+    "Type precisa estar entre as duas opções: | debit | credit |",
+  INVALID_DESCRIPTION: "Descrição é obrigatória",
+  INVALID_DESCRIPTION_TYPE: "Descrição deve ser um texto",
+  INVALID_ID: "User ID é obrigatório",
+  INVALID_ID_TYPE: "User ID deve ser número",
+  INVALID_STATUS: "Status é obrigatório",
+  TRANSACTION_NOT_FOUND: "Transação não encontrada",
+  INVALID_OPTION_STATUS_TRANSACTION:
+    "Status precisa estar entre as duas opções: | ativa | cancelada | ",
 };
 
 export const HTTP_API = {

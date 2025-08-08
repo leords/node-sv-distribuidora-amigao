@@ -1,4 +1,4 @@
-import { Decimal } from "@prisma/client/runtime/index.js";
+import { Decimal } from "@prisma/client/runtime/library";
 import { ERROR_MESSAGES_CART_ITEM } from "../../config/httpStatusCodes.js";
 import prismaClient from "../../prisma/index.js";
 

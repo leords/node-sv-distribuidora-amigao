@@ -3,6 +3,13 @@ import prismaClient from "../../prisma/index.js";
 class CalculatePaymentService {
   async execute(clientId) {
     try {
+      const paymentMethod = await prismaClient.paymentMethod.findFirst({
+        where: {
+          name: {
+            in: ["vale", "VALE"],
+          },
+        },
+      });
       // Soma de todos carrinhos com forma de pagamento VALE, referente a este clientId.
       const accumulatedCartsPending = await prismaClient.cart.aggregate({
         _sum: {
@@ -10,7 +17,7 @@ class CalculatePaymentService {
         },
         where: {
           clientId: clientId,
-          paymentId: 3,
+          paymentId: paymentMethod.id,
         },
       });
 

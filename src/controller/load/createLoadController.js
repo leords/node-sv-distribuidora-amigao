@@ -9,7 +9,7 @@ import { handleErros } from "../../utils/errorHandler.js";
 
 class CreateLoadController {
   async handle(req, res) {
-    const { name, vehiclesId, userId, status } = req.body;
+    const { name, vehiclesId, userId } = req.body;
     try {
       if (!name) {
         throw new Error(ERROR_MESSAGES_LOAD.INVALID_NAME);
@@ -30,19 +30,8 @@ class CreateLoadController {
         throw new Error(ERROR_MESSAGES_LOAD.INVALID_USER_ID_TYPE);
       }
 
-      const allowedStatuses = [
-        "aberta",
-        "fechada",
-        "transporte",
-        "entregue",
-        "retornada",
-      ];
-      if (allowedStatuses.includes(status)) {
-        throw new Error(ERROR_MESSAGES_LOAD.INVALID_STATUS_METHOD);
-      }
-
       const service = new CreateLoadService();
-      const result = await service.execute(name, vehiclesId, userId, status);
+      const result = await service.execute(name, vehiclesId, userId);
 
       return res.status(HTTP_STATUS_CODES.OK).json({
         message: SUCESS_MESSAGE_LOAD.LOAD_CREATED_SUCCESSFULLY,
@@ -51,7 +40,7 @@ class CreateLoadController {
     } catch (error) {
       console.log(error);
       const { status, message } = handleErros(error);
-      return res.status(status).json({ error: message });
+      return res.status(status).json({ message });
     }
   }
 }

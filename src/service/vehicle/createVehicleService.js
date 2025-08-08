@@ -19,7 +19,7 @@ class CreateVehicleService {
       const newVehicle = await prismaClient.vehicles.create({
         data: {
           model,
-          licensePlate,
+          licensePlate: licensePlate.toUpperCase(),
           brand,
           weight,
         },

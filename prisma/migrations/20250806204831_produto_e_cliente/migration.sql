@@ -25,6 +25,7 @@ CREATE TABLE "clients" (
     "city" TEXT NOT NULL,
     "salesman" TEXT NOT NULL,
     "serviceDay" TEXT NOT NULL,
+    "cnpj" TEXT NOT NULL,
     "status" BOOLEAN NOT NULL DEFAULT true
 );
 
@@ -36,6 +37,7 @@ CREATE TABLE "Product" (
     "segment" TEXT NOT NULL,
     "supplier" TEXT NOT NULL,
     "weight" DECIMAL NOT NULL,
+    "packaging" TEXT NOT NULL,
     "status" BOOLEAN NOT NULL DEFAULT true
 );
 

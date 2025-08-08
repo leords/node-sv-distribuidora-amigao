@@ -6,7 +6,7 @@ import {
 import prismaClient from "../../prisma/index.js";
 
 class CreateLoadService {
-  async execute(name, vehiclesId, userId, status) {
+  async execute(name, vehiclesId, userId) {
     try {
       //buscando usuário com o userID
       const validatingUser = await prismaClient.user.findUnique({
@@ -44,10 +44,9 @@ class CreateLoadService {
       //criando uma nova carga
       const newLoad = await prismaClient.load.create({
         data: {
-          name,
+          name: name.toLowerCase(),
           vehiclesId,
           userId,
-          status,
         },
       });
       return newLoad;

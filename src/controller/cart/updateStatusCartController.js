@@ -3,10 +3,10 @@ import {
   HTTP_STATUS_CODES,
   SUCESS_MESSAGES_CART,
 } from "../../config/httpStatusCodes.js";
-import { UpdateCartService } from "../../service/cart/updateCartService.js";
+import { UpdateStatusCartService } from "../../service/cart/updateStatusCartService.js";
 import { handleErros } from "../../utils/errorHandler.js";
 
-class UpdateCartController {
+class UpdateStatusCartController {
   async handle(req, res) {
     const { id, statusDelivery } = req.body;
 
@@ -35,7 +35,7 @@ class UpdateCartController {
         throw new Error(ERROR_MESSAGES_CART.INVALID_STATUS_DELIVERY_TYPE);
       }
 
-      const service = new UpdateCartService();
+      const service = new UpdateStatusCartService();
       const result = await service.execute(id, statusDelivery);
 
       return res.status(HTTP_STATUS_CODES.OK).json({
@@ -49,4 +49,4 @@ class UpdateCartController {
   }
 }
 
-export { UpdateCartController };
+export { UpdateStatusCartController };

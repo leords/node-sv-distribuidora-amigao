@@ -7,7 +7,6 @@ import { CreateVehicleService } from "../../service/vehicle/createVehicleService
 import { handleErros } from "../../utils/errorHandler.js";
 
 class CreateVehicleController {
-  
   async handle(req, res) {
     const { model, licensePlate, brand, weight } = req.body;
 
@@ -44,7 +43,12 @@ class CreateVehicleController {
       }
 
       const service = new CreateVehicleService();
-      const result = await service.execute(model, licensePlate, brand, weight);
+      const result = await service.execute(
+        model,
+        licensePlate.toUpperCase(),
+        brand,
+        weight
+      );
 
       return res.status(HTTP_STATUS_CODES.CREATED).json({
         message: SUCESS_MESSAGES_VEHICLE.VEHICLE_CREATED_SUCCESSFULLY,

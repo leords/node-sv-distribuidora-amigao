@@ -1,4 +1,3 @@
-import { HttpStatusCode } from "axios";
 import {
   HTTP_STATUS_CODES,
   ERROR_MESSAGES_USER,
@@ -14,11 +13,13 @@ import {
   ERROR_MESSAGES_VEHICLE,
   ERROR_MESSAGES_LOAD,
   ERROR_MESSAGE_AUTH,
+  ERROR_MESSAGES_TRANSACTION,
 } from "../config/httpStatusCodes.js";
 
 function handleErros(error) {
   // message of the errors for auth model!
-  if ((error.message = ERROR_MESSAGE_AUTH.INVALID_CREDENTIALS)) {
+  console.log("Erro dentro do handle:", error.message);
+  if (error.message === ERROR_MESSAGE_AUTH.INVALID_CREDENTIALS) {
     return {
       status: HTTP_STATUS_CODES.BAD_REQUEST,
       message: ERROR_MESSAGE_AUTH.INVALID_CREDENTIALS,
@@ -26,91 +27,77 @@ function handleErros(error) {
   }
 
   // message of the errors for user model!
-  if (error.message === ERROR_MESSAGES_USER.INVALID_PROFESSION_ID_TYPE) {
+  else if (error.message === ERROR_MESSAGES_USER.INVALID_PROFESSION_ID_TYPE) {
     return {
       status: HTTP_STATUS_CODES.BAD_REQUEST,
       message: ERROR_MESSAGES_USER.INVALID_PROFESSION_ID_TYPE,
     };
-  }
-  if (error.message === ERROR_MESSAGES_USER.INVALID_PROFESSION_ID) {
+  } else if (error.message === ERROR_MESSAGES_USER.INVALID_PROFESSION_ID) {
     return {
       status: HTTP_STATUS_CODES.BAD_REQUEST,
       message: ERROR_MESSAGES_USER.INVALID_PROFESSION_ID,
     };
-  }
-  if (error.message === ERROR_MESSAGES_USER.INVALID_PASSWORD_SHORT) {
+  } else if (error.message === ERROR_MESSAGES_USER.INVALID_PASSWORD_SHORT) {
     return {
       status: HTTP_STATUS_CODES.BAD_REQUEST,
       message: ERROR_MESSAGES_USER.INVALID_PASSWORD_SHORT,
     };
-  }
-  if (error.message === ERROR_MESSAGES_USER.INVALID_PASSWORD_TYPE) {
+  } else if (error.message === ERROR_MESSAGES_USER.INVALID_PASSWORD_TYPE) {
     return {
       status: HTTP_STATUS_CODES.BAD_REQUEST,
       message: ERROR_MESSAGES_USER.INVALID_PASSWORD_TYPE,
     };
-  }
-  if (error.message === ERROR_MESSAGES_USER.INVALID_PASSWORD) {
+  } else if (error.message === ERROR_MESSAGES_USER.INVALID_PASSWORD) {
     return {
       status: HTTP_STATUS_CODES.BAD_REQUEST,
       message: ERROR_MESSAGES_USER.INVALID_PASSWORD,
     };
-  }
-  if (error.message === ERROR_MESSAGES_USER.INVALID_ACCESS_OPTION) {
+  } else if (error.message === ERROR_MESSAGES_USER.INVALID_ACCESS_OPTION) {
     return {
       status: HTTP_STATUS_CODES.BAD_REQUEST,
       message: ERROR_MESSAGES_USER.INVALID_ACCESS_OPTION,
     };
-  }
-  if (error.message === ERROR_MESSAGES_USER.INVALID_ACCESS_LEVEL_TYPE) {
+  } else if (error.message === ERROR_MESSAGES_USER.INVALID_ACCESS_LEVEL_TYPE) {
     return {
       status: HTTP_STATUS_CODES.BAD_REQUEST,
       message: ERROR_MESSAGES_USER.INVALID_ACCESS_LEVEL_TYPE,
     };
-  }
-  if (error.message === ERROR_MESSAGES_USER.INVALID_ACCESS_LEVEL) {
+  } else if (error.message === ERROR_MESSAGES_USER.INVALID_ACCESS_LEVEL) {
     return {
       status: HTTP_STATUS_CODES.BAD_REQUEST,
       message: ERROR_MESSAGES_USER.INVALID_ACCESS_LEVEL,
     };
-  }
-  if (error.message === ERROR_MESSAGES_USER.INVALID_EMAIL_FORMAT) {
+  } else if (error.message === ERROR_MESSAGES_USER.INVALID_EMAIL_FORMAT) {
     return {
       status: HTTP_STATUS_CODES.BAD_REQUEST,
       message: ERROR_MESSAGES_USER.INVALID_EMAIL_FORMAT,
     };
-  }
-  if (error.message === ERROR_MESSAGES_USER.INVALID_EMAIL_TYPE) {
+  } else if (error.message === ERROR_MESSAGES_USER.INVALID_EMAIL_TYPE) {
     return {
       status: HTTP_STATUS_CODES.BAD_REQUEST,
       message: ERROR_MESSAGES_USER.INVALID_EMAIL_TYPE,
     };
-  }
-  if (error.message === ERROR_MESSAGES_USER.INVALID_EMAIL) {
+  } else if (error.message === ERROR_MESSAGES_USER.INVALID_EMAIL) {
     return {
       status: HTTP_STATUS_CODES.BAD_REQUEST,
       message: ERROR_MESSAGES_USER.INVALID_EMAIL,
     };
-  }
-  if (error.message === ERROR_MESSAGES_USER.INVALID_NAME_LENGTH) {
+  } else if (error.message === ERROR_MESSAGES_USER.INVALID_NAME_LENGTH) {
     return {
       status: HTTP_STATUS_CODES.BAD_REQUEST,
       message: ERROR_MESSAGES_USER.INVALID_NAME_LENGTH,
     };
-  }
-  if (error.message === ERROR_MESSAGES_USER.INVALID_NAME_TYPE) {
+  } else if (error.message === ERROR_MESSAGES_USER.INVALID_NAME_TYPE) {
     return {
       status: HTTP_STATUS_CODES.BAD_REQUEST,
       message: ERROR_MESSAGES_USER.INVALID_NAME_TYPE,
     };
-  }
-  if (error.message === ERROR_MESSAGES_USER.INVALID_NAME) {
+  } else if (error.message === ERROR_MESSAGES_USER.INVALID_NAME) {
     return {
       status: HTTP_STATUS_CODES.BAD_REQUEST,
       message: ERROR_MESSAGES_USER.INVALID_NAME,
     };
-  }
-  if (error.message === ERROR_MESSAGES_USER.INVALID_EMAIL) {
+  } else if (error.message === ERROR_MESSAGES_USER.INVALID_EMAIL) {
     return {
       status: HTTP_STATUS_CODES.BAD_REQUEST,
       message: ERROR_MESSAGES_USER.INVALID_EMAIL,
@@ -181,6 +168,11 @@ function handleErros(error) {
     return {
       status: HTTP_STATUS_CODES.BAD_REQUEST,
       message: ERROR_MESSAGES_USER.VALIDATE_EMAIL,
+    };
+  } else if (error.message === ERROR_MESSAGES_USER.CLIENT_NOT_FOUND) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_USER.CLIENT_NOT_FOUND,
     };
   }
 
@@ -713,16 +705,6 @@ function handleErros(error) {
       status: HTTP_STATUS_CODES.BAD_REQUEST,
       message: ERROR_MESSAGES_LOAD.INVALID_ID_TYPE,
     };
-  } else if (error.message === ERROR_MESSAGES_LOAD.INVALID_DATE) {
-    return {
-      status: HTTP_STATUS_CODES.BAD_REQUEST,
-      message: ERROR_MESSAGES_LOAD.INVALID_DATE,
-    };
-  } else if (error.message === ERROR_MESSAGES_LOAD.INVALID_DATE_TYPE) {
-    return {
-      status: HTTP_STATUS_CODES.BAD_REQUEST,
-      message: ERROR_MESSAGES_LOAD.INVALID_DATE_TYPE,
-    };
   } else if (error.message === ERROR_MESSAGES_LOAD.INVALID_VEHICLE_ID) {
     return {
       status: HTTP_STATUS_CODES.BAD_REQUEST,
@@ -802,6 +784,90 @@ function handleErros(error) {
     return {
       status: HTTP_STATUS_CODES.BAD_REQUEST,
       message: ERROR_MESSAGES_LOAD.LOAD_DELETE_RESTRICTED,
+    };
+  }
+
+  // message of the errors for debt model
+  else if (error.message === ERROR_MESSAGES_TRANSACTION.INVALID_CLIENT_ID) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_TRANSACTION.INVALID_CLIENT_ID,
+    };
+  } else if (
+    error.message === ERROR_MESSAGES_TRANSACTION.INVALID_TYPE_CLIENT_ID
+  ) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_TRANSACTION.INVALID_TYPE_CLIENT_ID,
+    };
+  } else if (error.message === ERROR_MESSAGES_TRANSACTION.INVALID_NAME) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_TRANSACTION.INVALID_NAME,
+    };
+  } else if (error.message === ERROR_MESSAGES_TRANSACTION.INVALID_NAME_TYPE) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_TRANSACTION.INVALID_NAME_TYPE,
+    };
+  } else if (error.message === ERROR_MESSAGES_TRANSACTION.INVALID_PRICE) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_TRANSACTION.INVALID_PRICE,
+    };
+  } else if (error.message === ERROR_MESSAGES_TRANSACTION.INVALID_TYPE_PRICE) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_TRANSACTION.INVALID_TYPE_PRICE,
+    };
+  } else if (
+    error.message === ERROR_MESSAGES_TRANSACTION.INVALID_TYPE_TRANSACTION
+  ) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_TRANSACTION.INVALID_TYPE_TRANSACTION,
+    };
+  } else if (
+    error.message ===
+    ERROR_MESSAGES_TRANSACTION.INVALID_OPTION_TYPES_TRANSACTION
+  ) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_TRANSACTION.INVALID_OPTION_TYPES_TRANSACTION,
+    };
+  } else if (error.message === ERROR_MESSAGES_TRANSACTION.INVALID_DESCRIPTION) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_TRANSACTION.INVALID_DESCRIPTION,
+    };
+  } else if (
+    error.message === ERROR_MESSAGES_TRANSACTION.INVALID_DESCRIPTION_TYPE
+  ) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_TRANSACTION.INVALID_DESCRIPTION_TYPE,
+    };
+  } else if (error.message === ERROR_MESSAGES_TRANSACTION.INVALID_ID) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_TRANSACTION.INVALID_ID,
+    };
+  } else if (error.message === ERROR_MESSAGES_TRANSACTION.INVALID_ID_TYPE) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_TRANSACTION.INVALID_ID_TYPE,
+    };
+  } else if (
+    error.message === ERROR_MESSAGES_TRANSACTION.TRANSACTION_NOT_FOUND
+  ) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_TRANSACTION.TRANSACTION_NOT_FOUND,
+    };
+  } else if (error.message === ERROR_MESSAGES_TRANSACTION.INVALID_STATUS) {
+    return {
+      status: HTTP_STATUS_CODES.BAD_REQUEST,
+      message: ERROR_MESSAGES_TRANSACTION.INVALID_STATUS,
     };
   }
 

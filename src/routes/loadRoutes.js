@@ -3,6 +3,7 @@ import { CreateLoadController } from "../controller/load/createLoadController.js
 import { ReadLoadController } from "../controller/load/readLoadController.js";
 import { UpdateLoadController } from "../controller/load/updateLoadController.js";
 import { DeleteLoadController } from "../controller/load/deleteLoadController.js";
+import { LoadReportController } from "../controller/load/loadReportController.js";
 
 const router = Router();
 
@@ -19,5 +20,7 @@ router.patch(
   new UpdateLoadController().handleUpdateVehicle
 );
 router.delete("/delete-load", new DeleteLoadController().handle);
+
+router.get("/report-load", new LoadReportController().handle);
 
 export { router as loadRouter };

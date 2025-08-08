@@ -30,6 +30,7 @@ model User {
   carts Cart[]
   payments Payment[]
   loads Load[]
+  transactions Transaction[]
 
   @@map("users")
 }
@@ -42,10 +43,12 @@ model Client {
   city String
   salesman String
   serviceDay String
+  cnpj String
   status Boolean @default(true)
 
   carts Cart[]
   payments Payment[]
+  transaction Transaction[]
 
   @@map("clients")
 }
@@ -56,10 +59,28 @@ model Product {
   price Decimal @default(0.0)
   segment String
   supplier String
-  weight Decimal 
+  weight Decimal
+  packaging String
   status Boolean @default(true)
 
   cartItens CartItem[]
+}
+
+model Transaction {
+  id Int @id @default(autoincrement())
+  method String
+  price Decimal @default(0.0)
+  createdAt DateTime @default(now())
+  description String
+  type String
+  status String @default("ativa")
+  canceledAt DateTime?
+  clientId String
+  client Client @relation(fields: [clientId], references: [id])
+  userId Int
+  user User @relation(fields: [userId], references: [id])
+
+  @@map("transaction")
 }
 
 model PaymentMethod {

@@ -4,7 +4,9 @@ class DeleteVehicleService {
   async execute(id) {
     try {
       const existingVehicle = await prismaClient.vehicles.findUnique({
-        where: { id },
+        where: {
+          id: id,
+        },
       });
 
       if (!existingVehicle) {

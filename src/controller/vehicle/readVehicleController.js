@@ -1,5 +1,6 @@
 import {
   ERROR_MESSAGES_VEHICLE,
+  ERROR_MESSAGES_LOAD,
   HTTP_STATUS_CODES,
 } from "../../config/httpStatusCodes.js";
 import { ReadVehicleService } from "../../service/vehicle/readVehicleService.js";
@@ -10,6 +11,9 @@ class ReadVehicleController {
   async handle(req, res) {
     const id = req.query.id ? Number(req.query.id) : undefined;
     const statusString = req.query.status ? req.query.status : undefined;
+    const licensePlate = req.query.licensePlate
+      ? req.query.licensePlate.toUpperCase()
+      : undefined;
 
     try {
       const allowedStatuses = ["true", "false"];
@@ -27,10 +31,19 @@ class ReadVehicleController {
         throw new Error(ERROR_MESSAGES_VEHICLE.INVALID_ID_TYPE);
       }
 
+      if (
+        typeof licensePlate !== "string" &&
+        licensePlate &&
+        licensePlate.length !== 7
+      ) {
+        throw new Error(ERROR_MESSAGES_LOAD.INVALID_LICENSE_PLATE);
+      }
+
       // criando um objeto com os dados da requisição.
       const filters = {
         id: id,
         status: status,
+        licensePlate: licensePlate,
       };
 
       const service = new ReadVehicleService();
@@ -42,6 +55,7 @@ class ReadVehicleController {
       }
       return res.status(HTTP_STATUS_CODES.OK).json({ result });
     } catch (error) {
+      console.log(error);
       const { status, message } = handleErros(error);
       return res.status(status).json({ error: message });
     }

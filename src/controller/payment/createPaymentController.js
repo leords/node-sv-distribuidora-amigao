@@ -3,7 +3,6 @@ import {
   HTTP_STATUS_CODES,
   SUCESS_MESSAGES_PAYMENT,
 } from "../../config/httpStatusCodes.js";
-import { CreateCartService } from "../../service/cart/createCartService.js";
 import { createPaymentService } from "../../service/payment/createPaymentService.js";
 import { handleErros } from "../../utils/errorHandler.js";
 
@@ -22,10 +21,10 @@ class CreatePaymentController {
         throw new Error(ERROR_MESSAGES_PAYMENT.INVALID_VALUE_AMOUNT);
       }
       if (!clientId) {
-        throw new Error(ERROR_MESSAGES_PAYMENT.INVALID_CLIENT_ID);
-      }
-      if (isNaN(clientId)) {
         throw new Error(ERROR_MESSAGES_PAYMENT.INVALID_CLIENT_ID_TYPE);
+      }
+      if (!typeof clientId === "string") {
+        throw new Error(ERROR_MESSAGES_PAYMENT.INVALID_CLIENT_ID);
       }
       if (!paymentId) {
         throw new Error(ERROR_MESSAGES_PAYMENT.INVALID_PAYMENT_ID);

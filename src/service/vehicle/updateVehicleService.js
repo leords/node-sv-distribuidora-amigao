@@ -1,7 +1,4 @@
-import {
-  ERROR_MESSAGES_USER,
-  ERROR_MESSAGES_VEHICLE,
-} from "../../config/httpStatusCodes.js";
+import { ERROR_MESSAGES_VEHICLE } from "../../config/httpStatusCodes.js";
 import prismaClient from "../../prisma/index.js";
 
 class UpdateVehicleService {
@@ -45,7 +42,7 @@ class UpdateVehicleService {
           id: id,
         },
         data: {
-          licensePlate: licensePlate,
+          licensePlate: licensePlate.toUpperCase(),
         },
       });
       return editLicensePlateVehicle;

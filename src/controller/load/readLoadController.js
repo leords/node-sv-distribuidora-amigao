@@ -19,6 +19,13 @@ class ReadLoadController {
     const createdUntil = req.query.createdUntil
       ? new Date(req.query.createdUntil)
       : undefined;
+    const licensePlate = req.query.licensePlate
+      ? req.query.licensePlate.toUpperCase()
+      : undefined;
+    // foi passado LowerCase para poder filtar com LowerCase, prisma é sensitive case!!!
+    const containsLyrics = req.query.containsLyrics
+      ? req.query.containsLyrics.toLowerCase()
+      : undefined;
 
     try {
       if (id && isNaN(id)) {
@@ -55,6 +62,16 @@ class ReadLoadController {
       if (createdUntil && createdFrom && createdUntil < createdFrom) {
         throw new Error(ERROR_MESSAGES_LOAD.DATA_RANGE_ERROR);
       }
+      if (
+        typeof licensePlate !== "string" &&
+        licensePlate &&
+        licensePlate.length !== 7
+      ) {
+        throw new Error(ERROR_MESSAGES_LOAD.INVALID_LICENSE_PLATE);
+      }
+      if (containsLyrics !== undefined && typeof containsLyrics !== "string") {
+        throw new Error(ERROR_MESSAGES_LOAD.INVALID_NAME_TYPE);
+      }
 
       const filters = {
         id: id,
@@ -63,6 +80,8 @@ class ReadLoadController {
         status: status,
         createdFrom: createdFrom,
         createdUntil: createdUntil,
+        licensePlate: licensePlate,
+        containsLyrics: containsLyrics,
       };
 
       const service = new ReadLoadService();

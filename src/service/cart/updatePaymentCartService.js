@@ -1,28 +1,35 @@
-import { ERROR_MESSAGES_CART } from "../../config/httpStatusCodes.js";
+import {
+  ERROR_MESSAGES_CART,
+  ERROR_MESSAGES_PAYMENT_METHOD,
+} from "../../config/httpStatusCodes.js";
 import prismaClient from "../../prisma/index.js";
 
-class UpdateCartService {
-  async execute(id, statusDelivery) {
+class UpdatePaymentCartService {
+  async execute(id, paymentId) {
     try {
       const cart = await prismaClient.cart.findUnique({
         where: {
           id: id,
         },
       });
-
       if (!cart) {
         throw new Error(ERROR_MESSAGES_CART.CART_NOT_FOUND);
       }
 
+      const payment = await prismaClient.paymentMethod.findUnique({
+        where: { id: paymentId },
+      });
+      if (!payment) {
+        throw new Error(ERROR_MESSAGES_PAYMENT_METHOD.PAYMENT_NOT_FOUND);
+      }
       const updateCart = await prismaClient.cart.update({
         where: {
-          id: cart.id,
+          id: id,
         },
         data: {
-          statusDelivery: statusDelivery,
+          paymentId: paymentId,
         },
       });
-
       return updateCart;
     } catch (error) {
       console.log(error);
@@ -31,4 +38,4 @@ class UpdateCartService {
   }
 }
 
-export { UpdateCartService };
+export { UpdatePaymentCartService };

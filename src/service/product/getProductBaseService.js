@@ -8,7 +8,7 @@ class GetProductBaseService {
   async execute(products) {
     try {
       if (products.length === 0) {
-        throw new Error(ERROR_MESSAGES_PRODUCT.SYNCHRONIZE_CLIENT_ERROR);
+        throw new Error(ERROR_MESSAGES_PRODUCT.SYNCHRONIZE_PRODUCT_ERROR);
       }
       for (const product of products) {
         await prismaClient.product.upsert({
@@ -21,6 +21,7 @@ class GetProductBaseService {
             segment: product.Segmento,
             supplier: product.Fornecedor,
             weight: product.Peso ? product.Peso : 0,
+            packaging: product.Embalagem,
           },
           create: {
             id: product.Id,
@@ -29,6 +30,7 @@ class GetProductBaseService {
             segment: product.Segmento,
             supplier: product.Fornecedor,
             weight: product.Peso ? product.Peso : 0,
+            packaging: product.Embalagem,
             status: true,
           },
         });

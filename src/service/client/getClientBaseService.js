@@ -12,6 +12,7 @@ class GetClientBaseService {
         throw new Error(ERROR_MESSAGES_CLIENT.SYNCHRONIZE_CLIENT_ERROR);
       }
       for (const client of clients) {
+        console.log(client);
         await prismaClient.client.upsert({
           where: {
             id: String(client.Id),
@@ -23,7 +24,7 @@ class GetClientBaseService {
             city: client.Cidade,
             salesman: client.Vendedor,
             serviceDay: client.Atendimento,
-            CNPJ: client.Cnpj,
+            cnpj: String(client.Cnpj),
           },
           create: {
             id: String(client.Id),
@@ -33,7 +34,7 @@ class GetClientBaseService {
             city: client.Cidade,
             salesman: client.Vendedor,
             serviceDay: client.Atendimento,
-            CNPJ: client.Cnpj,
+            cnpj: String(client.Cnpj),
           },
         });
       }

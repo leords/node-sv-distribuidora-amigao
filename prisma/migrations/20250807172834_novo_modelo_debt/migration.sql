@@ -1,0 +1,9 @@
+-- CreateTable
+CREATE TABLE "debts" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "name" TEXT NOT NULL,
+    "price" DECIMAL NOT NULL DEFAULT 0.0,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "clientId" TEXT NOT NULL,
+    CONSTRAINT "debts_clientId_fkey" FOREIGN KEY ("clientId") REFERENCES "clients" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);
